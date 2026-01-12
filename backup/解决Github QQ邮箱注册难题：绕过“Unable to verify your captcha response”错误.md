@@ -1,12 +1,12 @@
-# 解决Github QQ邮箱注册难题：绕过“Unable to verify your captcha response”错误
 
-![](https://xiuji008.github.io/202601/github.png)
+
+![](https://xiuji008.github.io/images/202601/github.png)
 
 最近在尝试使用QQ邮箱注册新的Github账号时，遇到了一个令人困扰的问题。经过繁琐的图片验证后，页面不仅没有跳转成功，反而重新回到注册页面，并显示以下错误信息：
 
 **“Unable to verify your captcha response.”**
 
-![](https://xiuji008.github.io/202601/github_sign_up_error.png)
+![](https://xiuji008.github.io/images/202601/github_sign_up_error.png)
 
 无论更换网络环境、使用不同设备（包括手机）还是切换各种浏览器，这个问题始终存在。经过一番探索，我找到了一个有效的解决方案，并在此分享给大家。
 
