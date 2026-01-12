@@ -16,6 +16,8 @@
     "nightTheme":"dark_colorblind",
     "urlMode":"pinyin",
     "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
-    "allHead":"<script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/articletoc.js'></script>"
+    "allHead":"<script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/articletoc.js'></script>",
+    "style":"<style>#postBody{font-size:20px}</style>",
+    "script":"<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>"
 
 }
