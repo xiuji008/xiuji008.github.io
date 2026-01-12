@@ -2,5 +2,17 @@
     "title":"修己xj",
     "subTitle":"修己xj的技术社区",
     "avatarUrl":"https://xiuji008.github.io/favicons/favicon.svg",
-    "GMEEK_VERSION":"last"
+    "GMEEK_VERSION":"last",
+    "startSite":"02/16/2015",
+    "onePageListNum":15,
+    "singlePage":["about"],
+    "commentLabelColor":"#006b75",
+    "yearColorList":["#bc4c00", "#0969da", "#1f883d", "#A333D0"],
+    "i18n":"CN",
+    "UTC":8,
+    "themeMode":"manual",
+    "dayTheme":"light",
+    "nightTheme":"dark_colorblind",
+    "urlMode":"pinyin",
+    "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️"
 }
