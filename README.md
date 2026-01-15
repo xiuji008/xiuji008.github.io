@@ -1,11 +1,10 @@
 # 修己xj :link: https://xiuji008.github.io 
 
 
-
 <div align="center">
   <div style="background: linear-gradient(135deg, #4a6fa5 0%, #2c3e50 100%); color: LimeGreen; padding: 30px; border-radius: 16px 16px 0 0; text-align: center;">
     <div style="width: 120px; height: 120px; margin: 0 auto 20px; background: BlanchedAlmond; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid rgba(255, 255, 255, 0.2);">
-      <img src="api/attachments/zufrv4gdrSdT/image/avatar.png" alt="修己xj Logo" width="84" height="84" style="object-fit: contain;">
+      <img src="https://xiuji008.github.io/favicons/favicon.svg" alt="修己xj Logo" width="84" height="84" style="object-fit: contain;">
     </div>
     <h1 style="font-size: 2.8rem; margin-bottom: 5px;">
       <a href="https://xiuji008.github.io/" target="_blank" style="text-decoration: none; color: LimeGreen;font-family: '楷体', 'STKaiti', KaiTi, serif; font-size: 48px">修己xj</a>
@@ -64,4 +63,3 @@
 <p>探索修己之路，成就更好的自己 | © 2026 修己xj</p>
 <p>博客地址: <a href="https://xiuji008.github.io/" target="_blank" style="color: #4a6fa5; text-decoration: none;">修己xj</a></p>
 </div>
-
