@@ -8,7 +8,7 @@
     "onePageListNum":15,
     "singlePage":["about"],
     "commentLabelColor":"#006b75",
-    "yearColorList":["#bc4c00", "#0969da", "#1f883d", "#A333D0"],
+    "yearColorList":[ "#0969da", "#1f883d","#bc4c00", "#A333D0"],
     "i18n":"CN",
     "UTC":8,
     "themeMode":"manual",
