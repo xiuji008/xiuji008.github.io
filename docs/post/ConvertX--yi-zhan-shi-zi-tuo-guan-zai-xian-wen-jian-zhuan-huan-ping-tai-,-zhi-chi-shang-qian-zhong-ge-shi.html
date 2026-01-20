@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+
+你是否曾经为了转换一个文件格式，在电脑上安装各种臃肿的软件，或者将敏感文件上传到第三方在线转换网站？如果你正在寻找一个既能保护隐私、又能满足多样化转换需求的自托管解决方案，那么 **ConvertX** 就是为你量身打造的工具。">
+<meta property="og:title" content="ConvertX:一站式自托管在线文件转换平台,支持上千种格式">
+<meta property="og:description" content="
+
+
+你是否曾经为了转换一个文件格式，在电脑上安装各种臃肿的软件，或者将敏感文件上传到第三方在线转换网站？如果你正在寻找一个既能保护隐私、又能满足多样化转换需求的自托管解决方案，那么 **ConvertX** 就是为你量身打造的工具。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/ConvertX--yi-zhan-shi-zi-tuo-guan-zai-xian-wen-jian-zhuan-huan-ping-tai-%2C-zhi-chi-shang-qian-zhong-ge-shi.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>ConvertX:一站式自托管在线文件转换平台,支持上千种格式</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">ConvertX:一站式自托管在线文件转换平台,支持上千种格式</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/11" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>你是否曾经为了转换一个文件格式，在电脑上安装各种臃肿的软件，或者将敏感文件上传到第三方在线转换网站？如果你正在寻找一个既能保护隐私、又能满足多样化转换需求的自托管解决方案，那么 <strong>ConvertX</strong> 就是为你量身打造的工具。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/0fb84ac4d5b5b084f0dd295f18a2912d1661282996ebb8a865047525457dbc64/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30312f32302f636f6e76657274782d706167652e706e67"><img src="https://camo.githubusercontent.com/0fb84ac4d5b5b084f0dd295f18a2912d1661282996ebb8a865047525457dbc64/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30312f32302f636f6e76657274782d706167652e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/01/20/convertx-page.png" style="max-width: 100%;"></a></p>
+<h2>💥什么是 ConvertX？</h2>
+<p>ConvertX 是一个功能强大的自托管在线文件转换器。它最大的亮点是 <strong>支持超过一千种不同的文件格式转换</strong>，涵盖了文档、图像、视频、电子书、3D模型等多种类型。该项目采用 TypeScript、Bun 和 Elysia 等现代技术栈开发，旨在为用户提供一个安全、高效、可完全掌控的本地化文件处理中心。</p>
+<p>github地址：<a href="https://github.com/C4illin/ConvertX">https://github.com/C4illin/ConvertX</a></p>
+<p>该项目在github 已有15.3k ⭐star</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/6c7a31ec64b233a7c058e138079cf41831f6709c36353bc8788525fc4d6bf177/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30312f32302f636f6e76657274782d6769746875622d737461722e706e67"><img src="https://camo.githubusercontent.com/6c7a31ec64b233a7c058e138079cf41831f6709c36353bc8788525fc4d6bf177/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30312f32302f636f6e76657274782d6769746875622d737461722e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/01/20/convertx-github-star.png" style="max-width: 100%;"></a></p>
+<h2>☀️ 核心特性</h2>
+<ul>
+<li><strong>海量格式支持：</strong> 支持上千种格式互转，几乎能满足所有日常及专业需求。</li>
+<li><strong>批量处理：</strong> 可以一次性上传并转换多个文件，显著提升工作效率。</li>
+<li><strong>隐私安全：</strong> 自托管意味着你的文件数据永远不会离开你自己的服务器，非常适合处理敏感或机密文档。</li>
+<li><strong>多用户账户：</strong> 支持为团队成员或家庭成员创建独立的账户，共享服务又保持个人文件历史隔离。</li>
+<li><strong>开源免费：</strong> 完全开源，代码透明，可自由部署和修改。</li>
+</ul>
+<h2>🎠强大的转换引擎阵容</h2>
+<p>ConvertX 的强大能力源于其背后整合的众多业界知名的开源转换工具，它们共同构成了一个超级转换工厂：</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="left">工具</th>
+<th align="left">用途</th>
+<th align="left">支持输入格式数</th>
+<th align="left">支持输出格式数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>FFmpeg</strong></td>
+<td align="left">音视频处理</td>
+<td align="left">~472种</td>
+<td align="left">~199种</td>
+</tr>
+<tr>
+<td align="left"><strong>ImageMagick / GraphicsMagick</strong></td>
+<td align="left">图像处理</td>
+<td align="left">412种</td>
+<td align="left">313种</td>
+</tr>
+<tr>
+<td align="left"><strong>LibreOffice</strong></td>
+<td align="left">办公文档</td>
+<td align="left">41种</td>
+<td align="left">22种</td>
+</tr>
+<tr>
+<td align="left"><strong>Pandoc</strong></td>
+<td align="left">文档格式（如Markdown）</td>
+<td align="left">43种</td>
+<td align="left">65种</td>
+</tr>
+<tr>
+<td align="left"><strong>Calibre</strong></td>
+<td align="left">电子书</td>
+<td align="left">26种</td>
+<td align="left">19种</td>
+</tr>
+<tr>
+<td align="left"><strong>Inkscape</strong></td>
+<td align="left">矢量图形</td>
+<td align="left">7种</td>
+<td align="left">17种</td>
+</tr>
+<tr>
+<td align="left"><strong>Assimp</strong></td>
+<td align="left">3D模型资产</td>
+<td align="left">77种</td>
+<td align="left">23种</td>
+</tr>
+<tr>
+<td align="left"><strong>Vips / libheif / libjxl</strong></td>
+<td align="left">高性能图像与HEIF/JPEG XL格式</td>
+<td align="left">58种</td>
+<td align="left">38种</td>
+</tr>
+<tr>
+<td align="left">... 以及更多</td>
+<td align="left">包括 SVG、LaTeX、Outlook邮件、联系人文件等</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>这个列表清晰地展示了 ConvertX 的格式覆盖广度。无论是常见的 <code class="notranslate">.pdf</code>、<code class="notranslate">.docx</code>、<code class="notranslate">.mp4</code>、<code class="notranslate">.jpg</code>，还是相对小众的格式，它都有很大可能支持。</p>
+<h2>🏍️快速部署指南</h2>
+<p>使用 Docker 部署 ConvertX 是极其简单的过程，只需几分钟即可拥有自己的转换服务。</p>
+<ol>
+<li><strong>准备 <code class="notranslate">docker-compose.yml</code> 文件：</strong></li>
+</ol>
+<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">services</span>:
+  <span class="pl-ent">convertx</span>:
+  <span class="pl-c"><span class="pl-c">#</span> 此服务的镜像3.59GB，国内下载比较慢，需要的家人们可以使用我转存阿里云镜像仓库的镜像</span>
+    <span class="pl-ent">image</span>: <span class="pl-s">registry.cn-hangzhou.aliyuncs.com/xjpublic/convertx</span>
+    <span class="pl-ent">container_name</span>: <span class="pl-s">convertx</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">unless-stopped</span>
+    <span class="pl-ent">ports</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>10000:3000<span class="pl-pds">"</span></span>
+    <span class="pl-ent">environment</span>: 
+      - <span class="pl-s">ACCOUNT_REGISTRATION=false </span><span class="pl-c"><span class="pl-c">#</span> true或false，首账户创建不受影响（例如若只需单账户可保持false）</span>
+      - <span class="pl-s">JWT_SECRET=aLongAndSecretStringUsedToSignTheJSONWebToken1234 </span><span class="pl-c"><span class="pl-c">#</span> 默认使用randomUUID()生成</span>
+      - <span class="pl-s">HTTP_ALLOWED=true </span><span class="pl-c"><span class="pl-c">#</span> 若要使用http访问，则设置为true</span>
+      - <span class="pl-s">ALLOW_UNAUTHENTICATED=true  </span><span class="pl-c"><span class="pl-c">#</span> 允许未登录用户使用服务，仅限本地环境设为true</span>
+      - <span class="pl-s">AUTO_DELETE_EVERY_N_HOURS=24 </span><span class="pl-c"><span class="pl-c">#</span> 每N小时检查并删除超过N小时的旧文件，设为0可禁用</span>
+    <span class="pl-ent">volumes</span>:
+      - <span class="pl-s">./data:/app/data</span></pre></div>
+<p>🐳<strong>Docker 镜像</strong></p>
+<p>每次发布时会更新 <code class="notranslate">:latest</code> 标签，每次推送到主分支时会更新 <code class="notranslate">:main</code> 标签。常规使用推荐使用 <code class="notranslate">:latest</code> 标签。</p>
+<p>镜像可在 <a href="https://github.com/C4illin/ConvertX/pkgs/container/ConvertX">GitHub Container Registry</a> 和 <a href="https://hub.docker.com/r/c4illin/convertx" rel="nofollow">Docker Hub</a> 获取。</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>镜像</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">image: ghcr.io/c4illin/convertx</code></td>
+<td>GitHub Container Registry 上的最新发布版本</td>
+</tr>
+<tr>
+<td><code class="notranslate">image: ghcr.io/c4illin/convertx:main</code></td>
+<td>GitHub Container Registry 上的最新提交</td>
+</tr>
+<tr>
+<td><code class="notranslate">image: c4illin/convertx</code></td>
+<td>Docker Hub 上的最新发布版本</td>
+</tr>
+<tr>
+<td><code class="notranslate">image: c4illin/convertx:main</code></td>
+<td>Docker Hub 上的最新提交</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>此服务的镜像3.59GB，国内下载比较慢，需要的家人们可以使用我转存阿里云镜像仓库的镜像<code class="notranslate">registry.cn-hangzhou.aliyuncs.com/xjpublic/convertx</code></p>
+<ol start="2">
+<li>
+<p><strong>启动服务：</strong></p>
+<p>在 <code class="notranslate">docker-compose.yml</code> 文件所在目录下运行：</p>
+</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker-compose up -d</pre></div>
+<ol start="3">
+<li><strong>初始化账户：</strong><br>
+在浏览器中访问 <code class="notranslate">http://你的服务器IP:3000</code>。<strong>第一个注册的用户将自动成为管理员</strong>。</li>
+</ol>
+<p>就这么简单！你已经成功搭建了一个功能完备的在线文件转换平台。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d6137886aa99dbe5553f302da11c98292387a36469746f88684d9a3565f64486/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30312f32302f636f6e76657274782d6669727374706167652e706e67"><img src="https://camo.githubusercontent.com/d6137886aa99dbe5553f302da11c98292387a36469746f88684d9a3565f64486/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30312f32302f636f6e76657274782d6669727374706167652e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/01/20/convertx-firstpage.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3e6ed8f8a0221ffed1a3ab1ae965b94793e837f3343376284b41e0fe84c73893/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30312f32302f636f6e76657274782d636f6e76657274782e706e67"><img src="https://camo.githubusercontent.com/3e6ed8f8a0221ffed1a3ab1ae965b94793e837f3343376284b41e0fe84c73893/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30312f32302f636f6e76657274782d636f6e76657274782e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/01/20/convertx-convertx.png" style="max-width: 100%;"></a></p>
+<h3>🛞环境变量</h3>
+<p>所有变量均为可选，但建议设置 JWT_SECRET。</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>变量名</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JWT_SECRET</td>
+<td>未设置时使用 randomUUID() 生成的值</td>
+<td>用于签名 JSON Web Token 的长而保密的字符串</td>
+</tr>
+<tr>
+<td>ACCOUNT_REGISTRATION</td>
+<td>false</td>
+<td>是否允许用户注册账户</td>
+</tr>
+<tr>
+<td>HTTP_ALLOWED</td>
+<td>false</td>
+<td>是否允许 HTTP 连接，仅在本地环境中设置为 true</td>
+</tr>
+<tr>
+<td>ALLOW_UNAUTHENTICATED</td>
+<td>false</td>
+<td>是否允许未认证用户使用服务，仅在本地环境中设置为 true</td>
+</tr>
+<tr>
+<td>AUTO_DELETE_EVERY_N_HOURS</td>
+<td>24</td>
+<td>每隔 n 小时检查并删除超过 n 小时的文件，设置为 0 以禁用</td>
+</tr>
+<tr>
+<td>WEBROOT</td>
+<td></td>
+<td>根路径地址，例如设置为 "/convert" 后，网站将通过 "example.com/convert/" 访问</td>
+</tr>
+<tr>
+<td>FFMPEG_ARGS</td>
+<td></td>
+<td>传递给 ffmpeg 输入文件的参数，例如 <code class="notranslate">-hwaccel vaapi</code>。有关硬件加速的更多信息，请参阅 <a href="https://github.com/C4illin/ConvertX/issues/190%E3%80%82" data-hovercard-type="issue" data-hovercard-url="/C4illin/ConvertX/issues/190/hovercard">https://github.com/C4illin/ConvertX/issues/190。</a></td>
+</tr>
+<tr>
+<td>FFMPEG_OUTPUT_ARGS</td>
+<td></td>
+<td>传递给 ffmpeg 输出文件的参数，例如 <code class="notranslate">-preset veryfast</code></td>
+</tr>
+<tr>
+<td>HIDE_HISTORY</td>
+<td>false</td>
+<td>是否隐藏历史记录页面</td>
+</tr>
+<tr>
+<td>LANGUAGE</td>
+<td>en</td>
+<td>用于格式化日期字符串的语言，需使用 [BCP 47 语言标签] 指定</td>
+</tr>
+<tr>
+<td>UNAUTHENTICATED_USER_SHARING</td>
+<td>false</td>
+<td>是否在所有未认证用户之间共享转换历史记录</td>
+</tr>
+<tr>
+<td>MAX_CONVERT_PROCESS</td>
+<td>0</td>
+<td>允许的最大并发转换进程数。设置为 0 表示无限制。</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h2>🌅总结</h2>
+<p><strong>ConvertX 完美地解决了一个核心痛点：在保障数据隐私的前提下，提供堪比甚至超越商业云服务的文件格式转换能力。</strong> 无论你是个人用户，想要一个干净、无广告、不限次数的本地转换工具；还是团队或组织，需要在内网部署一个安全的文件处理服务，ConvertX 都是一个极具吸引力的选择。</p>
+<p>其基于 Docker 的一键式部署、详尽的配置选项和活跃的开源生态，使得从试用、部署到长期维护都变得非常轻松。如果你厌倦了在多个在线转换网站间跳转，或是对云服务的数据安全心存顾虑，不妨现在就尝试部署一个属于你自己的 ConvertX。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/6babd3e6329001b98436cbd9be0933b1622abb37277dd626fdadbf228f00e2d1/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30312f32302f636f6e76657274782d6c6f676f2e706e67"><img src="https://camo.githubusercontent.com/6babd3e6329001b98436cbd9be0933b1622abb37277dd626fdadbf228f00e2d1/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30312f32302f636f6e76657274782d6c6f676f2e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/01/20/convertx-logo.png" style="max-width: 100%;"></a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
