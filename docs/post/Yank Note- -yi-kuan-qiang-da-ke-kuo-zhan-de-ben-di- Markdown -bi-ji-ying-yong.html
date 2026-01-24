@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+在信息爆炸的时代，寻找一款称心如意的笔记软件并不容易。">
+<meta property="og:title" content="Yank Note: 一款强大可扩展的本地 Markdown 笔记应用">
+<meta property="og:description" content="
+
+在信息爆炸的时代，寻找一款称心如意的笔记软件并不容易。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/Yank%20Note-%20-yi-kuan-qiang-da-ke-kuo-zhan-de-ben-di-%20Markdown%20-bi-ji-ying-yong.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>Yank Note: 一款强大可扩展的本地 Markdown 笔记应用</title>
+
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Yank Note: 一款强大可扩展的本地 Markdown 笔记应用</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/15" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>在信息爆炸的时代，寻找一款称心如意的笔记软件并不容易。既要功能强大，又要保障隐私；既要流畅易用，又希望有足够的扩展性。今天，我要向大家推荐一款可能满足你所有需求的开源神器——<strong>Yank Note</strong>。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/815404c7fd95165c924d8133dbd1c82aafd6da4d58156ffece555ce57f1eaba2/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d6c6f676f6c792e706e67"><img src="https://camo.githubusercontent.com/815404c7fd95165c924d8133dbd1c82aafd6da4d58156ffece555ce57f1eaba2/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d6c6f676f6c792e706e67" alt="" data-canonical-src="https://xiuji008.github.io/images/202601/yank-note-logoly.png" style="max-width: 100%;"></a></p>
+<h2>❓什么是 Yank Note？</h2>
+<p>Yank Note 是一款<strong>本地化、高性能、高扩展性、双栏式</strong>的开源 Markdown 笔记应用。它采用 AGPL-3.0 协议完全开源，所有数据默认存储在本地，让你完全掌控自己的数字资产。</p>
+<p>github地址：<a href="https://github.com/purocean/yn">https://github.com/purocean/yn</a></p>
+<p>在线体验地址：<a href="https://demo.yank-note.com/" rel="nofollow">https://demo.yank-note.com/</a></p>
+<p>文档地址：<a href="https://help.yank-note.com/getting-started.html" rel="nofollow">https://help.yank-note.com/getting-started.html</a></p>
+<p>软件下载地址：<a href="https://github.com/purocean/yn/releases">https://github.com/purocean/yn/releases</a></p>
+<p>该项目目前在github上已有6.5k⭐️ star</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a82e3ceadef810bb54473fd910497ea81c16e18ec81f7d4a6305c6331c40a828/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d737461722e706e67"><img src="https://camo.githubusercontent.com/a82e3ceadef810bb54473fd910497ea81c16e18ec81f7d4a6305c6331c40a828/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d737461722e706e67" alt="" data-canonical-src="https://xiuji008.github.io/images/202601/yank-note-star.png" style="max-width: 100%;"></a></p>
+<h2>✔️为什么选择 Yank Note？</h2>
+<h3>1. 🛡️ 安全感满满</h3>
+<ul>
+<li><strong>开源透明</strong>：代码完全开放，不用担心后门或隐私泄露</li>
+<li><strong>本地存储</strong>：数据保存在本地，可自由选择云盘、Git 等同步方案</li>
+<li><strong>端到端加密</strong>：支持单个文档加密，保护敏感信息</li>
+<li><strong>历史版本</strong>：内置版本控制，随时回溯和恢复</li>
+</ul>
+<h3>2. 💪 功能强大到令人惊喜</h3>
+<p>Yank Note 远不止一个简单的 Markdown 编辑器：</p>
+<p><strong>强大的编辑体验</strong></p>
+<ul>
+<li>基于 Monaco 编辑器（VS Code 同款内核），编辑流畅无卡顿</li>
+<li>支持多光标编辑、语法自动补全、AI 智能补全</li>
+<li>Markdown 格式化美化，保持代码整洁</li>
+</ul>
+<p><strong>丰富的文档能力</strong></p>
+<ul>
+<li>支持表格、脚注、目录、数学公式、代码高亮等扩展语法</li>
+<li>内嵌图形绘制：Mermaid、Drawio、Tldraw、Echarts、PlantUML</li>
+<li>支持容器块、宏替换、文档交叉链接等高级功能</li>
+</ul>
+<p><strong>意想不到的实用特性</strong></p>
+<ul>
+<li><strong>可运行代码块</strong>：直接运行 JavaScript、Python、PHP、Bash 等代码</li>
+<li><strong>HTML 小工具</strong>：在文档中嵌入自定义的 Vue 组件</li>
+<li><strong>待办列表</strong>：可视化任务进度，一键切换状态</li>
+<li><strong>内置终端</strong>：快速切换工作目录执行命令</li>
+<li><strong>图床集成</strong>：支持 PicGo 等图床服务</li>
+</ul>
+<h3>3. 🚀 AI 智能赋能</h3>
+<p>Yank Note 在 AI 时代也走在前列：</p>
+<ul>
+<li><strong>AI Copilot</strong>：支持文本补全、文本生成</li>
+<li><strong>多模型支持</strong>：兼容 OpenAI、Ollama、Gemini、Kimi、通义千问等</li>
+<li><strong>OpenCode AI Agent</strong>：智能编码辅助，提升开发效率</li>
+</ul>
+<h3>4. 🔌 无限扩展可能</h3>
+<p>通过插件系统，Yank Note 可以变得无所不能：</p>
+<ul>
+<li>官方提供 20+ 插件，涵盖主题、图形、AI、Git 等</li>
+<li>支持自定义插件开发</li>
+<li>活跃的社区不断贡献新功能</li>
+</ul>
+<h2>🎯核心使用场景</h2>
+<h3>📚 学习笔记与知识管理</h3>
+<p>无论是学习编程、记录读书笔记，还是整理专业知识，Yank Note 的 Markdown 支持和数学公式渲染都能完美胜任。文档交叉链接功能让你可以构建自己的知识图谱。</p>
+<h3>✍️ 专业文章写作</h3>
+<p>支持目录生成、脚注、多种图形嵌入，让你的技术文章或专业报告更加美观专业。DOCX 导出功能方便与传统文档格式互通。</p>
+<h3>🛠️ 个人工具箱</h3>
+<p>这是 Yank Note 最独特的地方！你可以：</p>
+<ul>
+<li>创建可运行的代码片段，测试算法或脚本</li>
+<li>嵌入数据可视化图表，实时分析数据</li>
+<li>制作 HTML 小工具，解决日常工作痛点</li>
+<li>编写宏脚本，自动化重复操作</li>
+</ul>
+<h3>🔐 密码与机密管理</h3>
+<p>通过文档加密功能，安全保存账号密码、API Key 等敏感信息，只有掌握密码的人才能查看。</p>
+<h2>🔍 特色功能一览</h2>
+<ol>
+<li><strong>同步滚动</strong>：编辑区与预览区完美同步</li>
+<li><strong>文件加密</strong>：<code class="notranslate">.c.md</code> 后缀文件自动加密保护</li>
+<li><strong>粘贴即存图</strong>：直接从剪贴板插入图片</li>
+<li><strong>表格编辑</strong>：双击表格单元格直接修改</li>
+<li><strong>嵌套列表转脑图</strong>：可视化展示层级关系</li>
+<li><strong>自定义属性</strong>：为元素添加任意 HTML 属性</li>
+<li><strong>多仓库管理</strong>：分类管理不同项目笔记</li>
+</ol>
+<h2>✨上手体验</h2>
+<p>Yank Note 提供了全平台支持（Windows、macOS、Linux）。如果只是想体验，还可以访问</p>
+<p>在线演示地址:<a href="https://demo.yank-note.com/" rel="nofollow">https://demo.yank-note.com/</a>。</p>
+<h3>🚀快速开始</h3>
+<ol>
+<li>访问 <a href="https://github.com/purocean/yn/releases">GitHub 发布页:https://github.com/purocean/yn/releases</a> 下载对应版本</li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fbeabe1cb5ec969a336de4322c68c6f4c1e864ceff8e1d2ff758aa7b0d73480c/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d72656c656173652e706e67"><img src="https://camo.githubusercontent.com/fbeabe1cb5ec969a336de4322c68c6f4c1e864ceff8e1d2ff758aa7b0d73480c/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d72656c656173652e706e67" alt="" data-canonical-src="https://xiuji008.github.io/images/202601/yank-note-release.png" style="max-width: 100%;"></a></p>
+<ol start="2">
+<li>
+<p>安装并启动应用</p>
+</li>
+<li>
+<p>开始使用</p>
+</li>
+</ol>
+<p><strong>git插件使用</strong></p>
+<p>我使用的是git远程同步，以下是我使用的一些操作</p>
+<ul>
+<li>
+<p>在git远程仓库创建项目（我使用的是阿里云的码云codeup），然后通过<code class="notranslate">git clone</code> 克隆到本地</p>
+</li>
+<li>
+<p>在 yank note 中将clone下来的项目设置为仓库</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/27cd669d7a11b45d7031403bcd36c2f6144fa469092c57a8f7c8dea150c806a6/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d7265702d73657474696e672e706e67"><img src="https://camo.githubusercontent.com/27cd669d7a11b45d7031403bcd36c2f6144fa469092c57a8f7c8dea150c806a6/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d7265702d73657474696e672e706e67" alt="" data-canonical-src="https://xiuji008.github.io/images/202601/yank-note-rep-setting.png" style="max-width: 100%;"></a></p>
+<ul>
+<li>安装git插件</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7d3e03a713a517548ec8222ffd75f03fd8ae4b10b178033bd3f82fd6df905bb0/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d706c7567696e2d6769742e706e67"><img src="https://camo.githubusercontent.com/7d3e03a713a517548ec8222ffd75f03fd8ae4b10b178033bd3f82fd6df905bb0/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d706c7567696e2d6769742e706e67" alt="" data-canonical-src="https://xiuji008.github.io/images/202601/yank-note-plugin-git.png" style="max-width: 100%;"></a></p>
+<ul>
+<li>设置git 快捷键</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/47a6f52e09eefea45ec24ea0fe49b2b78b980d1d5e138395afd1de56e6222326/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d6769742d6b6a6a2e706e67"><img src="https://camo.githubusercontent.com/47a6f52e09eefea45ec24ea0fe49b2b78b980d1d5e138395afd1de56e6222326/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d6769742d6b6a6a2e706e67" alt="" data-canonical-src="https://xiuji008.github.io/images/202601/yank-note-git-kjj.png" style="max-width: 100%;"></a></p>
+<ul>
+<li>编辑文档，使用快捷键推拉文档</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7919fab1089834fd6f26266765480acc0d1a70dc286fbce4ddbd9af7c5cf9b8c/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d6769742d7075736870756c6c2e706e67"><img src="https://camo.githubusercontent.com/7919fab1089834fd6f26266765480acc0d1a70dc286fbce4ddbd9af7c5cf9b8c/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d6769742d7075736870756c6c2e706e67" alt="" data-canonical-src="https://xiuji008.github.io/images/202601/yank-note-git-pushpull.png" style="max-width: 100%;"></a></p>
+<p><strong>图床设置</strong> 安装配置picgo即可</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d69366cd8793ba3f9a65d5990a1bdc6433736e1359639341347b3e372114e070/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d706963676f2d73657474696e672e706e67"><img src="https://camo.githubusercontent.com/d69366cd8793ba3f9a65d5990a1bdc6433736e1359639341347b3e372114e070/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d706963676f2d73657474696e672e706e67" alt="" data-canonical-src="https://xiuji008.github.io/images/202601/yank-note-picgo-setting.png" style="max-width: 100%;"></a></p>
+<p><strong>运行代码</strong></p>
+<p>运行 PHP，nodejs，Python，bash 代码，代码块第一行需要包含以 --run-- 字符串，示例见下面截图，当然需要安装相关环境</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3f67037e0cc1a1014fb1d712c01563923df68debf24ec5055473a35bd625f99b/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d636f64652d72756e2e706e67"><img src="https://camo.githubusercontent.com/3f67037e0cc1a1014fb1d712c01563923df68debf24ec5055473a35bd625f99b/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f79616e6b2d6e6f74652d636f64652d72756e2e706e67" alt="" data-canonical-src="https://xiuji008.github.io/images/202601/yank-note-code-run.png" style="max-width: 100%;"></a></p>
+<h2>🔌Yank Note 扩展(插件)列表</h2>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="left">来源</th>
+<th align="left">需要高级版</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">AI Copilot</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">你的人工智能写作助手</td>
+</tr>
+<tr>
+<td align="left">OpenCode</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">唤起 OpenCode - 一款为终端打造的 AI 编程助手</td>
+</tr>
+<tr>
+<td align="left">Mermaid</td>
+<td align="left">Yank Note</td>
+<td align="left"></td>
+<td align="left">Mermaid 图形集成</td>
+</tr>
+<tr>
+<td align="left">Drawio</td>
+<td align="left">Yank Note</td>
+<td align="left"></td>
+<td align="left">Drawio 图形集成</td>
+</tr>
+<tr>
+<td align="left">Excalidraw</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">Excalidraw 集成</td>
+</tr>
+<tr>
+<td align="left">Graph View</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">显示仓库关系图谱</td>
+</tr>
+<tr>
+<td align="left">Reveal.js</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">Reveal.js 集成</td>
+</tr>
+<tr>
+<td align="left">Markmap</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">使用 Markmap 将您的 Markdown 可视化为思维导图。</td>
+</tr>
+<tr>
+<td align="left">Code Runner</td>
+<td align="left">Yank Note</td>
+<td align="left"></td>
+<td align="left">执行多种语言的代码：BASH/SH, PHP, Python, Node.js, BAT, Java, C 和更多。</td>
+</tr>
+<tr>
+<td align="left">Vue Repl</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">在 Yank Note 中构建并运行 Vue 交互式应用</td>
+</tr>
+<tr>
+<td align="left">Kroki</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">Kroki 图像扩展</td>
+</tr>
+<tr>
+<td align="left">tldraw</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">tldraw 集成</td>
+</tr>
+<tr>
+<td align="left">挖空</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">一个 Yank Note 扩展，允许您创建用于测验和学习的挖空内容。</td>
+</tr>
+<tr>
+<td align="left">GeoGebra</td>
+<td align="left">Yank Note</td>
+<td align="left"></td>
+<td align="left">GeoGebra 集成</td>
+</tr>
+<tr>
+<td align="left">拼写检查</td>
+<td align="left">Yank Note</td>
+<td align="left"></td>
+<td align="left">检查编辑器中的拼写</td>
+</tr>
+<tr>
+<td align="left">文本比较器</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">将两个文本文件并排比较</td>
+</tr>
+<tr>
+<td align="left">Markdown Prettier</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">Markdown 格式化</td>
+</tr>
+<tr>
+<td align="left">ECharts</td>
+<td align="left">Yank Note</td>
+<td align="left"></td>
+<td align="left">ECharts 图形集成</td>
+</tr>
+<tr>
+<td align="left">PDF Viewer</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">PDF 阅读器扩展</td>
+</tr>
+<tr>
+<td align="left">弹出预览</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">在新窗口中弹出预览</td>
+</tr>
+<tr>
+<td align="left">Git 推送</td>
+<td align="left">Yank Note</td>
+<td align="left"></td>
+<td align="left">运行 Git 提交并推送到远程仓库。注意：此插件不适用于 Mac App Store 中下载的 Yank Note。</td>
+</tr>
+<tr>
+<td align="left">Sublime Merge</td>
+<td align="left">Yank Note</td>
+<td align="left"></td>
+<td align="left">Sublime Merge 和 Yank Note 的集成</td>
+</tr>
+<tr>
+<td align="left">自动编号</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">自动为笔记中的列表项编号。</td>
+</tr>
+<tr>
+<td align="left">代码行高亮</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">聚焦特定的代码行。</td>
+</tr>
+<tr>
+<td align="left">Luckysheet</td>
+<td align="left">Yank Note</td>
+<td align="left"></td>
+<td align="left">Luckysheet 表格集成</td>
+</tr>
+<tr>
+<td align="left">Milkdown</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">所见即所得的 Markdown 编辑器</td>
+</tr>
+<tr>
+<td align="left">编辑器主题</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">更改编辑器的主题</td>
+</tr>
+<tr>
+<td align="left">NES 模拟器</td>
+<td align="left">Yank Note</td>
+<td align="left">✔️</td>
+<td align="left">在 Yank Note 中运行 NES 游戏</td>
+</tr>
+<tr>
+<td align="left">主题｜烟舍</td>
+<td align="left">Yanser</td>
+<td align="left"></td>
+<td align="left">来自烟舍的主题</td>
+</tr>
+<tr>
+<td align="left">区域翻转｜烟舍</td>
+<td align="left">Yanser</td>
+<td align="left"></td>
+<td align="left">翻转预览和编辑器｜翻转侧边栏和内容区</td>
+</tr>
+<tr>
+<td align="left">Vim Mode</td>
+<td align="left">zhyipeng</td>
+<td align="left"></td>
+<td align="left">Vim Mode 扩展</td>
+</tr>
+<tr>
+<td align="left">工具栏</td>
+<td align="left">andrew_asa</td>
+<td align="left"></td>
+<td align="left">yank工具栏</td>
+</tr>
+<tr>
+<td align="left">文本片段</td>
+<td align="left">zhyipeng</td>
+<td align="left"></td>
+<td align="left">快速输入文本片段</td>
+</tr>
+<tr>
+<td align="left">Docsify</td>
+<td align="left">zhyipeng</td>
+<td align="left"></td>
+<td align="left">一键配置 Docsify</td>
+</tr>
+<tr>
+<td align="left">数学扩展</td>
+<td align="left">Mirion</td>
+<td align="left"></td>
+<td align="left">面向数学用户的 Yank Note 扩展</td>
+</tr>
+<tr>
+<td align="left">自定义背景</td>
+<td align="left">Mirion</td>
+<td align="left"></td>
+<td align="left">现在你可以把 Yank Note 的背景设为你最喜欢的图片了！</td>
+</tr>
+<tr>
+<td align="left">字数统计</td>
+<td align="left">papudding</td>
+<td align="left"></td>
+<td align="left">统计汉字、标点等数量的插件</td>
+</tr>
+<tr>
+<td align="left">目录树</td>
+<td align="left">papudding</td>
+<td align="left"></td>
+<td align="left">聚焦到文件夹和显示目录树的插件</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h2>📝总结</h2>
+<p>如果你在寻找一款：</p>
+<ul>
+<li>✅ 完全开源、隐私安全</li>
+<li>✅ 功能强大、扩展性强</li>
+<li>✅ 流畅稳定、体验优秀</li>
+<li>✅ 支持 AI、面向未来</li>
+<li>✅ 本地优先、云同步可选</li>
+</ul>
+<p>的 Markdown 笔记应用，那么 <strong>Yank Note 绝对是你的不二之选</strong>。</p>
+<p>它不仅仅是一个笔记工具，更是一个可以随需求成长的<strong>个人生产力平台</strong>。从简单的笔记记录到复杂的自动化工具，Yank Note 都能陪伴你的数字工作之旅。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
