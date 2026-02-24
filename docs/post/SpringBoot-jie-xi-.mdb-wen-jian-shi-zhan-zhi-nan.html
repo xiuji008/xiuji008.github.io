@@ -21,7 +21,7 @@
 <meta property="og:url" content="https://xiuji008.github.io/post/SpringBoot-jie-xi-.mdb-wen-jian-shi-zhan-zhi-nan.html">
 <meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
 <title>SpringBoot解析.mdb文件实战指南</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 <meta name="referrer" content="no-referrer">
 
 </head>
@@ -45,17 +45,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     body {padding: 8px;}
     .postTitle{font-size:24px;}
 }
-.copy-feedback {
-    display: none;
-    position: absolute;
-    top: 10px;
-    right: 50px;
-    color: var(--color-fg-on-emphasis);
-    background-color: var(--color-fg-muted);
-    border-radius: 3px;
-    padding: 5px 8px;
-    font-size: 12px;
-}
+
 </style>
 <style>#postBody{font-size:20px}</style>
 
@@ -96,195 +86,198 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2>🚀 快速开始</h2>
 <h3>1️⃣ 引入Maven依赖</h3>
 <p>首先，我们需要在<code class="notranslate">pom.xml</code>中添加UCanAccess的依赖：</p>
-<div class="highlight highlight-text-xml"><pre class="notranslate"><span class="pl-c"><span class="pl-c">&lt;!--</span> 添加UCanAccess依赖 <span class="pl-c">--&gt;</span></span>
-&lt;<span class="pl-ent">dependency</span>&gt;
-    &lt;<span class="pl-ent">groupId</span>&gt;net.sf.ucanaccess&lt;/<span class="pl-ent">groupId</span>&gt;
-    &lt;<span class="pl-ent">artifactId</span>&gt;ucanaccess&lt;/<span class="pl-ent">artifactId</span>&gt;
-    &lt;<span class="pl-ent">version</span>&gt;5.0.1&lt;/<span class="pl-ent">version</span>&gt;
-&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
+<pre lang="xml" class="notranslate"><code class="notranslate">&lt;!-- 添加UCanAccess依赖 --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;net.sf.ucanaccess&lt;/groupId&gt;
+    &lt;artifactId&gt;ucanaccess&lt;/artifactId&gt;
+    &lt;version&gt;5.0.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
 <h3>2️⃣  核心工具类实现</h3>
 <p>下面是我封装的<code class="notranslate">MdbJdbcUtil.java</code>工具类，可以直接复制使用：</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">sql</span>.*;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.*;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">stream</span>.<span class="pl-s1">Collectors</span>;
-<span class="pl-k">import</span> <span class="pl-s1">java</span>.<span class="pl-s1">util</span>.<span class="pl-s1">stream</span>.<span class="pl-s1">IntStream</span>;
+<pre lang="java" class="notranslate"><code class="notranslate">import java.sql.*;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">MdbJdbcUtil</span> {
-    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">final</span> <span class="pl-smi">String</span> <span class="pl-c1">DRIVER_CLASS</span> = <span class="pl-s">"net.ucanaccess.jdbc.UcanaccessDriver"</span>;
-    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">final</span> <span class="pl-smi">String</span> <span class="pl-c1">URL_PREFIX</span> = <span class="pl-s">"jdbc:ucanaccess://"</span>;
-    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">final</span> <span class="pl-smi">String</span> <span class="pl-c1">URL_MEMORY</span> = <span class="pl-s">";memory=false"</span>;
+public class MdbJdbcUtil {
+    private static final String DRIVER_CLASS = "net.ucanaccess.jdbc.UcanaccessDriver";
+    private static final String URL_PREFIX = "jdbc:ucanaccess://";
+    private static final String URL_MEMORY = ";memory=false";
 
-    <span class="pl-c">/**</span>
-<span class="pl-c">     * 私有构造方法，防止实例化</span>
-<span class="pl-c">     */</span>
-    <span class="pl-k">private</span> <span class="pl-smi">MdbJdbcUtil</span>() {
-        <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-smi">UnsupportedOperationException</span>(<span class="pl-s">"This is a utility class and cannot be instantiated"</span>);
+    /**
+     * 私有构造方法，防止实例化
+     */
+    private MdbJdbcUtil() {
+        throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
-    <span class="pl-c">/**</span>
-<span class="pl-c">     * 静态初始化块，加载数据库驱动</span>
-<span class="pl-c">     */</span>
-    <span class="pl-k">static</span> {
-        <span class="pl-k">try</span> {
-            <span class="pl-smi">Class</span>.<span class="pl-en">forName</span>(<span class="pl-c1">DRIVER_CLASS</span>);
-        } <span class="pl-k">catch</span> (<span class="pl-smi">ClassNotFoundException</span> <span class="pl-s1">e</span>) {
-            <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-smi">RuntimeException</span>(<span class="pl-s">"Failed to load UCanAccess JDBC driver"</span>, <span class="pl-s1">e</span>);
+    /**
+     * 静态初始化块，加载数据库驱动
+     */
+    static {
+        try {
+            Class.forName(DRIVER_CLASS);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Failed to load UCanAccess JDBC driver", e);
         }
     }
 
-    <span class="pl-c">/**</span>
-<span class="pl-c">     * 创建数据库连接</span>
-<span class="pl-c">     *</span>
-<span class="pl-c">     * @param mdbPath MDB文件路径</span>
-<span class="pl-c">     * @return 数据库连接</span>
-<span class="pl-c">     * @throws SQLException 如果连接失败</span>
-<span class="pl-c">     */</span>
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">Connection</span> <span class="pl-en">getConnection</span>(<span class="pl-smi">String</span> <span class="pl-s1">mdbPath</span>) <span class="pl-k">throws</span> <span class="pl-smi">SQLException</span> {
-        <span class="pl-k">if</span> (<span class="pl-s1">mdbPath</span> == <span class="pl-c1">null</span> || <span class="pl-s1">mdbPath</span>.<span class="pl-en">trim</span>().<span class="pl-en">isEmpty</span>()) {
-            <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-smi">IllegalArgumentException</span>(<span class="pl-s">"MDB file path cannot be null or empty"</span>);
+    /**
+     * 创建数据库连接
+     *
+     * @param mdbPath MDB文件路径
+     * @return 数据库连接
+     * @throws SQLException 如果连接失败
+     */
+    public static Connection getConnection(String mdbPath) throws SQLException {
+        if (mdbPath == null || mdbPath.trim().isEmpty()) {
+            throw new IllegalArgumentException("MDB file path cannot be null or empty");
         }
 
-        <span class="pl-smi">Properties</span> <span class="pl-s1">props</span> = <span class="pl-k">new</span> <span class="pl-smi">Properties</span>();
-        <span class="pl-s1">props</span>.<span class="pl-en">put</span>(<span class="pl-s">"charSet"</span>, <span class="pl-s">"UTF-8"</span>);
+        Properties props = new Properties();
+        props.put("charSet", "UTF-8");
 
-        <span class="pl-smi">String</span> <span class="pl-s1">dbUrl</span> = <span class="pl-c1">URL_PREFIX</span> + <span class="pl-s1">mdbPath</span> + <span class="pl-c1">URL_MEMORY</span>;
-        <span class="pl-k">return</span> <span class="pl-smi">DriverManager</span>.<span class="pl-en">getConnection</span>(<span class="pl-s1">dbUrl</span>, <span class="pl-s1">props</span>);
+        String dbUrl = URL_PREFIX + mdbPath + URL_MEMORY;
+        return DriverManager.getConnection(dbUrl, props);
     }
-    <span class="pl-c">/**</span>
-<span class="pl-c">     * 执行带参数的查询并返回List&lt;Map&lt;String, Object&gt;&gt;结果</span>
-<span class="pl-c">     *</span>
-<span class="pl-c">     * @param mdbPath MDB文件路径</span>
-<span class="pl-c">     * @param sql SQL查询语句</span>
-<span class="pl-c">     * @param params 查询参数列表</span>
-<span class="pl-c">     * @return 查询结果列表，每个Map代表一行数据</span>
-<span class="pl-c">     * @throws SQLException 如果查询失败</span>
-<span class="pl-c">     */</span>
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">List</span>&lt;<span class="pl-smi">Map</span>&lt;<span class="pl-smi">String</span>, <span class="pl-smi">Object</span>&gt;&gt; <span class="pl-en">queryForList</span>(<span class="pl-smi">String</span> <span class="pl-s1">mdbPath</span>, <span class="pl-smi">String</span> <span class="pl-s1">sql</span>, <span class="pl-smi">Object</span>... <span class="pl-s1">params</span>) <span class="pl-k">throws</span> <span class="pl-smi">SQLException</span> {
-        <span class="pl-en">validateParameters</span>(<span class="pl-s1">mdbPath</span>, <span class="pl-s1">sql</span>);
+    /**
+     * 执行带参数的查询并返回List&lt;Map&lt;String, Object&gt;&gt;结果
+     *
+     * @param mdbPath MDB文件路径
+     * @param sql SQL查询语句
+     * @param params 查询参数列表
+     * @return 查询结果列表，每个Map代表一行数据
+     * @throws SQLException 如果查询失败
+     */
+    public static List&lt;Map&lt;String, Object&gt;&gt; queryForList(String mdbPath, String sql, Object... params) throws SQLException {
+        validateParameters(mdbPath, sql);
 
-        <span class="pl-smi">Connection</span> <span class="pl-s1">conn</span> = <span class="pl-c1">null</span>;
-        <span class="pl-smi">PreparedStatement</span> <span class="pl-s1">stmt</span> = <span class="pl-c1">null</span>;
-        <span class="pl-smi">ResultSet</span> <span class="pl-s1">rs</span> = <span class="pl-c1">null</span>;
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
 
-        <span class="pl-k">try</span> {
-            <span class="pl-s1">conn</span> = <span class="pl-en">getConnection</span>(<span class="pl-s1">mdbPath</span>);
-            <span class="pl-s1">stmt</span> = <span class="pl-s1">conn</span>.<span class="pl-en">prepareStatement</span>(<span class="pl-s1">sql</span>);
+        try {
+            conn = getConnection(mdbPath);
+            stmt = conn.prepareStatement(sql);
 
-            <span class="pl-c">// 设置查询参数</span>
-            <span class="pl-k">if</span> (<span class="pl-s1">params</span> != <span class="pl-c1">null</span>) {
-                <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">params</span>.<span class="pl-s1">length</span>; <span class="pl-s1">i</span>++) {
-                    <span class="pl-s1">stmt</span>.<span class="pl-en">setObject</span>(<span class="pl-s1">i</span> + <span class="pl-c1">1</span>, <span class="pl-s1">params</span>[<span class="pl-s1">i</span>]);
+            // 设置查询参数
+            if (params != null) {
+                for (int i = 0; i &lt; params.length; i++) {
+                    stmt.setObject(i + 1, params[i]);
                 }
             }
 
-            <span class="pl-s1">rs</span> = <span class="pl-s1">stmt</span>.<span class="pl-en">executeQuery</span>();
-            <span class="pl-k">return</span> <span class="pl-en">convertResultSetToList</span>(<span class="pl-s1">rs</span>);
+            rs = stmt.executeQuery();
+            return convertResultSetToList(rs);
 
-        } <span class="pl-k">finally</span> {
-            <span class="pl-en">closeResources</span>(<span class="pl-s1">rs</span>, <span class="pl-s1">stmt</span>, <span class="pl-s1">conn</span>);
+        } finally {
+            closeResources(rs, stmt, conn);
         }
     }
 
-    <span class="pl-c">/**</span>
-<span class="pl-c">     * 验证参数有效性</span>
-<span class="pl-c">     *</span>
-<span class="pl-c">     * @param mdbPath MDB文件路径</span>
-<span class="pl-c">     * @param sql SQL语句</span>
-<span class="pl-c">     */</span>
-    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">validateParameters</span>(<span class="pl-smi">String</span> <span class="pl-s1">mdbPath</span>, <span class="pl-smi">String</span> <span class="pl-s1">sql</span>) {
-        <span class="pl-k">if</span> (<span class="pl-s1">mdbPath</span> == <span class="pl-c1">null</span> || <span class="pl-s1">mdbPath</span>.<span class="pl-en">trim</span>().<span class="pl-en">isEmpty</span>()) {
-            <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-smi">IllegalArgumentException</span>(<span class="pl-s">"MDB file path cannot be null or empty"</span>);
+    /**
+     * 验证参数有效性
+     *
+     * @param mdbPath MDB文件路径
+     * @param sql SQL语句
+     */
+    private static void validateParameters(String mdbPath, String sql) {
+        if (mdbPath == null || mdbPath.trim().isEmpty()) {
+            throw new IllegalArgumentException("MDB file path cannot be null or empty");
         }
-        <span class="pl-k">if</span> (<span class="pl-s1">sql</span> == <span class="pl-c1">null</span> || <span class="pl-s1">sql</span>.<span class="pl-en">trim</span>().<span class="pl-en">isEmpty</span>()) {
-            <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-smi">IllegalArgumentException</span>(<span class="pl-s">"SQL statement cannot be null or empty"</span>);
-        }
-    }
-
-    <span class="pl-c">/**</span>
-<span class="pl-c">     * 关闭数据库资源</span>
-<span class="pl-c">     *</span>
-<span class="pl-c">     * @param rs ResultSet对象</span>
-<span class="pl-c">     * @param stmt Statement对象</span>
-<span class="pl-c">     * @param conn Connection对象</span>
-<span class="pl-c">     */</span>
-    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">closeResources</span>(<span class="pl-smi">ResultSet</span> <span class="pl-s1">rs</span>, <span class="pl-smi">Statement</span> <span class="pl-s1">stmt</span>, <span class="pl-smi">Connection</span> <span class="pl-s1">conn</span>) {
-        <span class="pl-k">try</span> {
-            <span class="pl-k">if</span> (<span class="pl-s1">rs</span> != <span class="pl-c1">null</span>) {
-                <span class="pl-s1">rs</span>.<span class="pl-en">close</span>();
-            }
-        } <span class="pl-k">catch</span> (<span class="pl-smi">SQLException</span> <span class="pl-s1">e</span>) {
-            <span class="pl-c">// 记录日志但不抛出异常</span>
-            <span class="pl-smi">System</span>.<span class="pl-s1">err</span>.<span class="pl-en">println</span>(<span class="pl-s">"Failed to close ResultSet: "</span> + <span class="pl-s1">e</span>.<span class="pl-en">getMessage</span>());
-        }
-
-        <span class="pl-k">try</span> {
-            <span class="pl-k">if</span> (<span class="pl-s1">stmt</span> != <span class="pl-c1">null</span>) {
-                <span class="pl-s1">stmt</span>.<span class="pl-en">close</span>();
-            }
-        } <span class="pl-k">catch</span> (<span class="pl-smi">SQLException</span> <span class="pl-s1">e</span>) {
-            <span class="pl-smi">System</span>.<span class="pl-s1">err</span>.<span class="pl-en">println</span>(<span class="pl-s">"Failed to close Statement: "</span> + <span class="pl-s1">e</span>.<span class="pl-en">getMessage</span>());
-        }
-
-        <span class="pl-k">try</span> {
-            <span class="pl-k">if</span> (<span class="pl-s1">conn</span> != <span class="pl-c1">null</span>) {
-                <span class="pl-s1">conn</span>.<span class="pl-en">close</span>();
-            }
-        } <span class="pl-k">catch</span> (<span class="pl-smi">SQLException</span> <span class="pl-s1">e</span>) {
-            <span class="pl-smi">System</span>.<span class="pl-s1">err</span>.<span class="pl-en">println</span>(<span class="pl-s">"Failed to close Connection: "</span> + <span class="pl-s1">e</span>.<span class="pl-en">getMessage</span>());
+        if (sql == null || sql.trim().isEmpty()) {
+            throw new IllegalArgumentException("SQL statement cannot be null or empty");
         }
     }
 
-    <span class="pl-c">/**</span>
-<span class="pl-c">     * 将ResultSet转换为List&lt;Map&lt;String, Object&gt;&gt;</span>
-<span class="pl-c">     *</span>
-<span class="pl-c">     * @param rs ResultSet对象</span>
-<span class="pl-c">     * @return 转换后的列表</span>
-<span class="pl-c">     * @throws SQLException 如果转换失败</span>
-<span class="pl-c">     */</span>
-    <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-smi">List</span>&lt;<span class="pl-smi">Map</span>&lt;<span class="pl-smi">String</span>, <span class="pl-smi">Object</span>&gt;&gt; <span class="pl-en">convertResultSetToList</span>(<span class="pl-smi">ResultSet</span> <span class="pl-s1">rs</span>) <span class="pl-k">throws</span> <span class="pl-smi">SQLException</span> {
-        <span class="pl-smi">List</span>&lt;<span class="pl-smi">Map</span>&lt;<span class="pl-smi">String</span>, <span class="pl-smi">Object</span>&gt;&gt; <span class="pl-s1">resultList</span> = <span class="pl-k">new</span> <span class="pl-smi">ArrayList</span>&lt;&gt;();
-
-        <span class="pl-k">if</span> (<span class="pl-s1">rs</span> == <span class="pl-c1">null</span>) {
-            <span class="pl-k">return</span> <span class="pl-s1">resultList</span>;
+    /**
+     * 关闭数据库资源
+     *
+     * @param rs ResultSet对象
+     * @param stmt Statement对象
+     * @param conn Connection对象
+     */
+    private static void closeResources(ResultSet rs, Statement stmt, Connection conn) {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+            // 记录日志但不抛出异常
+            System.err.println("Failed to close ResultSet: " + e.getMessage());
         }
 
-        <span class="pl-smi">ResultSetMetaData</span> <span class="pl-s1">metaData</span> = <span class="pl-s1">rs</span>.<span class="pl-en">getMetaData</span>();
-        <span class="pl-smi">int</span> <span class="pl-s1">columnCount</span> = <span class="pl-s1">metaData</span>.<span class="pl-en">getColumnCount</span>();
+        try {
+            if (stmt != null) {
+                stmt.close();
+            }
+        } catch (SQLException e) {
+            System.err.println("Failed to close Statement: " + e.getMessage());
+        }
 
-        <span class="pl-c">// 获取列名列表</span>
-        <span class="pl-smi">List</span>&lt;<span class="pl-smi">String</span>&gt; <span class="pl-s1">columnNames</span> = <span class="pl-smi">IntStream</span>.<span class="pl-en">rangeClosed</span>(<span class="pl-c1">1</span>, <span class="pl-s1">columnCount</span>)
-                .<span class="pl-en">mapToObj</span>(<span class="pl-s1">i</span> -&gt; {
-                    <span class="pl-k">try</span> {
-                        <span class="pl-k">return</span> <span class="pl-s1">metaData</span>.<span class="pl-en">getColumnLabel</span>(<span class="pl-s1">i</span>);
-                    } <span class="pl-k">catch</span> (<span class="pl-smi">SQLException</span> <span class="pl-s1">e</span>) {
-                        <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-smi">RuntimeException</span>(<span class="pl-s">"Failed to get column name"</span>, <span class="pl-s1">e</span>);
+        try {
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (SQLException e) {
+            System.err.println("Failed to close Connection: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 将ResultSet转换为List&lt;Map&lt;String, Object&gt;&gt;
+     *
+     * @param rs ResultSet对象
+     * @return 转换后的列表
+     * @throws SQLException 如果转换失败
+     */
+    private static List&lt;Map&lt;String, Object&gt;&gt; convertResultSetToList(ResultSet rs) throws SQLException {
+        List&lt;Map&lt;String, Object&gt;&gt; resultList = new ArrayList&lt;&gt;();
+
+        if (rs == null) {
+            return resultList;
+        }
+
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+
+        // 获取列名列表
+        List&lt;String&gt; columnNames = IntStream.rangeClosed(1, columnCount)
+                .mapToObj(i -&gt; {
+                    try {
+                        return metaData.getColumnLabel(i);
+                    } catch (SQLException e) {
+                        throw new RuntimeException("Failed to get column name", e);
                     }
                 })
-                .<span class="pl-en">collect</span>(<span class="pl-smi">Collectors</span>.<span class="pl-en">toList</span>());
+                .collect(Collectors.toList());
 
-        <span class="pl-c">// 遍历结果集</span>
-        <span class="pl-k">while</span> (<span class="pl-s1">rs</span>.<span class="pl-en">next</span>()) {
-            <span class="pl-smi">Map</span>&lt;<span class="pl-smi">String</span>, <span class="pl-smi">Object</span>&gt; <span class="pl-s1">row</span> = <span class="pl-k">new</span> <span class="pl-smi">LinkedHashMap</span>&lt;&gt;();
-            <span class="pl-k">for</span> (<span class="pl-smi">String</span> <span class="pl-s1">columnName</span> : <span class="pl-s1">columnNames</span>) {
-                <span class="pl-s1">row</span>.<span class="pl-en">put</span>(<span class="pl-s1">columnName</span>, <span class="pl-s1">rs</span>.<span class="pl-en">getObject</span>(<span class="pl-s1">columnName</span>));
+        // 遍历结果集
+        while (rs.next()) {
+            Map&lt;String, Object&gt; row = new LinkedHashMap&lt;&gt;();
+            for (String columnName : columnNames) {
+                row.put(columnName, rs.getObject(columnName));
             }
-            <span class="pl-s1">resultList</span>.<span class="pl-en">add</span>(<span class="pl-s1">row</span>);
+            resultList.add(row);
         }
 
-        <span class="pl-k">return</span> <span class="pl-s1">resultList</span>;
+        return resultList;
     }
-}</pre></div>
+}
+</code></pre>
 <h3>3️⃣ 如何使用工具类</h3>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-smi">Example</span> {
-    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">void</span> <span class="pl-en">main</span>(<span class="pl-smi">String</span>[] <span class="pl-s1">args</span>) <span class="pl-k">throws</span> <span class="pl-smi">SQLException</span> {
-        <span class="pl-smi">String</span> <span class="pl-s1">sql</span> = <span class="pl-s">"select * from UserInfo"</span>;
-        <span class="pl-smi">String</span> <span class="pl-s1">mdbPath</span> = <span class="pl-s">"D:<span class="pl-cce">\\</span>mdb<span class="pl-cce">\\</span>mdbtest.mdb"</span>;
-        <span class="pl-smi">List</span>&lt;<span class="pl-smi">Map</span>&lt;<span class="pl-smi">String</span>, <span class="pl-smi">Object</span>&gt;&gt; <span class="pl-s1">resultList</span> = <span class="pl-smi">MdbJdbcUtil</span>.<span class="pl-en">queryForList</span>(<span class="pl-s1">mdbPath</span>,<span class="pl-s1">sql</span>);
-        <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s">"查询结果数量"</span>+<span class="pl-s1">resultList</span>.<span class="pl-en">size</span>());
-        <span class="pl-k">for</span> (<span class="pl-smi">Map</span>&lt;<span class="pl-smi">String</span>, <span class="pl-smi">Object</span>&gt; <span class="pl-s1">row</span> : <span class="pl-s1">resultList</span>) {
-            <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">row</span>);
+<pre lang="java" class="notranslate"><code class="notranslate">public class Example {
+    public static void main(String[] args) throws SQLException {
+        String sql = "select * from UserInfo";
+        String mdbPath = "D:\\mdb\\mdbtest.mdb";
+        List&lt;Map&lt;String, Object&gt;&gt; resultList = MdbJdbcUtil.queryForList(mdbPath,sql);
+        System.out.println("查询结果数量"+resultList.size());
+        for (Map&lt;String, Object&gt; row : resultList) {
+            System.out.println(row);
         }
     }
-}</pre></div>
+}
+</code></pre>
 <p>运行上面的代码，你会看到如下输出：</p>
 <pre lang="text" class="notranslate"><code class="notranslate">查询结果数量: 2
 {UserNO=1, UserID=Admin, UserName=管理员Admin, UserPassword=123456}
@@ -331,7 +324,7 @@ if("12/15/2025"!=""){
 </script></div>
 </body>
 <script>
-var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
 var utterancesLoad=0;
 
 let themeSettings={
@@ -405,70 +398,7 @@ function iFrameLoading(){
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const createClipboardHTML = (codeContent, additionalClasses = '') => `
-        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
-        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
-            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
-                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
-                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
-            </clipboard-copy>
-            <div class="copy-feedback">Copied!</div>
-        </div>
-    `;
 
-    const handleCodeElements = (selector = '') => {
-        document.querySelectorAll(selector).forEach(codeElement => {
-            const codeContent = codeElement.innerHTML;
-            const newStructure = document.createElement('div');
-            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
-            newStructure.innerHTML = createClipboardHTML(codeContent);
-
-            const parentElement = codeElement.parentElement;
-            if (selector.includes('highlight')) {
-                parentElement.insertBefore(newStructure, codeElement.nextSibling);
-                parentElement.removeChild(codeElement);
-            } else {
-                parentElement.parentElement.replaceChild(newStructure, parentElement);
-            }
-        });
-    };
-
-    handleCodeElements('pre.notranslate > code.notranslate');
-    handleCodeElements('div.highlight > pre.notranslate');
-
-    let currentFeedback = null;
-    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
-        copyButton.addEventListener('click', () => {
-            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
-            const tempTextArea = document.createElement('textarea');
-            tempTextArea.value = codeContent;
-            document.body.appendChild(tempTextArea);
-            tempTextArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempTextArea);
-
-            const copyIcon = copyButton.querySelector('.octicon-copy');
-            const checkIcon = copyButton.querySelector('.octicon-check');
-            const copyFeedback = copyButton.nextElementSibling;
-
-            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
-            currentFeedback = copyFeedback;
-
-            copyIcon.classList.add('d-none');
-            checkIcon.classList.remove('d-none');
-            copyFeedback.style.display = 'block';
-            copyButton.style.borderColor = 'var(--color-success-fg)';
-
-            setTimeout(() => {
-                copyIcon.classList.remove('d-none');
-                checkIcon.classList.add('d-none');
-                copyFeedback.style.display = 'none';
-                copyButton.style.borderColor = '';
-            }, 2000);
-        });
-    });
-});
 
 </script>
 <script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
