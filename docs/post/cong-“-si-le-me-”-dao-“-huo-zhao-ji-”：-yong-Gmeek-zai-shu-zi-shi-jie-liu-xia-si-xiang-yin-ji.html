@@ -21,7 +21,7 @@
 <meta property="og:url" content="https://xiuji008.github.io/post/cong-%E2%80%9C-si-le-me-%E2%80%9D-dao-%E2%80%9C-huo-zhao-ji-%E2%80%9D%EF%BC%9A-yong-Gmeek-zai-shu-zi-shi-jie-liu-xia-si-xiang-yin-ji.html">
 <meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
 <title>从“死了么”到“活着记”：用Gmeek在数字世界留下思想印记</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 <meta name="referrer" content="no-referrer">
 
 </head>
@@ -148,21 +148,25 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ol>
 <li>全站添加计数工具Vercount，只需要在config.json文件内添加配置</li>
 </ol>
-<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-s">"allHead"</span>:<span class="pl-s">"&lt;script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'&gt;&lt;/script&gt;"</span><span class="pl-kos">,</span></pre></div>
+<pre lang="js" class="notranslate"><code class="notranslate">"allHead":"&lt;script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'&gt;&lt;/script&gt;",
+</code></pre>
 <ol start="2">
 <li>单个文章页添加Vercount，只需要在文章最后一行添加如下</li>
 </ol>
-<div class="highlight highlight-source-js"><pre class="notranslate">&lt;!-- ##{"script":"&lt;script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'&gt;&lt;/script&gt;"}## --&gt;</pre></div>
+<pre lang="js" class="notranslate"><code class="notranslate">&lt;!-- ##{"script":"&lt;script src='https://blog.meekdai.com/Gmeek/plugins/GmeekVercount.js'&gt;&lt;/script&gt;"}## --&gt;
+</code></pre>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7ca77d6554305a8c1a23d9243db4e31d039019b9b7da4d6a7502f5fae249dc75/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f676d65656b5f706c7567696e5f766572636f756e742e706e67"><img src="https://camo.githubusercontent.com/7ca77d6554305a8c1a23d9243db4e31d039019b9b7da4d6a7502f5fae249dc75/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f676d65656b5f706c7567696e5f766572636f756e742e706e67" alt="gmeek_plugin_vercount.png" data-canonical-src="https://xiuji008.github.io/images/202601/gmeek_plugin_vercount.png" style="max-width: 100%;"></a></p>
 <h4>TOC目录</h4>
 <ol>
 <li>所有文章页添加TOC目录，只需要在config.json文件内添加配置</li>
 </ol>
-<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-s">"script"</span>:<span class="pl-s">"&lt;script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'&gt;&lt;/script&gt;"</span><span class="pl-kos">,</span></pre></div>
+<pre lang="js" class="notranslate"><code class="notranslate">"script":"&lt;script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'&gt;&lt;/script&gt;",
+</code></pre>
 <ol start="2">
 <li>单个文章页添加TOC目录，只需要在文章最后一行添加如下</li>
 </ol>
-<div class="highlight highlight-source-js"><pre class="notranslate">&lt;!-- ##{"script":"&lt;script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'&gt;&lt;/script&gt;"}## --&gt;</pre></div>
+<pre lang="js" class="notranslate"><code class="notranslate">&lt;!-- ##{"script":"&lt;script src='https://blog.meekdai.com/Gmeek/plugins/GmeekTOC.js'&gt;&lt;/script&gt;"}## --&gt;
+</code></pre>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a95eb666d1a685bde7f0fed5712d17cc614f53e77572e836f17ba514af686693/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f676d65656b5f706c7567696e735f746f632e706e67"><img src="https://camo.githubusercontent.com/a95eb666d1a685bde7f0fed5712d17cc614f53e77572e836f17ba514af686693/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f676d65656b5f706c7567696e735f746f632e706e67" alt="gmeek_plugins_toc.png" data-canonical-src="https://xiuji008.github.io/images/202601/gmeek_plugins_toc.png" style="max-width: 100%;"></a></p>
 <h4>灯箱插件</h4>
 <div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>此插件由Tiengming编写，可以放大浏览文章中的图片，适合一些图片较多的文章。</p>
@@ -170,25 +174,30 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ol>
 <li>所有文章页添加lightbox，只需要在config.json文件内添加配置</li>
 </ol>
-<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-s">"script"</span>:<span class="pl-s">"&lt;script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'&gt;&lt;/script&gt;"</span><span class="pl-kos">,</span></pre></div>
+<pre lang="js" class="notranslate"><code class="notranslate">"script":"&lt;script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'&gt;&lt;/script&gt;",
+</code></pre>
 <ol start="2">
 <li>单个文章页添加lightbox，只需要在文章最后一行添加如下</li>
 </ol>
-<div class="highlight highlight-source-js"><pre class="notranslate">&lt;!-- ##{"script":"&lt;script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'&gt;&lt;/script&gt;"}## --&gt;</pre></div>
+<pre lang="js" class="notranslate"><code class="notranslate">&lt;!-- ##{"script":"&lt;script src='https://blog.meekdai.com/Gmeek/plugins/lightbox.js'&gt;&lt;/script&gt;"}## --&gt;
+</code></pre>
 <h4>看板娘（花里胡哨）</h4>
 <div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>此插件从github开源项目live2d-widget引入，纯属页面展示</p>
 </div>
 <ol>
 <li>所有文章页添加lightbox，只需要在config.json文件内添加配置</li>
 </ol>
-<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-s">"script"</span>:<span class="pl-s">"&lt;script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'&gt;&lt;/script&gt;"</span><span class="pl-kos">,</span></pre></div>
+<pre lang="js" class="notranslate"><code class="notranslate">"script":"&lt;script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'&gt;&lt;/script&gt;",
+</code></pre>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5420a0f658a38dcce270c14ab5576e0a7d75a6345f7c9ac7b86d9f29f869d69c/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f676d65656b5f706c7567696e735f6c69766532642d7769646765742e706e67"><img src="https://camo.githubusercontent.com/5420a0f658a38dcce270c14ab5576e0a7d75a6345f7c9ac7b86d9f29f869d69c/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f676d65656b5f706c7567696e735f6c69766532642d7769646765742e706e67" alt="gmeek_plugins_live2d-widget.png" data-canonical-src="https://xiuji008.github.io/images/202601/gmeek_plugins_live2d-widget.png" style="max-width: 100%;"></a></p>
 <p>对看板娘项目感兴趣的伙伴也可以研究下</p>
 <p>看板娘项目github地址：<a href="https://github.com/stevenjoezhang/live2d-widget">https://github.com/stevenjoezhang/live2d-widget</a></p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5d7e5ce00add6ededa33e159774f5cb739f9ec6966e54294148f19f1945355ce/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f6769746875625f6c69766532645f7769646765742e706e67"><img src="https://camo.githubusercontent.com/5d7e5ce00add6ededa33e159774f5cb739f9ec6966e54294148f19f1945355ce/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f6769746875625f6c69766532645f7769646765742e706e67" alt="github_live2d_widget.png" data-canonical-src="https://xiuji008.github.io/images/202601/github_live2d_widget.png" style="max-width: 100%;"></a></p>
 <h4>多插件使用</h4>
 <p>同时在所有文章页使用TOC目录、灯箱插件及其它插件，需要这样添加配置文件：</p>
-<div class="highlight highlight-source-js"><pre class="notranslate">    <span class="pl-s">"allHead"</span>:<span class="pl-s">"&lt;script src='https://xiuji008.github.io/plugins/gmeekVercount.js'&gt;&lt;/script&gt;&lt;script src='https://xiuji008.github.io/plugins/lightbox.js'&gt;&lt;/script&gt;&lt;script src='https://xiuji008.github.io/plugins/gmeekTOC.js'&gt;&lt;/script&gt;&lt;script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'&gt;&lt;/script&gt;"</span><span class="pl-kos">,</span></pre></div>
+<pre lang="js" class="notranslate"><code class="notranslate">    "allHead":"&lt;script src='https://xiuji008.github.io/plugins/gmeekVercount.js'&gt;&lt;/script&gt;&lt;script src='https://xiuji008.github.io/plugins/lightbox.js'&gt;&lt;/script&gt;&lt;script src='https://xiuji008.github.io/plugins/gmeekTOC.js'&gt;&lt;/script&gt;&lt;script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'&gt;&lt;/script&gt;",
+
+</code></pre>
 <h3>其它使用说明</h3>
 <h4>issue添加中文标签</h4>
 <ol>

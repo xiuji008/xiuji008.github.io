@@ -19,7 +19,7 @@
 <meta property="og:url" content="https://xiuji008.github.io/post/log-lottery%EF%BC%9A-bu-zhi-shi-xuan-ku-de-3D-chou-jiang-%EF%BC%8C-geng-shi-xue-xi-qian-duan-kai-fa-de-zui-jia-shi-jian.html">
 <meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
 <title>log-lottery：不只是炫酷的3D抽奖，更是学习前端开发的最佳实践</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 <meta name="referrer" content="no-referrer">
 
 </head>
@@ -116,23 +116,25 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li><a href="https://log1997.github.io/log-lottery/" rel="nofollow">https://log1997.github.io/log-lottery/</a></li>
 </ul>
 <h3>🖥️本地开发</h3>
-<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 克隆项目</span>
+<pre lang="bash" class="notranslate"><code class="notranslate"># 克隆项目
 git clone https://github.com/LOG1997/log-lottery.git
 
-<span class="pl-c"><span class="pl-c">#</span> 安装依赖</span>
+# 安装依赖
 pnpm i   或 npm install
 
-<span class="pl-c"><span class="pl-c">#</span> 启动开发服务器</span>
+# 启动开发服务器
 pnpm dev   或 npm run dev
 
-<span class="pl-c"><span class="pl-c">#</span> 打包</span>
-pnpm build 或 npm run build</pre></div>
+# 打包
+pnpm build 或 npm run build
+</code></pre>
 <h3>🐳Docker部署</h3>
 <ul>
 <li>Docker run 运行</li>
 </ul>
 <p>拉取镜像，从Docker Hub拉取镜像log-lottery</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker pull log1997/log-lottery:latest</pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker pull log1997/log-lottery:latest
+</code></pre>
 <p>运行容器</p>
 <pre class="notranslate"><code class="notranslate">docker run -d --name log-lottery -p 9279:80 log1997/log-lottery:latest
 </code></pre>
@@ -140,16 +142,18 @@ pnpm build 或 npm run build</pre></div>
 <li>docker-compose 运行</li>
 </ul>
 <p>创建docker-compose.yml文件</p>
-<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">services</span>:
-  <span class="pl-ent">log-lottery</span>:
-    <span class="pl-ent">image</span>: <span class="pl-s">log1997/log-lottery:latest</span>
-    <span class="pl-ent">container_name</span>: <span class="pl-s">log-lottery</span>
-    <span class="pl-ent">ports</span>:
-      - <span class="pl-s"><span class="pl-pds">"</span>9279:80<span class="pl-pds">"</span></span>
-    <span class="pl-ent">restart</span>: <span class="pl-s">unless-stopped</span>
-</pre></div>
+<pre lang="yaml" class="notranslate"><code class="notranslate">services:
+  log-lottery:
+    image: log1997/log-lottery:latest
+    container_name: log-lottery
+    ports:
+      - "9279:80"
+    restart: unless-stopped
+
+</code></pre>
 <p>在docker-compose.yml 同级目录下运行以下命令启动</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker-compose up -d </pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">docker-compose up -d 
+</code></pre>
 <p>启动之后访问 <a href="http://localhost:9279/log-lottery/" rel="nofollow">http://localhost:9279/log-lottery/</a> 即可使用。</p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2285752280659137e9f068394b8e89c9f2defbd3849de777e57925478c64212a/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f30342f64663663663763656362383165653930356331356565313437333630376636322e706e67"><img src="https://camo.githubusercontent.com/2285752280659137e9f068394b8e89c9f2defbd3849de777e57925478c64212a/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f30342f64663663663763656362383165653930356331356565313437333630376636322e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/02/04/df6cf7cecb81ee905c15ee1473607f62.png" style="max-width: 100%;"></a></p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/422edea03753dffdd87b8156f25fc520a95de57b2b3d50296c43f2397ac60b1c/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f30342f32336635666466303037326631306439356163343534663361623962326434612e706e67"><img src="https://camo.githubusercontent.com/422edea03753dffdd87b8156f25fc520a95de57b2b3d50296c43f2397ac60b1c/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f30342f32336635666466303037326631306439356163343534663361623962326434612e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/02/04/23f5fdf0072f10d95ac454f3ab9b2d4a.png" style="max-width: 100%;"></a></p>
