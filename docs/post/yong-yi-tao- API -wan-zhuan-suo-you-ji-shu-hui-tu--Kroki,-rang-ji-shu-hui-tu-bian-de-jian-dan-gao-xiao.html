@@ -21,7 +21,7 @@
 <meta property="og:url" content="https://xiuji008.github.io/post/yong-yi-tao-%20API%20-wan-zhuan-suo-you-ji-shu-hui-tu--Kroki%2C-rang-ji-shu-hui-tu-bian-de-jian-dan-gao-xiao.html">
 <meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
 <title>用一套 API 玩转所有技术绘图:Kroki,让技术绘图变得简单高效</title>
-
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 <meta name="referrer" content="no-referrer">
 
 </head>
@@ -131,47 +131,43 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2>⏫ 快速上手</h2>
 <h3>🐳 Docker部署</h3>
 <p>最简单的体验方式是使用Docker：</p>
-<pre lang="shell" class="notranslate"><code class="notranslate">docker run -d -p 3800:8000 yuzutech/kroki
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker run -d -p 3800:8000 yuzutech/kroki</pre></div>
 <h3>📚 Docker Compose完整部署</h3>
 <p>对于需要完整功能的环境，可以使用docker-compose：</p>
-<pre lang="yaml" class="notranslate"><code class="notranslate">services:
-  core:
-    image: yuzutech/kroki
-    environment:
-      - KROKI_MERMAID_HOST=mermaid
-      - KROKI_BPMN_HOST=bpmn
-      - KROKI_EXCALIDRAW_HOST=excalidraw
-    ports:
-      - "3800:8000"
-  mermaid:
-    image: yuzutech/kroki-mermaid
-    expose:
-      - "8002"
-  bpmn:
-    image: yuzutech/kroki-bpmn
-    expose:
-      - "8003"
-  excalidraw:
-    image: yuzutech/kroki-excalidraw
-    expose:
-      - "8004"
-  # experimental!
-  diagramsnet:
-    image: yuzutech/kroki-diagramsnet
-    expose:
-      - "8005"
-</code></pre>
+<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">services</span>:
+  <span class="pl-ent">core</span>:
+    <span class="pl-ent">image</span>: <span class="pl-s">yuzutech/kroki</span>
+    <span class="pl-ent">environment</span>:
+      - <span class="pl-s">KROKI_MERMAID_HOST=mermaid</span>
+      - <span class="pl-s">KROKI_BPMN_HOST=bpmn</span>
+      - <span class="pl-s">KROKI_EXCALIDRAW_HOST=excalidraw</span>
+    <span class="pl-ent">ports</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>3800:8000<span class="pl-pds">"</span></span>
+  <span class="pl-ent">mermaid</span>:
+    <span class="pl-ent">image</span>: <span class="pl-s">yuzutech/kroki-mermaid</span>
+    <span class="pl-ent">expose</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>8002<span class="pl-pds">"</span></span>
+  <span class="pl-ent">bpmn</span>:
+    <span class="pl-ent">image</span>: <span class="pl-s">yuzutech/kroki-bpmn</span>
+    <span class="pl-ent">expose</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>8003<span class="pl-pds">"</span></span>
+  <span class="pl-ent">excalidraw</span>:
+    <span class="pl-ent">image</span>: <span class="pl-s">yuzutech/kroki-excalidraw</span>
+    <span class="pl-ent">expose</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>8004<span class="pl-pds">"</span></span>
+  <span class="pl-c"><span class="pl-c">#</span> experimental!</span>
+  <span class="pl-ent">diagramsnet</span>:
+    <span class="pl-ent">image</span>: <span class="pl-s">yuzutech/kroki-diagramsnet</span>
+    <span class="pl-ent">expose</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>8005<span class="pl-pds">"</span></span></pre></div>
 <p>启动服务</p>
-<pre lang="shell" class="notranslate"><code class="notranslate">docker-compose up -d 
-</code></pre>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker-compose up -d </pre></div>
 <p>等待启动即可</p>
 <h2>🧱 基本用法：给文本，拿图片</h2>
 <p>Kroki 暴露的是一个简单的 HTTP 接口，你可以用 GET 或 POST 来调用。</p>
 <h3>⬆️ 1. GET：URL 中携带编码后的图</h3>
 <p>Kroki 使用「deflate + base64」算法对图形描述进行压缩编码，然后放入 URL：</p>
-<pre lang="http" class="notranslate"><code class="notranslate">GET /plantuml/svg/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000
-</code></pre>
+<div class="highlight highlight-source-httpspec"><pre class="notranslate"><span class="pl-k">GET</span><span class="pl-c1"> /plantuml/svg/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000</span></pre></div>
 <p>这条请求的含义是：</p>
 <ul>
 <li>使用 <code class="notranslate">plantuml</code> 引擎</li>
@@ -195,16 +191,14 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/09f758934501211ca5c3b29e7511b0aa493ff65a3bcbc4d4869b2a0f1badad03/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f6b726f6b692d6765742d6578616d706c652e706e67"><img src="https://camo.githubusercontent.com/09f758934501211ca5c3b29e7511b0aa493ff65a3bcbc4d4869b2a0f1badad03/68747470733a2f2f7869756a693030382e6769746875622e696f2f696d616765732f3230323630312f6b726f6b692d6765742d6578616d706c652e706e67" alt="" data-canonical-src="https://xiuji008.github.io/images/202601/kroki-get-example.png" style="max-width: 100%;"></a></p>
 <h3>⬇️ 2. POST JSON：最直观的方式</h3>
 <p>你也可以使用 <code class="notranslate">POST</code>，直接发 JSON，不需要自己做编码：</p>
-<pre lang="http" class="notranslate"><code class="notranslate">POST /
-Content-Type: application/json
-Accept: image/svg+xml
-</code></pre>
-<pre lang="json" class="notranslate"><code class="notranslate">{
-  "diagram_source": "Bob -&gt; Alice : hello",
-  "diagram_type": "plantuml",
-  "output_format": "svg"
-}
-</code></pre>
+<div class="highlight highlight-source-httpspec"><pre class="notranslate"><span class="pl-k">POST</span><span class="pl-c1"> /</span>
+<span class="pl-s"><span class="pl-v">Content-Type:</span> application/json</span>
+<span class="pl-s"><span class="pl-v">Accept:</span> image/svg+xml</span></pre></div>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+  <span class="pl-ent">"diagram_source"</span>: <span class="pl-s"><span class="pl-pds">"</span>Bob -&gt; Alice : hello<span class="pl-pds">"</span></span>,
+  <span class="pl-ent">"diagram_type"</span>: <span class="pl-s"><span class="pl-pds">"</span>plantuml<span class="pl-pds">"</span></span>,
+  <span class="pl-ent">"output_format"</span>: <span class="pl-s"><span class="pl-pds">"</span>svg<span class="pl-pds">"</span></span>
+}</pre></div>
 <p>字段说明：</p>
 <ul>
 <li><code class="notranslate">diagram_source</code>：图形描述源文本</li>
@@ -220,12 +214,11 @@ Accept: image/svg+xml
 <h3><g-emoji class="g-emoji" alias="arrow_heading_down">⤵️</g-emoji> 3. POST 纯文本：用 Header 指定类型与格式</h3>
 <p>如果不想发 JSON，可以直接把图形描述当作纯文本发过去。</p>
 <p><strong>方式 A：通过 <code class="notranslate">Accept</code> 指定输出格式</strong></p>
-<pre lang="http" class="notranslate"><code class="notranslate">POST /plantuml
-Accept: image/svg+xml
-Content-Type: text/plain
+<div class="highlight highlight-source-httpspec"><pre class="notranslate"><span class="pl-k">POST</span><span class="pl-c1"> /plantuml</span>
+<span class="pl-s"><span class="pl-v">Accept:</span> image/svg+xml</span>
+<span class="pl-s"><span class="pl-v">Content-Type:</span> text/plain</span>
 
-Bob -&gt; Alice : hello
-</code></pre>
+<span class="pl-ii">Bob -&gt; Alice : hello</span></pre></div>
 <p>含义：</p>
 <ul>
 <li>URL 中 <code class="notranslate">/plantuml</code> 表示使用 PlantUML 引擎</li>
@@ -233,22 +226,19 @@ Bob -&gt; Alice : hello
 <li><code class="notranslate">Accept: image/svg+xml</code> 表示希望返回 SVG</li>
 </ul>
 <p><strong>方式 B：在 URL 中指定输出格式</strong></p>
-<pre lang="http" class="notranslate"><code class="notranslate">POST /plantuml/svg
-Content-Type: text/plain
+<div class="highlight highlight-source-httpspec"><pre class="notranslate"><span class="pl-k">POST</span><span class="pl-c1"> /plantuml/svg</span>
+<span class="pl-s"><span class="pl-v">Content-Type:</span> text/plain</span>
 
-Bob -&gt; Alice : hello
-</code></pre>
+<span class="pl-ii">Bob -&gt; Alice : hello</span></pre></div>
 <p>含义类似，只是把输出格式 <code class="notranslate">svg</code> 写在了路径里，这样就不需要设置 <code class="notranslate">Accept</code> 头了。</p>
 <h3>🔝 4. POST JSON + URL 格式：混合用法</h3>
 <p>也可以继续用 JSON，但把输出格式放 URL：</p>
-<pre lang="http" class="notranslate"><code class="notranslate">POST /plantuml/svg
-Content-Type: application/json
-Accept: application/json
-</code></pre>
-<pre lang="json" class="notranslate"><code class="notranslate">{
-  "diagram_source": "Bob -&gt; Alice : hello"
-}
-</code></pre>
+<div class="highlight highlight-source-httpspec"><pre class="notranslate"><span class="pl-k">POST</span><span class="pl-c1"> /plantuml/svg</span>
+<span class="pl-s"><span class="pl-v">Content-Type:</span> application/json</span>
+<span class="pl-s"><span class="pl-v">Accept:</span> application/json</span></pre></div>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+  <span class="pl-ent">"diagram_source"</span>: <span class="pl-s"><span class="pl-pds">"</span>Bob -&gt; Alice : hello<span class="pl-pds">"</span></span>
+}</pre></div>
 <p>你可以根据自己工程里的调用方式和习惯自由选择上面这些风格，本质都是同一套逻辑。</p>
 <h2>✳️ 总结</h2>
 <p>Kroki 把本来分散、各自为政的各种绘图库，统一包装成了一个<strong>简单、统一的 HTTP 图形渲染服务</strong>：</p>
