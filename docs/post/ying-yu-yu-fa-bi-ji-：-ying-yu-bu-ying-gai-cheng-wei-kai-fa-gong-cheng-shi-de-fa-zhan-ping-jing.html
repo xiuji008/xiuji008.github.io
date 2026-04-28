@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+前几天，是公司成立二十周年的年会。">
+<meta property="og:title" content="英语语法笔记：英语不应该成为开发工程师的发展瓶颈">
+<meta property="og:description" content="
+
+前几天，是公司成立二十周年的年会。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/ying-yu-yu-fa-bi-ji-%EF%BC%9A-ying-yu-bu-ying-gai-cheng-wei-kai-fa-gong-cheng-shi-de-fa-zhan-ping-jing.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>英语语法笔记：英语不应该成为开发工程师的发展瓶颈</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">英语语法笔记：英语不应该成为开发工程师的发展瓶颈</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/32" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>前几天，是公司成立二十周年的年会。老板作了一场题为《穿越寒冬，求实存善》的演讲。那一刻我在想：当寒意渐浓，作为领航者，他思考的是如何带领公司扛过这场冬天；那作为程序员的我们，又该如何穿越自己的寒冬呢？</p>
+<p>Vue 作者尤雨溪曾坦言：“不仅英语差会成为瓶颈，英语好还能成为优势，因为学习效率会比别人高。像我这样半路出家自学的人，只能靠英语了……”确实，无论是阅读技术文档、参与开源社区、在 Stack Overflow 寻找答案，还是追踪最新技术资讯、争取一份远程机会，英语早已不是可选项，而是必修课——是提升竞争力的关键一环，更是这个寒冬里的一件羽绒服。</p>
+<p>那么，英语该怎么学？今天我们要安利的这个开源项目，或许就提供了一种值得借鉴的思路。</p>
+<h2>🌱english-note简介</h2>
+<p>英语语法笔记（english-note）由 xiaoxunyao 发起，项目的初衷非常朴素而温暖：社区里许多同学英语基础薄弱，传统的语法教材要么过于艰深，要么枯燥乏味。于是他们决定——自己动手，把复杂的语法知识点掰开揉碎，用程序员最能理解的方式重新呈现。</p>
+<p>这不仅仅是一份学习笔记，更是一场同学帮助同学的开源实践。</p>
+<p>github地址：<a href="https://github.com/hzpt-inet-club/english-note">https://github.com/hzpt-inet-club/english-note</a></p>
+<p>该项目目前在github上已有<strong>5.1k</strong>⭐️ star</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f2c5fc87844956ed1123dba6b3aa184249c213172d42a5f978bc9d6ddc1490b8/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f33666634323731643539393335373339333539643132313037623337343130652e706e67"><img src="https://camo.githubusercontent.com/f2c5fc87844956ed1123dba6b3aa184249c213172d42a5f978bc9d6ddc1490b8/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f33666634323731643539393335373339333539643132313037623337343130652e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/02/11/3ff4271d59935739359d12107b37410e.png" style="max-width: 100%;"></a></p>
+<h2>📖 如何使用这个项目？</h2>
+<h3>🌐最推荐的方式：直接在线阅读</h3>
+<p>在线地址：<a href="https://hzpt-inet-club.github.io/english-note/" rel="nofollow">https://hzpt-inet-club.github.io/english-note/</a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2aca747592f80ed85ed0b5efebc812ca5cac6272b21c38abfcbd5ff892a9fd98/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f34653865353931613166336163323033633633353265613436356562323038652e706e67"><img src="https://camo.githubusercontent.com/2aca747592f80ed85ed0b5efebc812ca5cac6272b21c38abfcbd5ff892a9fd98/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f34653865353931613166336163323033633633353265613436356562323038652e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/02/11/4e8e591a1f3ac203c6352ea465eb208e.png" style="max-width: 100%;"></a></p>
+<h3>💻本地使用</h3>
+<p>此项目用 VuePress 进行文档编写的，我们历史的文章之中也有介绍如何搭建使用VuePress的，感兴趣的家人们可以搜下，我们本地启动项目的步骤如下：</p>
+<ol>
+<li>下载到本地</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">git clone https://github.com/hzpt-inet-club/english-note.git</pre></div>
+<ol start="2">
+<li>进入更目录后</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">yarn init</pre></div>
+<ol start="3">
+<li>运行</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">yarn docs:dev</pre></div>
+<h3>🐳Docker部署</h3>
+<p>我们使用以下命令打包服务</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">yarn docs:build</pre></div>
+<p>打包完成之后将<code class="notranslate">docs/.vuepress/dist</code>下的静态文件复制到nginx 下即可，具体构建镜像启动服务较为简单，我们此处不做详细介绍了。</p>
+<h2>🧠开始学习</h2>
+<p>以下是文档的部分截图</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/15c802043692e5d47ea1d03b6a3aa089ea9ef75bd9722b810c4c4c9058b6b35c/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f33656338623065316334666235663331393062656535656261613335653032352e706e67"><img src="https://camo.githubusercontent.com/15c802043692e5d47ea1d03b6a3aa089ea9ef75bd9722b810c4c4c9058b6b35c/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f33656338623065316334666235663331393062656535656261613335653032352e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/02/11/3ec8b0e1c4fb5f3190bee5ebaa35e025.png" style="max-width: 100%;"></a></p>
+<br>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8aa1b68c7376527f514187ebb0cd25556486fd62b43a704c4fc4f64cc893d911/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f62343866363831656635336439613938393835303634663432393034353665342e706e67"><img src="https://camo.githubusercontent.com/8aa1b68c7376527f514187ebb0cd25556486fd62b43a704c4fc4f64cc893d911/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f62343866363831656635336439613938393835303634663432393034353665342e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/02/11/b48f681ef53d9a98985064f4290456e4.png" style="max-width: 100%;"></a></p>
+<br>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/13cbc07b11e8a21c4b4713411cc50ffcfb30a16c846e5d197803f7c6e846d7aa/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f30396532346362373130633765663661363531336261613833303039363562652e706e67"><img src="https://camo.githubusercontent.com/13cbc07b11e8a21c4b4713411cc50ffcfb30a16c846e5d197803f7c6e846d7aa/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f30396532346362373130633765663661363531336261613833303039363562652e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/02/11/09e24cb710c7ef6a6513baa8300965be.png" style="max-width: 100%;"></a></p>
+<br>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/822ad251f96a8a277f64404684045250d45fd12c5cd1a1df4fd1948037552cc6/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f31303438303530343838333361633731343863343436303365663866613937352e706e67"><img src="https://camo.githubusercontent.com/822ad251f96a8a277f64404684045250d45fd12c5cd1a1df4fd1948037552cc6/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f31303438303530343838333361633731343863343436303365663866613937352e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/02/11/104805048833ac7148c44603ef8fa975.png" style="max-width: 100%;"></a></p>
+<br>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ed218f4df27d80bcbd867430372cfea1de9ea9034b8978b25d75f72fca4ed863/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f34646233356634323663636462343336303861393237613962373864323466652e706e67"><img src="https://camo.githubusercontent.com/ed218f4df27d80bcbd867430372cfea1de9ea9034b8978b25d75f72fca4ed863/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30322f31312f34646233356634323663636462343336303861393237613962373864323466652e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/02/11/4db35f426ccdb43608a927a9b78d24fe.png" style="max-width: 100%;"></a></p>
+<h2>📝写在最后</h2>
+<p>英语语法笔记这个项目，让我感动的不只是它详实的内容，更是它背后那种“我想帮你”的社区精神。</p>
+<p>在这个信息爆炸的时代，我们从不缺少学习资源，缺少的是愿意为你把知识掰碎了讲的人。而这个项目，正是这样一群开发者，用自己擅长的方式，帮助同在学习路上的伙伴。</p>
+<p>如说到底还是没有什么捷径可走的，想提高英语总得有所付出。但这个项目让这段付出的路程，变得没那么孤单，也没那么痛苦。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
