@@ -1,5 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>修己xj</title><link>https://xiuji008.github.io</link><description>倚南窗以寄傲，审容膝之易安 </description><copyright>修己xj</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://xiuji008.github.io/favicons/favicon.svg</url><title>avatar</title><link>https://xiuji008.github.io</link></image><lastBuildDate>Sat, 16 May 2026 13:18:36 +0000</lastBuildDate><managingEditor>修己xj</managingEditor><ttl>60</ttl><webMaster>修己xj</webMaster><item><title>告别排版烦恼，让公众号写作效率翻倍：TypeZen 完全指南</title><link>https://xiuji008.github.io/post/gao-bie-pai-ban-fan-nao-%EF%BC%8C-rang-gong-zhong-hao-xie-zuo-xiao-lv-fan-bei-%EF%BC%9ATypeZen%20-wan-quan-zhi-nan.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>修己xj</title><link>https://xiuji008.github.io</link><description>倚南窗以寄傲，审容膝之易安 </description><copyright>修己xj</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://xiuji008.github.io/favicons/favicon.svg</url><title>avatar</title><link>https://xiuji008.github.io</link></image><lastBuildDate>Sun, 17 May 2026 13:57:13 +0000</lastBuildDate><managingEditor>修己xj</managingEditor><ttl>60</ttl><webMaster>修己xj</webMaster><item><title>别再让Docker占满你的硬盘！一篇搞定docker system所有命令</title><link>https://xiuji008.github.io/post/bie-zai-rang-Docker-zhan-man-ni-de-ying-pan-%EF%BC%81-yi-pian-gao-ding-docker%20system-suo-you-ming-ling.html</link><description>
+
+&gt; 从磁盘爆满到优雅清理，Docker系统管理完全指南
+
+
+
+![](http://chevereto.xiuji.mynatapp.cc/images/2026/05/17/b75b7612d4bbf27a370d5ca1b4a617ee.jpg)
+
+
+“我的虚拟机又提示磁盘空间不足了！”
+
+相信每个Docker用户都经历过这样的时刻。</description><guid isPermaLink="true">https://xiuji008.github.io/post/bie-zai-rang-Docker-zhan-man-ni-de-ying-pan-%EF%BC%81-yi-pian-gao-ding-docker%20system-suo-you-ming-ling.html</guid><pubDate>Sun, 17 May 2026 13:56:43 +0000</pubDate></item><item><title>告别排版烦恼，让公众号写作效率翻倍：TypeZen 完全指南</title><link>https://xiuji008.github.io/post/gao-bie-pai-ban-fan-nao-%EF%BC%8C-rang-gong-zhong-hao-xie-zuo-xiao-lv-fan-bei-%EF%BC%9ATypeZen%20-wan-quan-zhi-nan.html</link><description>
 &gt; 一款让你专注内容创作，不再为格式折腾的开源神器
 
 

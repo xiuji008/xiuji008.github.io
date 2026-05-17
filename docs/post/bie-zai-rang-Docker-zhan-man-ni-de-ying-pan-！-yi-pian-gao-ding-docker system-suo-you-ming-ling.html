@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+> 从磁盘爆满到优雅清理，Docker系统管理完全指南
+
+
+
+![](http://chevereto.xiuji.mynatapp.cc/images/2026/05/17/b75b7612d4bbf27a370d5ca1b4a617ee.jpg)
+
+
+“我的虚拟机又提示磁盘空间不足了！”
+
+相信每个Docker用户都经历过这样的时刻。">
+<meta property="og:title" content="别再让Docker占满你的硬盘！一篇搞定docker system所有命令">
+<meta property="og:description" content="
+
+> 从磁盘爆满到优雅清理，Docker系统管理完全指南
+
+
+
+![](http://chevereto.xiuji.mynatapp.cc/images/2026/05/17/b75b7612d4bbf27a370d5ca1b4a617ee.jpg)
+
+
+“我的虚拟机又提示磁盘空间不足了！”
+
+相信每个Docker用户都经历过这样的时刻。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/bie-zai-rang-Docker-zhan-man-ni-de-ying-pan-%EF%BC%81-yi-pian-gao-ding-docker%20system-suo-you-ming-ling.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>别再让Docker占满你的硬盘！一篇搞定docker system所有命令</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">别再让Docker占满你的硬盘！一篇搞定docker system所有命令</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/50" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><blockquote>
+<p>从磁盘爆满到优雅清理，Docker系统管理完全指南</p>
+</blockquote>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7e1fb9fc957f2136219f5e6b65016cde851e7f7445714cf285a0e04bd3bad00a/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f31372f62373562373631326434626266323761333730643563613162346136313765652e6a7067"><img src="https://camo.githubusercontent.com/7e1fb9fc957f2136219f5e6b65016cde851e7f7445714cf285a0e04bd3bad00a/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f31372f62373562373631326434626266323761333730643563613162346136313765652e6a7067" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/17/b75b7612d4bbf27a370d5ca1b4a617ee.jpg" style="max-width: 100%;"></a></p>
+<p>“我的虚拟机又提示磁盘空间不足了！”</p>
+<p>相信每个Docker用户都经历过这样的时刻。打开虚拟机一看，镜像、容器、卷、构建缓存，加起来轻松占据几十GB。<strong>Docker是怎么悄悄吃掉你的硬盘的？又如何优雅地清理它们？</strong></p>
+<p>答案就在 <code class="notranslate">docker system</code> 这组命令里。</p>
+<p><code class="notranslate">docker system</code> 是 Docker 提供的一组<strong>管理命令</strong>，用于查看和管理 Docker 守护进程的整体状态、磁盘使用情况、系统信息等。它不直接操作容器或镜像，而是从<strong>全局视角</strong>管理 Docker 引擎本身。</p>
+<h2>所有子命令概览</h2>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+<th>常用程度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">docker system df</code></td>
+<td>显示 Docker 磁盘使用情况</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><code class="notranslate">docker system prune</code></td>
+<td>删除未使用的 Docker 对象</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><code class="notranslate">docker system info</code></td>
+<td>显示系统范围的信息</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+<tr>
+<td><code class="notranslate">docker system events</code></td>
+<td>获取 Docker 守护进程的实时事件</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td><code class="notranslate">docker system dial-stdio</code></td>
+<td>管理 Docker 守护进程的连接（高级）</td>
+<td>⭐</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h2>各命令详细说明</h2>
+<h3>1. <code class="notranslate">docker system df</code> - 查看磁盘使用情况</h3>
+<p><strong>最常用的命令</strong>，用于查看 Docker 占用了多少磁盘空间。</p>
+<h4>基本用法：</h4>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker system df</pre></div>
+<p><strong>输出示例</strong>：</p>
+<pre class="notranslate"><code class="notranslate">TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          21        21        8.797GB   460.6MB (5%)
+Containers      24        24        565MB     0B (0%)
+Local Volumes   8         8         123MB     0B (0%)
+Build Cache     20        0         922.7MB   922.7MB
+</code></pre>
+<p><strong>各列含义</strong>：</p>
+<ul>
+<li><code class="notranslate">TYPE</code>: 对象类型（镜像、容器、卷、构建缓存）</li>
+<li><code class="notranslate">TOTAL</code>: 总数量</li>
+<li><code class="notranslate">ACTIVE</code>: 正在使用的数量</li>
+<li><code class="notranslate">SIZE</code>: 占用空间大小</li>
+<li><code class="notranslate">RECLAIMABLE</code>: 可以回收（删除）的空间大小及百分比</li>
+</ul>
+<h4>详细模式（显示每个对象）：</h4>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker system df -v</pre></div>
+<p>这会列出每个镜像、容器、卷的具体信息，适合深入分析空间占用。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8b0df56c991a76a8b66b5559b24c8e8a896d33f92ea6980ec68b138c9b6abeff/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f31372f62633335613838653565386237323561366339336636363433373437323562652e706e67"><img src="https://camo.githubusercontent.com/8b0df56c991a76a8b66b5559b24c8e8a896d33f92ea6980ec68b138c9b6abeff/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f31372f62633335613838653565386237323561366339336636363433373437323562652e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/17/bc35a88e5e8b725a6c93f664374725be.png" style="max-width: 100%;"></a></p>
+<h4>实用示例：</h4>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 查看所有对象的详细信息，排序查看最大的镜像</span>
+docker system df -v <span class="pl-k">|</span> grep -A 10 <span class="pl-s"><span class="pl-pds">"</span>Images<span class="pl-pds">"</span></span>
+
+<span class="pl-c"><span class="pl-c">#</span> 只查看镜像占用</span>
+docker system df <span class="pl-k">|</span> grep Images
+
+<span class="pl-c"><span class="pl-c">#</span> 查看格式化的输出（JSON格式）</span>
+docker system df --format <span class="pl-s"><span class="pl-pds">"</span>json<span class="pl-pds">"</span></span></pre></div>
+<h3>2. <code class="notranslate">docker system prune</code> - 清理未使用对象</h3>
+<p><strong>清理命令</strong>，删除不再使用的 Docker 对象以释放空间。</p>
+<h4>完整参数表：</h4>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参数</td>
+<td>说明</td>
+<td>删除内容</td>
+</tr>
+<tr>
+<td>无参数</td>
+<td>基础清理</td>
+<td>停止的容器、未使用的网络、悬空镜像、悬空构建缓存</td>
+</tr>
+<tr>
+<td><code class="notranslate">-a, --all</code></td>
+<td>清理所有未使用的镜像</td>
+<td>基础清理 + 所有未被容器引用的镜像</td>
+</tr>
+<tr>
+<td><code class="notranslate">--volumes</code></td>
+<td>清理卷</td>
+<td>基础清理 + 所有未被容器引用的卷</td>
+</tr>
+<tr>
+<td><code class="notranslate">-f, --force</code></td>
+<td>强制执行</td>
+<td>不提示确认，直接删除</td>
+</tr>
+<tr>
+<td><code class="notranslate">--filter</code></td>
+<td>条件过滤</td>
+<td>根据特定条件筛选要删除的对象</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h4>组合使用示例：</h4>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 1. 标准清理（最安全）</span>
+docker system prune
+
+<span class="pl-c"><span class="pl-c">#</span> 2. 清理所有未使用镜像（不清理卷）</span>
+docker system prune -a
+
+<span class="pl-c"><span class="pl-c">#</span> 3. 清理所有未使用镜像和卷（危险）</span>
+docker system prune -a --volumes
+
+<span class="pl-c"><span class="pl-c">#</span> 4. 自动确认，不询问</span>
+docker system prune -f
+
+<span class="pl-c"><span class="pl-c">#</span> 5. 清理24小时前的资源</span>
+docker system prune --filter <span class="pl-s"><span class="pl-pds">"</span>until=24h<span class="pl-pds">"</span></span>
+
+<span class="pl-c"><span class="pl-c">#</span> 6. 清理带有特定标签的资源</span>
+docker system prune --filter <span class="pl-s"><span class="pl-pds">"</span>label=deprecated=true<span class="pl-pds">"</span></span></pre></div>
+<h4>过滤条件高级用法：</h4>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 清理超过指定时间的对象</span>
+docker system prune --filter <span class="pl-s"><span class="pl-pds">"</span>until=2026-01-01T00:00:00Z<span class="pl-pds">"</span></span>
+
+<span class="pl-c"><span class="pl-c">#</span> 组合多个条件（逻辑与）</span>
+docker system prune -a --filter <span class="pl-s"><span class="pl-pds">"</span>until=24h<span class="pl-pds">"</span></span> --filter <span class="pl-s"><span class="pl-pds">"</span>label!=keep<span class="pl-pds">"</span></span>
+
+<span class="pl-c"><span class="pl-c">#</span> 排除某个标签的资源</span>
+docker system prune --filter <span class="pl-s"><span class="pl-pds">"</span>label!=important<span class="pl-pds">"</span></span></pre></div>
+<h4>安全建议：</h4>
+<ul>
+<li><strong>生产环境</strong>：只用 <code class="notranslate">docker system prune</code>（不加 <code class="notranslate">-a</code> 和 <code class="notranslate">--volumes</code>）</li>
+<li><strong>开发环境</strong>：可以用 <code class="notranslate">docker system prune -a</code>，节省空间</li>
+<li><strong>避免使用</strong> <code class="notranslate">--volumes</code> 除非确定数据不重要</li>
+</ul>
+<h3>3. <code class="notranslate">docker system info</code> - 系统信息</h3>
+<p>显示 Docker 引擎和主机的详细信息。</p>
+<h4>基本用法：</h4>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker system info
+<span class="pl-c"><span class="pl-c">#</span> 或使用旧命令别名</span>
+docker info</pre></div>
+<h4>输出内容包括：</h4>
+<ul>
+<li><strong>服务器版本</strong>：Docker Engine 版本号</li>
+<li><strong>操作系统</strong>：运行 Docker 的主机系统</li>
+<li><strong>内核版本</strong>：Linux 内核版本</li>
+<li><strong>CPU/内存</strong>：主机硬件资源</li>
+<li><strong>存储驱动</strong>：overlay2, aufs 等</li>
+<li><strong>日志驱动</strong>：json-file, journald 等</li>
+<li><strong>安全选项</strong>：seccomp, AppArmor, SELinux</li>
+<li><strong>镜像加速器</strong>：Registry Mirrors 配置</li>
+<li><strong>容器运行时</strong>：runc, containerd 版本</li>
+</ul>
+<h4>实用示例：</h4>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 查看 Docker 根目录位置</span>
+docker info <span class="pl-k">|</span> grep <span class="pl-s"><span class="pl-pds">"</span>Docker Root Dir<span class="pl-pds">"</span></span>
+
+<span class="pl-c"><span class="pl-c">#</span> 查看存储驱动和空间</span>
+docker info <span class="pl-k">|</span> grep -A 5 <span class="pl-s"><span class="pl-pds">"</span>Storage Driver<span class="pl-pds">"</span></span>
+
+<span class="pl-c"><span class="pl-c">#</span> 查看当前运行的容器数量</span>
+docker info <span class="pl-k">|</span> grep <span class="pl-s"><span class="pl-pds">"</span>Containers:<span class="pl-pds">"</span></span>
+
+<span class="pl-c"><span class="pl-c">#</span> 输出为JSON格式（便于脚本处理）</span>
+docker info --format <span class="pl-s"><span class="pl-pds">"</span>{{json .}}<span class="pl-pds">"</span></span>
+docker info -f <span class="pl-s"><span class="pl-pds">"</span>{{.ServerVersion}}<span class="pl-pds">"</span></span></pre></div>
+<h3>4. <code class="notranslate">docker system events</code> - 事件监控</h3>
+<p>实时监控 Docker 守护进程产生的事件。</p>
+<h4>基本用法：</h4>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker system events</pre></div>
+<h4>事件类型：</h4>
+<ul>
+<li><strong>容器事件</strong>：create, start, stop, kill, die, pause, unpause, delete</li>
+<li><strong>镜像事件</strong>：pull, push, tag, untag, delete, save, load</li>
+<li><strong>卷事件</strong>：create, mount, unmount, destroy</li>
+<li><strong>网络事件</strong>：create, connect, disconnect, destroy</li>
+<li><strong>守护进程事件</strong>：reload</li>
+</ul>
+<h4>实用示例：</h4>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 只监控容器相关事件</span>
+docker system events --filter type=container
+
+<span class="pl-c"><span class="pl-c">#</span> 只监控镜像拉取事件</span>
+docker system events --filter event=pull
+
+<span class="pl-c"><span class="pl-c">#</span> 监控特定容器的所有事件</span>
+docker system events --filter container=my-container
+
+<span class="pl-c"><span class="pl-c">#</span> 监控带特定标签的事件</span>
+docker system events --filter label=com.example.env=production
+
+<span class="pl-c"><span class="pl-c">#</span> 只显示最近10条事件</span>
+docker system events --since 10m
+
+<span class="pl-c"><span class="pl-c">#</span> 按时间范围过滤</span>
+docker system events --since <span class="pl-s"><span class="pl-pds">"</span>2026-01-01T00:00:00Z<span class="pl-pds">"</span></span> --until <span class="pl-s"><span class="pl-pds">"</span>2026-01-02T00:00:00Z<span class="pl-pds">"</span></span>
+
+<span class="pl-c"><span class="pl-c">#</span> 格式化输出（只显示时间和事件）</span>
+docker system events --format <span class="pl-s"><span class="pl-pds">"</span>{{.Time}} {{.Type}} {{.Action}}<span class="pl-pds">"</span></span></pre></div>
+<h3>5. <code class="notranslate">docker system dial-stdio</code> - 高级连接管理</h3>
+<p>这是一个相对底层的命令，用于与 Docker 守护进程建立双向流式连接。主要用于调试和开发场景。</p>
+<p><strong>使用场景</strong>：</p>
+<ul>
+<li>Docker CLI 插件的开发</li>
+<li>远程调试 Docker 守护进程</li>
+<li>高级网络诊断</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 通常不直接使用，而是在插件中通过 API 调用</span>
+docker system dial-stdio</pre></div>
+<h2>实战组合技巧</h2>
+<h3>技巧1：清理前的预览</h3>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 先查看占用情况</span>
+docker system df
+
+<span class="pl-c"><span class="pl-c">#</span> 预览会被删除的内容（不实际删除）</span>
+docker system prune -a --volumes --dry-run  <span class="pl-c"><span class="pl-c">#</span> 注意：--dry-run 不是所有版本都支持</span>
+<span class="pl-c"><span class="pl-c">#</span> 替代方案：手动检查</span>
+docker container ls -a <span class="pl-k">|</span> grep Exited  <span class="pl-c"><span class="pl-c">#</span> 查看停止的容器</span>
+docker image ls -a  <span class="pl-c"><span class="pl-c">#</span> 查看所有镜像</span>
+docker volume ls -f dangling=true  <span class="pl-c"><span class="pl-c">#</span> 查看未使用的卷</span></pre></div>
+<h3>技巧2：定期自动清理（Cron任务）</h3>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 编辑 crontab</span>
+crontab -e
+
+<span class="pl-c"><span class="pl-c">#</span> 每天凌晨2点清理（安全模式）</span>
+0 2 <span class="pl-k">*</span> <span class="pl-k">*</span> <span class="pl-k">*</span> /usr/bin/docker system prune -f
+
+<span class="pl-c"><span class="pl-c">#</span> 每周日凌晨3点深度清理（保留最近7天）</span>
+0 3 <span class="pl-k">*</span> <span class="pl-k">*</span> 0 /usr/bin/docker system prune -a --filter <span class="pl-s"><span class="pl-pds">"</span>until=168h<span class="pl-pds">"</span></span> -f</pre></div>
+<h3>技巧3：监控磁盘变化</h3>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 实时监控 Docker 磁盘占用</span>
+watch -n 5 <span class="pl-s"><span class="pl-pds">'</span>docker system df<span class="pl-pds">'</span></span>
+
+<span class="pl-c"><span class="pl-c">#</span> 记录空间变化到日志</span>
+<span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-s"><span class="pl-pds">$(</span>date<span class="pl-pds">)</span></span>: <span class="pl-s"><span class="pl-pds">$(</span>docker system df <span class="pl-k">|</span> grep Images<span class="pl-pds">)</span></span><span class="pl-pds">"</span></span> <span class="pl-k">&gt;&gt;</span> disk-usage.log</pre></div>
+<h3>技巧4：一键清理脚本</h3>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#!</span>/bin/bash</span>
+<span class="pl-c"><span class="pl-c">#</span> docker-cleanup.sh - 安全的清理脚本</span>
+
+<span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span>当前磁盘占用:<span class="pl-pds">"</span></span>
+docker system df
+
+<span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>
+<span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span>清理停止的容器、悬空镜像和未使用的网络...<span class="pl-pds">"</span></span>
+docker system prune -f
+
+<span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>
+<span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span>清理旧的构建缓存（7天以上）...<span class="pl-pds">"</span></span>
+docker builder prune -f --filter <span class="pl-s"><span class="pl-pds">"</span>until=168h<span class="pl-pds">"</span></span>
+
+<span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>
+<span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span>清理未使用的卷（需要确认）...<span class="pl-pds">"</span></span>
+docker volume prune
+
+<span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>
+<span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span>清理完成！<span class="pl-pds">"</span></span>
+docker system df</pre></div>
+<h2>最佳实践总结</h2>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>环境</th>
+<th>推荐命令</th>
+<th>频率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>生产环境</strong></td>
+<td><code class="notranslate">docker system prune</code></td>
+<td>每周1次</td>
+</tr>
+<tr>
+<td><strong>开发环境</strong></td>
+<td><code class="notranslate">docker system prune -a</code></td>
+<td>每天1次</td>
+</tr>
+<tr>
+<td><strong>CI/CD 环境</strong></td>
+<td><code class="notranslate">docker system prune -a --volumes -f</code></td>
+<td>每次构建前</td>
+</tr>
+<tr>
+<td><strong>个人学习</strong></td>
+<td><code class="notranslate">docker system prune -a --volumes</code></td>
+<td>磁盘满时</td>
+</tr>
+<tr>
+<td><strong>Docker Desktop (Mac/Windows)</strong></td>
+<td><code class="notranslate">docker system prune -a</code></td>
+<td>月度维护</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>🔴 <code class="notranslate">--volumes</code> = 数据可能永久丢失</li>
+<li>🟡 <code class="notranslate">-a</code> = 镜像需要重新下载</li>
+<li>🟢 无参数 = 最安全，日常使用</li>
+</ul></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
