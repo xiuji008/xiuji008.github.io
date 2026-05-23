@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+在笔记软件百花齐放的今天，我们见证了许多优秀产品的诞生。">
+<meta property="og:title" content="小书匠：一款本地优先、去中心化的全能笔记软件">
+<meta property="og:description" content="
+
+在笔记软件百花齐放的今天，我们见证了许多优秀产品的诞生。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/xiao-shu-jiang-%EF%BC%9A-yi-kuan-ben-di-you-xian-%E3%80%81-qu-zhong-xin-hua-de-quan-neng-bi-ji-ruan-jian.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>小书匠：一款本地优先、去中心化的全能笔记软件</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">小书匠：一款本地优先、去中心化的全能笔记软件</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/55" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>在笔记软件百花齐放的今天，我们见证了许多优秀产品的诞生。最近在逛github的时候发现了一款笔记软件<strong>小书匠</strong>，初步尝试了下，感觉还挺好用的，安利给家人们。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a3bd2ed183b4a54ec687692706b3723f85553e6ec183900bc9eb70244adae35f/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f66383631653263663363643935323761343066653634373936313430383430612e706e67"><img src="https://camo.githubusercontent.com/a3bd2ed183b4a54ec687692706b3723f85553e6ec183900bc9eb70244adae35f/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f66383631653263663363643935323761343066653634373936313430383430612e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/23/f861e2cf3cd9527a40fe64796140840a.png" style="max-width: 100%;"></a></p>
+<h2>小书匠是什么？</h2>
+<p>小书匠是一款<strong>本地优先、去中心化、支持选择性同步</strong>的全平台笔记软件。它不依赖任何中心服务器，所有数据都保存在用户本地，真正做到了"我的数据我做主"。</p>
+<p>该项目目前在github 上有 <strong>1.7k</strong> star</p>
+<p>Github 地址：<a href="https://github.com/suziwen/markdownxiaoshujiang">https://github.com/suziwen/markdownxiaoshujiang</a></p>
+<p>文档地址：<a href="https://soft.xiaoshujiang.com/" rel="nofollow">https://soft.xiaoshujiang.com/</a></p>
+<p>Github Page 版本地址：<a href="https://github.com/suziwen/lucky-cat">https://github.com/suziwen/lucky-cat</a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/248654b61bb2e22adbc0bb5c9050560be098d6d08eafdbf3a1ec3b04b89c6255/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f66393365313633323236313237303236663764373835303030356661633431352e706e67"><img src="https://camo.githubusercontent.com/248654b61bb2e22adbc0bb5c9050560be098d6d08eafdbf3a1ec3b04b89c6255/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f66393365313633323236313237303236663764373835303030356661633431352e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/23/f93e163226127026f7d7850005fac415.png" style="max-width: 100%;"></a></p>
+<h2>核心特性</h2>
+<h3>一、超级强大的编辑体验</h3>
+<p>小书匠提供了堪比专业代码编辑器的写作体验：</p>
+<ul>
+<li><strong>多光标编辑</strong>：同时编辑多个位置，效率倍增</li>
+<li><strong>折叠功能</strong>：支持标题折叠、代码折叠，长文档也能清晰组织</li>
+<li><strong>代码补全与高亮</strong>：程序员写技术文档的绝佳选择</li>
+<li><strong>强大的搜索替换</strong>：不仅支持页内搜索替换，还支持正则表达式</li>
+<li><strong>打字机滚动</strong>：始终保持光标在屏幕中央，专注写作</li>
+<li><strong>语法检查</strong>：帮你发现文档中的语法问题</li>
+<li><strong>剪贴板图片粘贴</strong>：截图直接粘贴，无需繁琐上传</li>
+</ul>
+<h3>二、专业级的Markdown支持</h3>
+<p>小书匠不仅仅是支持标准Markdown，它还提供了许多高级功能：</p>
+<ul>
+<li><strong>大纲显示</strong>：文档结构一目了然</li>
+<li><strong>Vim/Emacs按键支持</strong>：编辑器老用户会感到亲切</li>
+<li><strong>自定义快捷键</strong>：打造属于你的操作习惯</li>
+<li><strong>可视化表格编辑</strong>：Markdown表格编辑的最佳解决方案</li>
+<li><strong>任务清单</strong>：配合知识管理，变身待办管理系统</li>
+<li><strong>DrawIO绘图</strong>：内置流程图绘制工具</li>
+<li><strong>MathJax数学公式</strong>：支持公式输入提示和实时预览</li>
+<li><strong>Mermaid流程图</strong>：用文本描述生成各种图表</li>
+<li><strong>图床迁移</strong>：轻松迁移文章中的图片</li>
+</ul>
+<h3>三、自由灵活的编辑模式</h3>
+<p>小书匠尊重每一位用户的使用习惯：</p>
+<ul>
+<li><strong>多种视图模式</strong>：单栏、双栏、三栏……自由切换</li>
+<li><strong>专注模式</strong>：清空所有干扰元素，全心投入写作</li>
+<li><strong>自动保存</strong>：不用担心断电意外导致数据丢失</li>
+<li><strong>自动版本管理</strong>：每一次修改都有记录</li>
+<li><strong>所见即所得</strong>：不会Markdown也没关系，像使用Word一样写作</li>
+</ul>
+<h3>四、个性化定制</h3>
+<p>小书匠的开发者有一句话让人印象深刻：</p>
+<blockquote>
+<p>记忆不仅仅需要柴米油盐般的文字，还需要那诗和远方的仪式感。</p>
+</blockquote>
+<ul>
+<li><strong>多种主题</strong>：让写作和阅读不再单调</li>
+<li><strong>文章封面</strong>：为每篇文章设置独特的封面</li>
+<li><strong>文章主题</strong>：不同文章切换不同主题，减少审美疲劳</li>
+<li><strong>个性谚语</strong>：用一句话概括当天的心情</li>
+<li><strong>萤火虫模式</strong>：让回忆变得触手可及</li>
+<li><strong>自定义样式</strong>：极限样式调整，实现各种不可能的显示效果</li>
+</ul>
+<h3>五、强大的知识管理</h3>
+<p>小书匠支持多种存储后端，你的数据可以放在任何你信任的地方：</p>
+<ul>
+<li>GitHub / GitLab / Gitee / Gitea</li>
+<li>本地文件存储</li>
+<li>Dropbox</li>
+<li>Evernote / 印象笔记</li>
+<li>有道笔记 / 为知笔记</li>
+<li>WebDAV（坚果云、Seafile、ownCloud、NextCloud等）</li>
+</ul>
+<p>同时提供丰富的数据管理功能：</p>
+<ul>
+<li>分类管理、标签管理</li>
+<li>引用管理、双链管理</li>
+<li>日历管理、置顶管理</li>
+<li>版本管理、二次过滤管理</li>
+<li>页签组管理：像浏览器标签页一样管理文章</li>
+</ul>
+<h3>六、全平台覆盖</h3>
+<ul>
+<li><strong>网页版</strong>：Chrome/Firefox/Edge等现代浏览器直接使用</li>
+<li><strong>桌面端</strong>：Windows、Linux、macOS全支持</li>
+<li><strong>移动端</strong>：Android和iOS（有影笔记）</li>
+<li><strong>Docker部署</strong>：自己部署小书匠服务器</li>
+</ul>
+<h3>七、安全可靠</h3>
+<ul>
+<li><strong>本地优先</strong>：所有数据保存在用户本地</li>
+<li><strong>去中心化</strong>：不依赖任何中心服务器</li>
+<li><strong>自定义同步</strong>：自己搭建数据服务器实现跨平台同步</li>
+<li><strong>导入导出</strong>：支持Markdown、Zip、HTML、PDF、Word等多种格式，支持批量操作</li>
+</ul>
+<h2>Github page 部署</h2>
+<h3>fork 项目</h3>
+<p>首先将 Github Page 版本项目<a href="https://github.com/suziwen/lucky-cat">https://github.com/suziwen/lucky-cat</a>  fork 到自己的仓库中</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5c14546763b250f8ab8b96fd2e87d5fb968771da0c051d007829f8ed76533310/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f38366265633665326261373564616564623934393862383866346134356136322e706e67"><img src="https://camo.githubusercontent.com/5c14546763b250f8ab8b96fd2e87d5fb968771da0c051d007829f8ed76533310/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f38366265633665326261373564616564623934393862383866346134356136322e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/23/86bec6e2ba75daedb9498b88f4a45a62.png" style="max-width: 100%;"></a></p>
+<p>设置pages</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5c14546763b250f8ab8b96fd2e87d5fb968771da0c051d007829f8ed76533310/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f38366265633665326261373564616564623934393862383866346134356136322e706e67"><img src="https://camo.githubusercontent.com/5c14546763b250f8ab8b96fd2e87d5fb968771da0c051d007829f8ed76533310/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f38366265633665326261373564616564623934393862383866346134356136322e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/23/86bec6e2ba75daedb9498b88f4a45a62.png" style="max-width: 100%;"></a></p>
+<p>保存之后会自动构建，构建完成之后我们访问我们github pages 的地址就可以访问了 <code class="notranslate">https://xj1234567.github.io/lucky-cat/</code></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5d89332650626c3502f46503c2b17e522054845d7c3c2792623ab66bd30b880c/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f61653464626637346238386536326664343935656165393531626664313966342e706e67"><img src="https://camo.githubusercontent.com/5d89332650626c3502f46503c2b17e522054845d7c3c2792623ab66bd30b880c/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f61653464626637346238386536326664343935656165393531626664313966342e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/23/ae4dbf74b88e62fd495eae951bfd19f4.png" style="max-width: 100%;"></a></p>
+<h2>Docker 部署</h2>
+<h3>创建docker-compose.yml文件</h3>
+<p>创建部署目录<code class="notranslate">lucky-cat</code>,在此目录下创建docker-compose.yml 文件，内容如下：</p>
+<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">services</span>:
+  <span class="pl-ent">story-writer</span>:
+    <span class="pl-ent">image</span>: <span class="pl-s">suziwen/pegasus</span>
+    <span class="pl-ent">container_name</span>: <span class="pl-s">story-writer</span>
+    <span class="pl-ent">ports</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>180:80<span class="pl-pds">"</span></span>
+      - <span class="pl-s"><span class="pl-pds">"</span>5984:5984<span class="pl-pds">"</span></span> <span class="pl-c"><span class="pl-c">#</span> 通过该链接 `http://ip地址:5984/_utils` 访问数据库控制台，用户名和密码默认为 `pegasus`</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">unless-stopped</span></pre></div>
+<h3>启动容器</h3>
+<p>在docker-compose.yml同级目录下使用以下命令启动容器</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker-compose up -d </pre></div>
+<h3>访问页面</h3>
+<p>启动成功后在页面中打开地址就可以使用了</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4cd617ca18470fe9d33865c1deef39ce5088da471588b41adee6a26471f189e4/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f38376635633630653830636335383930656532653536663239366339313766642e706e67"><img src="https://camo.githubusercontent.com/4cd617ca18470fe9d33865c1deef39ce5088da471588b41adee6a26471f189e4/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f38376635633630653830636335383930656532653536663239366339313766642e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/23/87f5c60e80cc5890ee2e56f296c917fd.png" style="max-width: 100%;"></a></p>
+<h2>window 安装</h2>
+<p>下载windows 安装包，直接点击安装即可</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e9cfba2b65b643dd1e0ae4eac59eb4957e3b7e3603e79c9951dd1d9664afa468/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f63633663373237633530373538303235343136366535373066306231363136342e706e67"><img src="https://camo.githubusercontent.com/e9cfba2b65b643dd1e0ae4eac59eb4957e3b7e3603e79c9951dd1d9664afa468/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32332f63633663373237633530373538303235343136366535373066306231363136342e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/23/cc6c727c507580254166e570f0b16164.png" style="max-width: 100%;"></a></p>
+<h2>个人使用感受</h2>
+<p>断断续续用了阵子小书匠，感觉它“用力过猛”：功能确实硬核——多光标、正则搜索、Vim、DrawIO，对技术文档和流程图等场景近乎工具箱级别。但打开后满眼按钮与设置项，连谚语、萤火虫模式都往里塞，想安静写作时反被选项分了神。笔记软件的核心终究是写作本身，工具应当隐形。功能堆砌不是原罪，只是组合在一起过于喧嚣。若你爱折腾、追求功能覆盖，它会让你爱不释手；若你渴望纯粹克制的写作环境，就会觉得它过载了。不过，它本地优先、去中心化的理念我十分认同——数据握在自己手里，比交给任何云服务都安心，这点值得所有笔记软件学习。</p>
+<h2>写在最后</h2>
+<p>小书匠是一款用心打磨的产品，功能之丰富令人惊叹。它或许不是最克制的那一个，但一定是诚意最足的那一批。如果你不介意它的"花里胡哨"，它会是一个可靠的知识管理伙伴。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
