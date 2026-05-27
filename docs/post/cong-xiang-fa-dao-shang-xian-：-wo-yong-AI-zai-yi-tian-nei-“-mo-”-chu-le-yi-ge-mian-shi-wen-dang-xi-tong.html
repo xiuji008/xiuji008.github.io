@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+随着 AI 编程工具的日益成熟，对于我们个人而言，只要拥有一个想法，将其变为项目和产品的难度已经大大降低。">
+<meta property="og:title" content="从想法到上线：我用AI在一天内“摸”出了一个面试文档系统">
+<meta property="og:description" content="
+随着 AI 编程工具的日益成熟，对于我们个人而言，只要拥有一个想法，将其变为项目和产品的难度已经大大降低。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/cong-xiang-fa-dao-shang-xian-%EF%BC%9A-wo-yong-AI-zai-yi-tian-nei-%E2%80%9C-mo-%E2%80%9D-chu-le-yi-ge-mian-shi-wen-dang-xi-tong.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>从想法到上线：我用AI在一天内“摸”出了一个面试文档系统</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>#postBody{font-size:20px}</style><style>.markdown-alert{padding:0.5rem 1rem;margin-bottom:1rem;border-left:.25em solid var(--borderColor-default,var(--color-border-default));}.markdown-alert .markdown-alert-title {display:flex;font-weight:var(--base-text-weight-medium,500);align-items:center;line-height:1;}.markdown-alert>:first-child {margin-top:0;}.markdown-alert>:last-child {margin-bottom:0;}</style><style>.markdown-alert.markdown-alert-note {border-left-color:var(--borderColor-accent-emphasis, var(--color-accent-emphasis));background-color:var(--color-accent-subtle);}.markdown-alert.markdown-alert-note .markdown-alert-title {color: var(--fgColor-accent,var(--color-accent-fg));}</style><style>.markdown-alert.markdown-alert-tip {border-left-color:var(--borderColor-success-emphasis, var(--color-success-emphasis));background-color:var(--color-success-subtle);}.markdown-alert.markdown-alert-tip .markdown-alert-title {color: var(--fgColor-success,var(--color-success-fg));}</style><style>.markdown-alert.markdown-alert-important {border-left-color:var(--borderColor-done-emphasis, var(--color-done-emphasis));background-color:var(--color-done-subtle);}.markdown-alert.markdown-alert-important .markdown-alert-title {color: var(--fgColor-done,var(--color-done-fg));}</style><style>.markdown-alert.markdown-alert-warning {border-left-color:var(--borderColor-attention-emphasis, var(--color-attention-emphasis));background-color:var(--color-attention-subtle);}.markdown-alert.markdown-alert-warning .markdown-alert-title {color: var(--fgColor-attention,var(--color-attention-fg));}</style><style>.markdown-alert.markdown-alert-caution {border-left-color:var(--borderColor-danger-emphasis, var(--color-danger-emphasis));background-color:var(--color-danger-subtle);}.markdown-alert.markdown-alert-caution .markdown-alert-title {color: var(--fgColor-danger,var(--color-danger-fg));}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">从想法到上线：我用AI在一天内“摸”出了一个面试文档系统</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/57" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>随着 AI 编程工具的日益成熟，对于我们个人而言，只要拥有一个想法，将其变为项目和产品的难度已经大大降低。无论是否有编程经验，我们每个人都可以扮演产品经理、全栈开发等角色。最近，我正好有一个想法，想和大家分享下我从想法到项目的完整经历。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/28e44fe11a1d9e70f7dbc132142801c10ee31daadf784b19592cf48275efc82e/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f34373234336539363839386164643639383332656134353238633839313164352e706e67"><img src="https://camo.githubusercontent.com/28e44fe11a1d9e70f7dbc132142801c10ee31daadf784b19592cf48275efc82e/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f34373234336539363839386164643639383332656134353238633839313164352e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/27/47243e96898add69832ea4528c8911d5.png" style="max-width: 100%;"></a></p>
+<h2>项目背景</h2>
+<p>最近公司毫无征兆地裁掉了一部分同事，所以我打算重启刷面试题的计划。一方面是为了巩固基础知识，另一方面也希望能以面试题为切入点，了解和学习一些 AI 相关的知识。</p>
+<p>基于这个目的，我发现单纯看面经很容易忘记，也达不到预期的效果。如果通过编码或写文档的方式走一遍，效果可能会更好。然而，常规的 Markdown 编辑器或在线文档功能有限，有的数据保存在本地无法同步，有的功能不全，有的无法分享，还有的不能与他人交流。</p>
+<p>因此，一个可以免费部署到公网、支持多设备共享、便于与他人交流、并且可以个性化定制的项目变得十分必要。这正是我今天要介绍的这个项目的由来。</p>
+<h2>项目信息及效果</h2>
+<ul>
+<li>
+<p><strong>项目 GitHub 地址</strong>：<a href="https://xiuji008.github.io/xjdoc-interview/" rel="nofollow">https://github.io/xiuji008/xjdoc-interview</a></p>
+</li>
+<li>
+<p><strong>GitHub Pages 部署后的 Web 地址</strong>：<a href="https://xiuji008.github.io/xjdoc-interview/" rel="nofollow">https://xiuji008.github.io/xjdoc-interview/</a></p>
+</li>
+<li>
+<p><strong>项目文档地址</strong>：<a href="https://xiuji008.github.io/xjdoc-interview/#/docs/README" rel="nofollow">https://xiuji008.github.io/xjdoc-interview/#/docs/README</a></p>
+</li>
+</ul>
+<p><strong>首页、文档结构树、顶部栏</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/71c0e4023ea3d93dcecb0ef2391477fcd7546542fe7fcdd9722d3667aaef4a46/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f38313161663436353064616138633731333062356436626166386262646230652e706e67"><img src="https://camo.githubusercontent.com/71c0e4023ea3d93dcecb0ef2391477fcd7546542fe7fcdd9722d3667aaef4a46/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f38313161663436353064616138633731333062356436626166386262646230652e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/27/811af4650daa8c7130b5d6baf8bbdb0e.png" style="max-width: 100%;"></a></p>
+<p><strong>阅读数、分类、标签、介绍</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d5360fef4a5c9d388f76062dcc4caa2cbad49a8a2edf3ed4d4930b4d87dd0064/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f35396330323130393238636433643439356539303765306362363361303962342e706e67"><img src="https://camo.githubusercontent.com/d5360fef4a5c9d388f76062dcc4caa2cbad49a8a2edf3ed4d4930b4d87dd0064/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f35396330323130393238636433643439356539303765306362363361303962342e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/27/59c0210928cd3d495e907e0cb63a09b4.png" style="max-width: 100%;"></a></p>
+<p><strong>评论</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ddd08ccbc5e1d93f48f803e1e0487fafe51cff171d8f0bd6fe2e3f1329887a81/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f30616666363537623830383731623036643932626262383231373365333138352e706e67"><img src="https://camo.githubusercontent.com/ddd08ccbc5e1d93f48f803e1e0487fafe51cff171d8f0bd6fe2e3f1329887a81/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f30616666363537623830383731623036643932626262383231373365333138352e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/27/0aff657b80871b06d92bbb82173e3185.png" style="max-width: 100%;"></a></p>
+<p><strong>提示</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f638d176a3246570d720e3a9c02f616d4678b1426080a6377465ad520b37fc18/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f63383539613433656139396335353062353736643464376435333632353961302e706e67"><img src="https://camo.githubusercontent.com/f638d176a3246570d720e3a9c02f616d4678b1426080a6377465ad520b37fc18/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f63383539613433656139396335353062353736643464376435333632353961302e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/27/c859a43ea99c550b576d4d7d536259a0.png" style="max-width: 100%;"></a></p>
+<p><strong>sequence</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/47a4eb04b330113a5328c50262a49f49be6e5e02058450b35cf0aa362a5e70bb/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f65303163656636306362383865346336343336363862633033653434623237612e706e67"><img src="https://camo.githubusercontent.com/47a4eb04b330113a5328c50262a49f49be6e5e02058450b35cf0aa362a5e70bb/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f65303163656636306362383865346336343336363862633033653434623237612e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/27/e01cef60cb88e4c643668bc03e44b27a.png" style="max-width: 100%;"></a></p>
+<p><strong>chart图表</strong></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/89f23f9baad8c631e9434d05054aad1f07255b7e2201dda39d3077b0477c861d/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f36643232376234666234356537303831653065303634303533623661366139302e706e67"><img src="https://camo.githubusercontent.com/89f23f9baad8c631e9434d05054aad1f07255b7e2201dda39d3077b0477c861d/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32372f36643232376234666234356537303831653065303634303533623661366139302e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/27/6d227b4fb45e7081e0e064053b6a6a90.png" style="max-width: 100%;"></a></p>
+<h2>项目开发工具</h2>
+<ul>
+<li><strong>开发 AI 工具</strong>：CodeBuddy CN</li>
+</ul>
+<h2>开发流程</h2>
+<ul>
+<li>第一步：创建文件夹</li>
+</ul>
+<p>创建一个项目目录，并使用 CodeBuddy CN 打开。</p>
+<ul>
+<li>第二步：确认方案</li>
+</ul>
+<p>打开 CodeBuddy CN 对话框，我使用的是 <code class="notranslate">Craft</code> 模式，模型选择 <code class="notranslate">Deepseek-V4-Flash</code>，并输入以下内容：</p>
+<pre class="notranslate"><code class="notranslate">基于以下文档先设计方案及技术选型，设计完成后找我确认，确认完成后在进行开发
+
+## 项目背景
+
+将面试相关的文档分类整理后放在一个目录中：
+
+docs/
+├── java/
+│   ├── java基础/ 
+│   │   ├── collection.md
+│   ├── cli/       
+│   └── web/       
+├── ai/
+│   ├── skills/      
+│   ├── db/        
+│   └── shared/    
+├── README.md
+├── CONTRIBUTING.md
+
+现在我想做一个 Node 项目，需实现以下功能：
+
+1. 按文件目录生成左侧文档结构树；
+2. 每添加一篇 md 文件，通过 GitHub Pages 部署后可在页面查看；
+3. 每篇文章头部都添加 YAML Front Matter，并据此在每篇文章头部渲染出一块区域，展示如 title、tags、category、slug 等配置信息；
+4. Markdown 中包含 ```mathjax!、```sequence、```mermaid! 等语法的代码块，也需要支持渲染；
+5. 基于 GitHub 实现评论功能（如果可以，希望增加阅读数统计）。
+</code></pre>
+<ul>
+<li>第三步：生成代码，根据具体情况进行多轮对话调整</li>
+</ul>
+<p>在对话框中选择技术选型及设计方案，确认后会进行代码生成。生成之后，根据实际效果进行多轮对话修正。</p>
+<ul>
+<li>
+<p>第四步：推送到 GitHub，进行环境变量等一系列配置</p>
+</li>
+<li>
+<p>第五步：调试 GitHub Pages 构建，并查看页面</p>
+</li>
+<li>
+<p>第六步：让工具总结，生成 README</p>
+</li>
+</ul>
+<p>至此，整个项目完成了从想法到开发再到部署的全流程。</p>
+<h2>项目耗时</h2>
+<p>这个想法萌生于早上通勤的路上。到公司后，我便利用工作间隙开始了尝试。整个开发过程完全交给 AI，我只需要清晰地描述需求，并在它生成代码后进行验证和对话调整。</p>
+<p>到下午下班时，项目已基本成型。晚上回家后，我又集中花了约 3 个小时进行细节调优、多轮对话修正以及 GitHub Pages 的部署配置。</p>
+<p><strong>总计耗时</strong>：白天零散的“摸鱼时间” + 晚上集中的 3 小时。从想法到可公网访问的完整项目上线，实际投入的净时间不到一天。</p>
+<h2>项目说明</h2>
+<p>以下将对项目的系统架构、核心功能、使用方法及部署方式做详细说明。</p>
+<h3>面试知识库 📖</h3>
+<p>面试文档知识库系统，支持自动扫描 Markdown 文档、渲染图表/公式/流程图，通过 GitHub Pages 一键部署。</p>
+<hr>
+<h4>一、系统架构</h4>
+<div class="highlight highlight-source-mermaid"><pre class="notranslate"><span class="pl-k">graph</span> <span class="pl-c1">TD</span>
+    <span class="pl-k">subgraph</span> 源码
+        <span class="pl-ent">A</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>docs/ *.md<span class="pl-pds"><span class="pl-sg">]</span></span></span> <span class="pl-k">--&gt;</span> <span class="pl-ent">B</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>scripts/build-manifest.js<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">B</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">C</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>public/docs-manifest.json<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+    <span class="pl-k">end</span>
+    <span class="pl-k">subgraph</span> 前端 <span class="pl-ent">SPA</span>
+        <span class="pl-ent">D</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>index.html<span class="pl-pds"><span class="pl-sg">]</span></span></span> <span class="pl-k">--&gt;</span> <span class="pl-ent">E</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>src/main.jsx<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">E</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">F</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>App.jsx<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">F</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">G</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>Sidebar<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">F</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">H</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>ArticleView<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">H</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">I</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>MarkdownRenderer<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">I</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">J</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>ChartBlock / MermaidBlock / CodeBlock<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">H</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">K</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>Comments / PageViews<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+    <span class="pl-k">end</span>
+    <span class="pl-ent">C</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">G</span>
+    <span class="pl-ent">A</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">H</span></pre></div>
+<p><strong>技术栈：</strong></p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>层</th>
+<th>技术</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>构建</td>
+<td>Vite 5</td>
+<td>开发服务器 + 生产构建</td>
+</tr>
+<tr>
+<td>UI 框架</td>
+<td>React 18</td>
+<td>SPA 页面组件</td>
+</tr>
+<tr>
+<td>路由</td>
+<td>react-router-dom 6</td>
+<td>HashRouter 页面切换</td>
+</tr>
+<tr>
+<td>Markdown</td>
+<td>react-markdown 9</td>
+<td>核心渲染引擎</td>
+</tr>
+<tr>
+<td>数学公式</td>
+<td>KaTeX + remark-math + rehype-katex</td>
+<td>LaTeX 公式渲染</td>
+</tr>
+<tr>
+<td>图表</td>
+<td>Recharts</td>
+<td>饼图、柱状图、折线图等</td>
+</tr>
+<tr>
+<td>流程图</td>
+<td>Mermaid</td>
+<td>流程图、时序图、状态图</td>
+</tr>
+<tr>
+<td>文档扫描</td>
+<td>gray-matter (Node)</td>
+<td>构建时提取 YAML Front Matter</td>
+</tr>
+<tr>
+<td>部署</td>
+<td>GitHub Actions</td>
+<td>自动构建并部署到 Pages</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<hr>
+<h4>二、全部功能及用法</h4>
+<h5>2.1 左侧文档树</h5>
+<p>构建时自动扫描 <code class="notranslate">docs/</code> 目录生成文档树，按目录层级展示。支持展开/折叠和搜索。</p>
+<p><strong>效果：</strong> 页面加载后左侧显示文件树</p>
+<pre class="notranslate"><code class="notranslate">📂 java
+  📂 java基础
+    📚 collection
+  📂 cli
+  📂 web
+📂 ai
+  📂 skills
+    🤖 机器学习基础
+📄 README
+📄 CONTRIBUTING
+</code></pre>
+<p><strong>用法：</strong> 只要在 <code class="notranslate">docs/</code> 下放 <code class="notranslate">.md</code> 文件，构建时自动收录</p>
+<hr>
+<h5>2.2 YAML Front Matter 卡片</h5>
+<p>每篇 <code class="notranslate">.md</code> 文件头部用 <code class="notranslate">---</code> 包裹的元信息，渲染为蓝色主题卡片。</p>
+<p><strong>效果：</strong></p>
+<pre class="notranslate"><code class="notranslate">╔═══════════════════════════════════════════╗
+║  📚 Java集合框架详解                       ║
+║  分类: Java/Java基础  📅 2024-01-15       ║
+║  [Java] [集合] [面试]                      ║
+║  全面梳理 Java 集合框架核心知识点...        ║
+╚═══════════════════════════════════════════╝
+</code></pre>
+<p><strong>写法：</strong></p>
+<div class="highlight highlight-source-yaml"><pre class="notranslate">---
+<span class="pl-ent">title</span>: <span class="pl-s">Java集合框架详解</span>
+<span class="pl-ent">tags</span>: <span class="pl-s">[Java, 集合, 面试]</span>
+<span class="pl-ent">category</span>: <span class="pl-s">Java/Java基础</span>
+<span class="pl-ent">slug</span>: <span class="pl-s">java/java基础/collection</span>
+<span class="pl-ent">emoji</span>: <span class="pl-s">📚</span>
+<span class="pl-ent">description</span>: <span class="pl-s">完整的中文描述</span>
+<span class="pl-ent">created</span>: <span class="pl-c1">2024-01-15</span>
+<span class="pl-ent">updated</span>: <span class="pl-c1">2024-03-20</span>
+---</pre></div>
+<hr>
+<h5>2.3 数学公式（KaTeX）</h5>
+<p>支持行内公式和块级公式。</p>
+<p><strong>效果：</strong></p>
+<p>行内：$E = mc^2$</p>
+<p>块级：<br>
+$$<br>
+\int_{-\infty}^{\infty} e^{-x^2} , dx = \sqrt{\pi}<br>
+$$</p>
+<p><strong>写法：</strong></p>
+<div class="highlight highlight-text-md"><pre class="notranslate">行内公式：$E = mc^2$
+
+块级公式：
+<span class="pl-s">$$</span><span class="pl-c1"></span>
+<span class="pl-c1">\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}</span>
+<span class="pl-c1"></span><span class="pl-s">$$</span></pre></div>
+<p>也支持 mathjax 代码块：</p>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">```</span><span class="pl-en">mathjax</span><span class="pl-c1"></span>
+<span class="pl-c1">f(x) = \sum_{i=1}^{n} i^2</span>
+<span class="pl-c1"></span><span class="pl-s">```</span></pre></div>
+<hr>
+<h5>2.4 图表（Recharts）</h5>
+<p>支持 <code class="notranslate">pie</code>、<code class="notranslate">bar</code>、<code class="notranslate">line</code>、<code class="notranslate">area</code>、<code class="notranslate">radar</code> 五种图表。</p>
+<p><strong>效果：</strong> 彩色可交互图表，鼠标悬停显示数据</p>
+<p><strong>写法：</strong></p>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">```</span><span class="pl-en">chart</span><span class="pl-c1"></span>
+<span class="pl-c1">{</span>
+<span class="pl-c1">  "type": "pie",</span>
+<span class="pl-c1">  "title": "技术栈分布",</span>
+<span class="pl-c1">  "data": [</span>
+<span class="pl-c1">    { "name": "Java", "value": 40 },</span>
+<span class="pl-c1">    { "name": "Python", "value": 25 },</span>
+<span class="pl-c1">    { "name": "前端", "value": 20 }</span>
+<span class="pl-c1">  ]</span>
+<span class="pl-c1">}</span>
+<span class="pl-c1"></span><span class="pl-s">```</span></pre></div>
+<p>各图表类型：</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>关键字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">pie</code></td>
+<td>饼图/环形图</td>
+<td><code class="notranslate">angleField</code>, <code class="notranslate">colorField</code></td>
+</tr>
+<tr>
+<td><code class="notranslate">bar</code></td>
+<td>柱状图</td>
+<td><code class="notranslate">xField</code>, <code class="notranslate">yField</code></td>
+</tr>
+<tr>
+<td><code class="notranslate">line</code></td>
+<td>折线图</td>
+<td><code class="notranslate">xField</code>, <code class="notranslate">yField</code></td>
+</tr>
+<tr>
+<td><code class="notranslate">area</code></td>
+<td>面积图</td>
+<td><code class="notranslate">xField</code>, <code class="notranslate">yField</code></td>
+</tr>
+<tr>
+<td><code class="notranslate">radar</code></td>
+<td>雷达图</td>
+<td><code class="notranslate">xField</code>, <code class="notranslate">yField</code></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<hr>
+<h5>2.5 流程图/时序图（Mermaid）</h5>
+<p><strong>效果：</strong></p>
+<div class="highlight highlight-source-mermaid"><pre class="notranslate"><span class="pl-k">graph</span> <span class="pl-c1">TD</span>
+    <span class="pl-ent">A</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>添加文档<span class="pl-pds"><span class="pl-sg">]</span></span></span> <span class="pl-k">--&gt;</span> <span class="pl-ent">B</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>Git Push<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+    <span class="pl-ent">B</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">C</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>GitHub Actions<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+    <span class="pl-ent">C</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">D</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>部署 Pages<span class="pl-pds"><span class="pl-sg">]</span></span></span></pre></div>
+<p><strong>写法：</strong></p>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">```</span><span class="pl-en">mermaid</span><span class="pl-c1"></span>
+<span class="pl-c1">graph TD</span>
+<span class="pl-c1">    A[添加文档] --&gt; B[Git Push]</span>
+<span class="pl-c1">    B --&gt; C[GitHub Actions]</span>
+<span class="pl-c1">    C --&gt; D[部署 Pages]</span>
+<span class="pl-c1"></span><span class="pl-s">```</span></pre></div>
+<p>时序图：</p>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">```</span><span class="pl-en">sequence</span><span class="pl-c1"></span>
+<span class="pl-c1">participant A as 客户端</span>
+<span class="pl-c1">participant B as 服务端</span>
+<span class="pl-c1">A-&gt;&gt;B: 请求</span>
+<span class="pl-c1">B--&gt;&gt;A: 响应</span>
+<span class="pl-c1"></span><span class="pl-s">```</span></pre></div>
+<p>支持所有 Mermaid 类型：</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>类型</th>
+<th>代码块语言</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>流程图</td>
+<td><code class="notranslate">mermaid</code></td>
+<td><code class="notranslate">graph TD / LR / BT</code></td>
+</tr>
+<tr>
+<td>时序图</td>
+<td><code class="notranslate">sequence</code></td>
+<td><code class="notranslate">sequenceDiagram</code></td>
+</tr>
+<tr>
+<td>饼图</td>
+<td><code class="notranslate">mermaid</code></td>
+<td>内置 <code class="notranslate">pie</code> 语法</td>
+</tr>
+<tr>
+<td>类图</td>
+<td><code class="notranslate">mermaid</code></td>
+<td><code class="notranslate">classDiagram</code></td>
+</tr>
+<tr>
+<td>甘特图</td>
+<td><code class="notranslate">mermaid</code></td>
+<td><code class="notranslate">gantt</code></td>
+</tr>
+<tr>
+<td>状态图</td>
+<td><code class="notranslate">mermaid</code></td>
+<td><code class="notranslate">stateDiagram</code></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<hr>
+<h5>2.6 代码块 + 复制按钮</h5>
+<p>所有代码块自动添加语言标签和复制按钮。</p>
+<p><strong>效果：</strong></p>
+<pre class="notranslate"><code class="notranslate">┌─ java ──────────────────── 📋 复制 ─┐
+│                                     │
+│  public class Hello {               │
+│      public static void main(..)    │
+│  }                                  │
+│                                     │
+└─────────────────────────────────────┘
+</code></pre>
+<p>点击复制按钮 → 自动复制到剪贴板，按钮变为 ✅ 已复制（1.8 秒后恢复）。</p>
+<p><strong>写法：</strong></p>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">```</span><span class="pl-en">java</span>
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Hello</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">String</span>[] <span class="pl-v">args</span>) {}
+}
+<span class="pl-s">```</span></pre></div>
+<p>不写语言也自动渲染为代码块：</p>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">```</span><span class="pl-c1"></span>
+<span class="pl-c1">纯文本代码块</span>
+<span class="pl-c1"></span><span class="pl-s">```</span></pre></div>
+<hr>
+<h5>2.7 GitHub Alert 提示</h5>
+<p>5 种颜色不同的警报提示块。</p>
+<p><strong>效果：</strong></p>
+<div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg data-component="Octicon" class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>蓝色提示，用于补充信息</p>
+</div>
+<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg data-component="Octicon" class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>绿色提示，用于小技巧</p>
+</div>
+<div class="markdown-alert markdown-alert-important"><p class="markdown-alert-title"><svg data-component="Octicon" class="octicon octicon-report mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p><p>紫色提示，用于重要信息</p>
+</div>
+<div class="markdown-alert markdown-alert-warning"><p class="markdown-alert-title"><svg data-component="Octicon" class="octicon octicon-alert mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Warning</p><p>橙色提示，用于警告</p>
+</div>
+<div class="markdown-alert markdown-alert-caution"><p class="markdown-alert-title"><svg data-component="Octicon" class="octicon octicon-stop mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Caution</p><p>红色提示，用于谨慎操作</p>
+</div>
+<p><strong>写法：</strong></p>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-ent"><span class="pl-ent">&gt; </span><span class="pl-s">[</span>!NOTE<span class="pl-s">]</span></span>
+<span class="pl-ent"><span class="pl-ent">&gt; </span>提示内容写在这里</span></pre></div>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>类型</th>
+<th>颜色</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NOTE</td>
+<td>蓝</td>
+<td>补充信息</td>
+</tr>
+<tr>
+<td>TIP</td>
+<td>绿</td>
+<td>实用技巧</td>
+</tr>
+<tr>
+<td>IMPORTANT</td>
+<td>紫</td>
+<td>关键信息</td>
+</tr>
+<tr>
+<td>WARNING</td>
+<td>橙</td>
+<td>注意提醒</td>
+</tr>
+<tr>
+<td>CAUTION</td>
+<td>红</td>
+<td>风险警告</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<hr>
+<h5>2.8 表格（Pipe Table）</h5>
+<p>标准 GFM 表格语法。</p>
+<p><strong>效果：</strong> 带边框的格式化表格</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>算法</th>
+<th>类型</th>
+<th>优点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线性回归</td>
+<td>回归</td>
+<td>简单</td>
+</tr>
+<tr>
+<td>决策树</td>
+<td>分类</td>
+<td>可视化</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p><strong>写法：</strong></p>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-ml">|</span> 算法 <span class="pl-ml">|</span> 类型 <span class="pl-ml">|</span> 优点 <span class="pl-ml">|</span>
+<span class="pl-ml">|</span>------<span class="pl-ml">|</span>------<span class="pl-ml">|</span>------<span class="pl-ml">|</span>
+<span class="pl-ml">|</span> 线性回归 <span class="pl-ml">|</span> 回归 <span class="pl-ml">|</span> 简单 <span class="pl-ml">|</span>
+<span class="pl-ml">|</span> 决策树 <span class="pl-ml">|</span> 分类 <span class="pl-ml">|</span> 可视化 <span class="pl-ml">|</span></pre></div>
+<hr>
+<h5>2.9 阅读量统计</h5>
+<p>基于 GitHub Gist API 的跨设备阅读量计数器。</p>
+<p><strong>效果：</strong> 文章头部显示 👁️ N（每次浏览 +1）</p>
+<p><strong>启用步骤：</strong></p>
+<p><strong>① 创建 Gist</strong><br>
+访问 <a href="https://gist.github.com">gist.github.com</a> → 右上角 <strong>+</strong> → New gist：</p>
+<ul>
+<li>文件名：<code class="notranslate">counts.json</code></li>
+<li>内容：<code class="notranslate">{}</code></li>
+<li>选 <strong>Create secret gist</strong></li>
+<li>创建后 URL 形如 <code class="notranslate">https://gist.github.com/xiuji008/abc123</code>，复制 Gist ID（最后一段 <code class="notranslate">abc123</code>）</li>
+</ul>
+<p><strong>② 生成 Token</strong><br>
+访问 <a href="https://github.com/settings/tokens">GitHub Settings → Tokens (classic)</a> → Generate new token：</p>
+<ul>
+<li>只勾选 <strong>gist</strong> 权限</li>
+<li>生成后复制 Token</li>
+</ul>
+<p><strong>③ 填入配置</strong></p>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-c">// src/utils/gistCounter.js</span>
+<span class="pl-k">const</span> <span class="pl-c1">GIST_ID</span> <span class="pl-c1">=</span> <span class="pl-s">'你的GistID'</span>
+<span class="pl-k">const</span> <span class="pl-c1">GIST_TOKEN</span> <span class="pl-c1">=</span> <span class="pl-s">'ghp_xxxx （仅 gist 权限，不影响代码仓库）'</span></pre></div>
+<blockquote>
+<p><g-emoji class="g-emoji" alias="warning">⚠️</g-emoji> Token 会打包到前端 JS，务必只勾选 <code class="notranslate">gist</code> 权限，定期更换更安全。</p>
+</blockquote>
+<hr>
+<h5>2.10 评论系统（giscus）</h5>
+<p>基于 GitHub Discussions 的评论区，无需 OAuth App，无 token 泄露风险。</p>
+<p><strong>效果：</strong> 文章底部展示 GitHub 风格的评论区，每篇文章独立讨论</p>
+<p><strong>启用步骤：</strong></p>
+<ol>
+<li>仓库 Settings → Features → 勾选 <strong>Discussions</strong></li>
+<li>访问 <a href="https://github.com/apps/giscus">giscus App</a> → Install → 选本仓库</li>
+<li>访问 <a href="https://giscus.app/zh-CN" rel="nofollow">giscus.app</a> 填入 <code class="notranslate">xiuji008/xjdoc-interview</code> 获取 ID</li>
+<li>将 <code class="notranslate">repoId</code>、<code class="notranslate">categoryId</code> 填入：</li>
+</ol>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-c">// src/components/Comments.jsx</span>
+<span class="pl-k">const</span> <span class="pl-c1">GISCUS_CONFIG</span> <span class="pl-c1">=</span> <span class="pl-kos">{</span>
+  <span class="pl-c1">repo</span>: <span class="pl-s">'xiuji008/xjdoc-interview'</span><span class="pl-kos">,</span>
+  <span class="pl-c1">repoId</span>: <span class="pl-s">'R_kgDOSoPcRg'</span><span class="pl-kos">,</span>
+  <span class="pl-c1">category</span>: <span class="pl-s">'Announcements'</span><span class="pl-kos">,</span>
+  <span class="pl-c1">categoryId</span>: <span class="pl-s">'DIC_kwDOSoPcRs4C94wU'</span><span class="pl-kos">,</span>
+<span class="pl-kos">}</span></pre></div>
+<ul>
+<li>使用 <code class="notranslate">data-mapping="specific"</code> + <code class="notranslate">data-term={slug}</code> 按文章独立分页</li>
+<li>支持 GitHub Reactions（👍❤️🎉 等）</li>
+</ul>
+<hr>
+<h4>三、项目目录结构</h4>
+<pre class="notranslate"><code class="notranslate">xjdoc-interview/
+├── docs/                           # 📁 文档源文件
+│   ├── java/
+│   │   ├── java基础/collection.md
+│   │   ├── cli/
+│   │   └── web/
+│   ├── ai/
+│   │   ├── skills/
+│   │   ├── db/
+│   │   └── shared/
+│   ├── README.md
+│   └── CONTRIBUTING.md
+├── public/
+│   ├── _config.yml                 # GitHub Pages 配置
+│   └── docs-manifest.json          # 构建时自动生成的文档清单
+├── scripts/
+│   └── build-manifest.js           # 扫描 docs/ 生成 manifest
+├── src/
+│   ├── main.jsx                    # React 入口
+│   ├── App.jsx                     # 路由 + 布局
+│   ├── App.css                     # 全局样式
+│   ├── components/
+│   │   ├── Sidebar.jsx             # 左侧文档树
+│   │   ├── ArticleView.jsx         # 文章详情页
+│   │   ├── ArticleHeader.jsx       # Front Matter 卡片
+│   │   ├── MarkdownRenderer.jsx    # 统一渲染管线
+│   │   ├── MermaidBlock.jsx        # Mermaid 图渲染
+│   │   ├── ChartBlock.jsx          # Recharts 图表渲染
+│   │   ├── CodeBlock (内联)        # 代码块 + 复制按钮
+│   │   ├── PageViews.jsx           # 阅读量统计
+│   │   ├── Comments.jsx            # giscus 评论
+│   │   └── ErrorBoundary.jsx       # 错误边界
+│   ├── hooks/
+│   │   ├── useDocManifest.js       # 加载文档清单
+│   │   └── useDocContent.js        # 加载 .md + 解析 Front Matter
+│   └── utils/
+│       └── gistCounter.js          # GitHub Gist 计数器
+├── .github/workflows/deploy.yml    # GitHub Actions 自动部署
+├── worker-counter.js               # Cloudflare Worker 备用方案
+├── vite.config.js
+├── package.json
+└── index.html
+</code></pre>
+<hr>
+<h4>四、快速开始</h4>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 1. 安装依赖</span>
+npm install
+
+<span class="pl-c"><span class="pl-c">#</span> 2. 生成文档清单 + 启动开发服务器</span>
+npm run dev
+
+<span class="pl-c"><span class="pl-c">#</span> 3. 打开浏览器访问</span>
+open http://localhost:5173
+
+<span class="pl-c"><span class="pl-c">#</span> 4. 构建生产版本</span>
+npm run build</pre></div>
+<hr>
+<h4>五、部署</h4>
+<p>推送 <code class="notranslate">main</code> 分支到 GitHub 后，<code class="notranslate">.github/workflows/deploy.yml</code> 自动执行：</p>
+<ol>
+<li><code class="notranslate">npm ci</code> — 安装依赖</li>
+<li><code class="notranslate">npm run build</code> — 生成 manifest + 构建 SPA</li>
+<li>部署到 GitHub Pages</li>
+</ol>
+<blockquote>
+<p>需要在仓库 Settings &gt; Pages 中设置 Source 为 <strong>GitHub Actions</strong>。</p>
+</blockquote>
+<hr>
+<h4>六、添加新文档</h4>
+<div class="highlight highlight-source-yaml"><pre class="notranslate">---
+<span class="pl-ent">title</span>: <span class="pl-s">文档标题</span>
+<span class="pl-ent">tags</span>: <span class="pl-s">[标签1, 标签2]</span>
+<span class="pl-ent">category</span>: <span class="pl-s">分类/子分类</span>
+<span class="pl-ent">slug</span>: <span class="pl-s">路径/文件名（唯一标识）</span>
+<span class="pl-ent">emoji</span>: <span class="pl-s">📝</span>
+<span class="pl-ent">description</span>: <span class="pl-s">简短描述</span>
+---</pre></div>
+<p>将 <code class="notranslate">.md</code> 文件放入 <code class="notranslate">docs/</code> 下对应目录 → 提交推送 → 自动部署上线。</p>
+<h2>写在最后</h2>
+<p>需要特别说明的是，这个项目只是一个知识载体，真正有价值的，是其中沉淀的内容。工具帮你降低了表达的门槛，但坚持每天更新知识内容、在使用中持续优化项目，才是这件事能否走远的关键。</p>
+<p>AI 不会替代开发者，但它正在重新定义“开发者”的门槛。以前，一个想法到产品之间，隔着厚厚的编程语法、框架选型、环境配置等障碍。而现在，AI 像一位 7x24 小时在线的资深搭档，帮你把这些“脏活累活”快速落地。</p>
+<p><strong>重要的不再是你掌握多少语法，而是你是否有清晰的逻辑、能否准确地描述需求，以及是否愿意把自己的想法付诸实践。</strong></p>
+<p>希望我的这次分享能给你带来一些启发。如果你也有一个酝酿已久的想法，不妨现在就打开一个 AI 工具，让它帮你迈出第一步。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
