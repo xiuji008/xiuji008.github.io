@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+> 颜值与实力并存，一分钟搞定社交媒体封面图
+
+在日常内容创作中，封面图往往是吸引用户点击的第一道门槛。">
+<meta property="og:title" content="打造专属博文封面神器：一个开源免费的博文封面生成器ThisCover">
+<meta property="og:description" content="
+> 颜值与实力并存，一分钟搞定社交媒体封面图
+
+在日常内容创作中，封面图往往是吸引用户点击的第一道门槛。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/da-zao-zhuan-shu-bo-wen-feng-mian-shen-qi-%EF%BC%9A-yi-ge-kai-yuan-mian-fei-de-bo-wen-feng-mian-sheng-cheng-qi-ThisCover.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>打造专属博文封面神器：一个开源免费的博文封面生成器ThisCover</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">打造专属博文封面神器：一个开源免费的博文封面生成器ThisCover</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/59" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><blockquote>
+<p>颜值与实力并存，一分钟搞定社交媒体封面图</p>
+</blockquote>
+<p>在日常内容创作中，封面图往往是吸引用户点击的第一道门槛。无论是公众号及博文推文、视频封面还是知识卡片，一张美观的封面图往往能事半功倍。</p>
+<p>今天要给大家推荐一个开源项目——<strong>ThisCover</strong>，让你轻松搞定封面图制作。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f79384459987f8b5b1ba28589c354eff1cdf9db5cc7c463954de5fcfb1041316/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f36393131333731626363316262643934363364653535633532636261613432632e706e67"><img src="https://camo.githubusercontent.com/f79384459987f8b5b1ba28589c354eff1cdf9db5cc7c463954de5fcfb1041316/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f36393131333731626363316262643934363364653535633532636261613432632e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/6911371bcc1bbd9463de55c52cbaa42c.png" style="max-width: 100%;"></a></p>
+<h2>项目简介</h2>
+<p><strong>ThisCover</strong> 是一个免费、漂亮的封面生成器，基于 <a href="https://github.com/rutikwankhade/CoverView"><strong>rutikwankhade/CoverView</strong></a> 二次开发。</p>
+<p>项目进行了全面架构升级，采用现代化技术栈：</p>
+<ul>
+<li><strong>next.js v16</strong></li>
+<li><strong>react v19</strong></li>
+<li><strong>shadcn/ui</strong></li>
+<li><strong>tailwindcss v4</strong></li>
+<li><strong>lucide icons</strong></li>
+</ul>
+<p>在原版基础上，此项目重点进行了<strong>中文汉化</strong> + 本土化功能定制和扩展，更贴合国内用户的使用习惯。</p>
+<p>github地址：<a href="https://github.com/weizwz/cover">https://github.com/weizwz/cover</a></p>
+<p>在线文档及使用地址：<a href="https://cover.weizwz.com/" rel="nofollow">https://cover.weizwz.com/</a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/40d53a8b059a5598b904d7cb60a36a45a68fb888e7c81a7365c4b4a246dd6923/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f61656465333261306631396535666638663866306666616632333163623536312e706e67"><img src="https://camo.githubusercontent.com/40d53a8b059a5598b904d7cb60a36a45a68fb888e7c81a7365c4b4a246dd6923/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f61656465333261306631396535666638663866306666616632333163623536312e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/aede32a0f19e5ff8f8f0ffaf231cb561.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c6c4e752279cf395a9f1e39f7f654e3e302834eeeeae10548527fe61300d9606/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f64393430323963326164353235616561663266323064313835656163643039392e706e67"><img src="https://camo.githubusercontent.com/c6c4e752279cf395a9f1e39f7f654e3e302834eeeeae10548527fe61300d9606/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f64393430323963326164353235616561663266323064313835656163643039392e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/d94029c2ad525aeaf2f20d185eacd099.png" style="max-width: 100%;"></a></p>
+<h2>核心功能一览</h2>
+<h3>🎨 设计定制能力</h3>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>功能</th>
+<th>数量/特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>免费商用字体</td>
+<td>29+</td>
+</tr>
+<tr>
+<td>纹理主题</td>
+<td>18+</td>
+</tr>
+<tr>
+<td>常用画布比例</td>
+<td>9+（1:1、16:9、4:3等）</td>
+</tr>
+<tr>
+<td>图标支持</td>
+<td>iconify 3000+，支持上传自定义图标</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>🖼️ 背景选项</h3>
+<p>支持多种背景类型：</p>
+<ul>
+<li><strong>纯色背景</strong></li>
+<li><strong>渐变色背景</strong></li>
+<li><strong>本地上传图片</strong></li>
+<li><strong>在线图片链接</strong></li>
+<li>Unsplash 图库集成</li>
+</ul>
+<h3>📸 输出功能</h3>
+<ul>
+<li>支持 <strong>png、jpg、webp</strong> 多种格式</li>
+<li>输出放大倍数 <strong>0.5x - 5x</strong> 可调</li>
+<li><strong>复制图片到剪贴板</strong></li>
+<li>保存配置到本地浏览器</li>
+<li>清除按钮，一键重置配置</li>
+</ul>
+<h3>✨ 特色功能</h3>
+<ul>
+<li><strong>左文右图主题</strong>：支持图片和文本位置互换</li>
+<li><strong>手机预览主题</strong>：图片可拉伸充满框架</li>
+<li><strong>桌面/手机预览</strong>：背景图替换为真机效果图</li>
+<li><strong>首页展示</strong>：功能介绍、常见问题、封面示例</li>
+<li><strong>一键使用</strong>：示例图直接载入使用</li>
+</ul>
+<h2>环境配置</h2>
+<p>项目需要配置环境变量，在根目录创建 <code class="notranslate">.env</code> 文件：</p>
+<div class="highlight highlight-text-adblock"><pre class="notranslate">NEXT_PUBLIC_API_ACCESS_KEY = 'xxxxx'
+NEXT_PUBLIC_API_ICONIFY_URL = 'https://api.iconify.design'
+NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN = 'xxxxx'</pre></div>
+<blockquote>
+<p><code class="notranslate">NEXT_PUBLIC_API_ACCESS_KEY</code> 即 Unsplash API Key，需要到 <a href="https://unsplash.com/developers" rel="nofollow">Unsplash Developers</a> 申请。</p>
+</blockquote>
+<p>如果不需要 Cloudflare Analytics，请在 <code class="notranslate">src/app/layout.tsx</code> 中注释对应的 <code class="notranslate">Script</code>。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/6d3ba92332d6b0658d33fe1cce8244c11623022015333c4e39f818f5f2b1b0e0/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f32396464623935366239633137323065653630613235326363663662633833312e706e67"><img src="https://camo.githubusercontent.com/6d3ba92332d6b0658d33fe1cce8244c11623022015333c4e39f818f5f2b1b0e0/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f32396464623935366239633137323065653630613235326363663662633833312e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/29ddb956b9c1720ee60a252ccf6bc831.png" style="max-width: 100%;"></a></p>
+<h2>项目亮点</h2>
+<ol>
+<li><strong>完全免费开源</strong>：没有付费墙，没有水印限制</li>
+<li><strong>隐私友好</strong>：图片在本地处理，不上传服务器</li>
+<li><strong>即开即用</strong>：无需注册，打开就能用</li>
+</ol>
+<h2>如何部署及使用</h2>
+<h3>在线使用</h3>
+<p>如果你没有编程或者部署基础，那么在线方式比较适合，直接打开使用即可。</p>
+<p>在线文档及使用地址：<a href="https://cover.weizwz.com/" rel="nofollow">https://cover.weizwz.com/</a></p>
+<h3>本地启动</h3>
+<p>因为此项目是纯前端项目，本地需要用node环境，我是用的node版本为<code class="notranslate">v22.12.0</code></p>
+<ol>
+<li>拉取项目</li>
+</ol>
+<p>首先从github上拉去或下载项目</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">git clone https://github.com/weizwz/cover.git
+<span class="pl-c"><span class="pl-c">#</span> 或者cli</span>
+gh repo clone weizwz/cover</pre></div>
+<ol start="2">
+<li>配置.env</li>
+</ol>
+<p>拉取完之后在项目下添加<code class="notranslate">.env</code> 文件，内容如下</p>
+<div class="highlight highlight-source-dotenv"><pre class="notranslate"><span class="pl-v">NEXT_PUBLIC_API_ACCESS_KEY</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>xxxxx<span class="pl-pds">'</span></span>
+<span class="pl-v">NEXT_PUBLIC_API_ICONIFY_URL</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>https://api.iconify.design<span class="pl-pds">'</span></span>
+<span class="pl-c"><span class="pl-c">#</span> cloudflare analytics，不用请注释 src/app/layout.tsx 中的 Script</span>
+<span class="pl-v">NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>xxxxx<span class="pl-pds">'</span></span></pre></div>
+<blockquote>
+<p>NEXT_PUBLIC_API_ACCESS_KEY 即 unsplash api，需要到官网申请 <a href="https://unsplash.com/developers" rel="nofollow">https://unsplash.com/developers</a>   ,文章后边有章节介绍如何申请</p>
+</blockquote>
+<ol start="3">
+<li>启动服务</li>
+</ol>
+<p>项目包管理使用的是 <code class="notranslate">pnpm</code>,如果没有的话执行命令安装即可，所有命令如下：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 安装 pnpm</span>
+npm install -g pnpm
+<span class="pl-c"><span class="pl-c">#</span> 下载依赖</span>
+pnpm install
+<span class="pl-c"><span class="pl-c">#</span> 启动项目</span>
+pnpm dev
+<span class="pl-c"><span class="pl-c">#</span> 打包构建</span>
+pnpm build</pre></div>
+<p>启动之后我们本地访问启动地址即可。</p>
+<h3>Docker部署</h3>
+<p>此项目因为是一个纯前端项目，所以我们可以将打包之后的产物通过<code class="notranslate">nginx</code>镜像部署。我使用AI 对此项目进行了一些Docker和Github Pages 部署的改造。</p>
+<p>需要自行打包的家人们可以拉去构建，地址如下：<a href="https://github.com/xiuji008/cover">https://github.com/xiuji008/cover</a></p>
+<ol>
+<li>编辑Dockerfile 文件,内容如下：</li>
+</ol>
+<div class="highlight highlight-source-dockerfile"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> ========== Stage 1: Build ==========</span>
+<span class="pl-k">FROM</span> node:20-alpine AS builder
+
+<span class="pl-k">WORKDIR</span> /app
+
+<span class="pl-c"><span class="pl-c">#</span> 复制依赖文件</span>
+<span class="pl-k">COPY</span> package.json pnpm-lock.yaml ./
+
+<span class="pl-c"><span class="pl-c">#</span> 安装 pnpm 并安装依赖</span>
+<span class="pl-k">RUN</span> npm install -g pnpm &amp;&amp; pnpm install
+
+<span class="pl-c"><span class="pl-c">#</span> 复制源码（构建时无需 .env，运行时注入）</span>
+<span class="pl-k">COPY</span> . .
+
+<span class="pl-c"><span class="pl-c">#</span> 构建静态导出</span>
+<span class="pl-k">RUN</span> pnpm build
+
+<span class="pl-c"><span class="pl-c">#</span> ========== Stage 2: Nginx ==========</span>
+<span class="pl-k">FROM</span> nginx:alpine
+
+<span class="pl-c"><span class="pl-c">#</span> 复制构建产物到 Nginx 静态目录</span>
+<span class="pl-k">COPY</span> --from=builder /app/out /usr/share/nginx/html
+
+<span class="pl-c"><span class="pl-c">#</span> 复制 Nginx 配置</span>
+<span class="pl-k">COPY</span> nginx.conf /etc/nginx/conf.d/default.conf
+
+<span class="pl-c"><span class="pl-c">#</span> 复制运行时注入脚本</span>
+<span class="pl-k">COPY</span> docker-entrypoint.sh /docker-entrypoint.sh
+<span class="pl-k">RUN</span> chmod +x /docker-entrypoint.sh
+
+<span class="pl-k">EXPOSE</span> 80
+
+<span class="pl-k">ENTRYPOINT</span> [<span class="pl-s">"/docker-entrypoint.sh"</span>]
+</pre></div>
+<ol start="2">
+<li>构建镜像</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker build -t xj/cover:1.0.0 <span class="pl-c1">.</span></pre></div>
+<ol start="3">
+<li>创建docker-compose.yml文件</li>
+</ol>
+<p>创建docker-compose.yml文件，内容如下：</p>
+<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">services</span>:
+  <span class="pl-ent">cover</span>:
+  <span class="pl-c"><span class="pl-c">#</span> 以下是我构建好之后传入阿里云镜像仓库的镜像，若自行构建的话修改镜像即可</span>
+    <span class="pl-ent">image</span>: <span class="pl-s">registry.cn-hangzhou.aliyuncs.com/xjpublic/cover:1.0.0</span>
+    <span class="pl-ent">container_name</span>: <span class="pl-s">cover</span>
+    <span class="pl-ent">ports</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>5080:80<span class="pl-pds">"</span></span>
+    <span class="pl-ent">environment</span>:
+      - <span class="pl-s">NEXT_PUBLIC_API_ACCESS_KEY=tnbwPq****_ap******</span>
+      - <span class="pl-s">NEXT_PUBLIC_API_ICONIFY_URL=https://api.iconify.design</span>
+      - <span class="pl-s">NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN=xxxxx</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">unless-stopped</span>
+</pre></div>
+<ol start="4">
+<li>启动项目</li>
+</ol>
+<p>执行以下命令启动项目即可：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker-compose up -d </pre></div>
+<p>到此docker打包部署就完成了。</p>
+<h3>Github Pages 部署</h3>
+<p>Github Pages 构建部署我做了部分修改，需要部署的家人们可以fock之后构建，地址如下：<a href="https://github.com/xiuji008/cover">https://github.com/xiuji008/cover</a></p>
+<ol>
+<li>通过以上地址fock 项目</li>
+</ol>
+<p>.github\workflows\deploy.yml 文件</p>
+<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">name</span>: <span class="pl-s">Deploy to GitHub Pages</span>
+
+<span class="pl-ent">on</span>:
+  <span class="pl-ent">push</span>:
+    <span class="pl-ent">branches</span>: <span class="pl-s">[main]</span>
+  <span class="pl-ent">workflow_dispatch</span>:
+
+<span class="pl-ent">permissions</span>:
+  <span class="pl-ent">contents</span>: <span class="pl-s">read</span>
+  <span class="pl-ent">pages</span>: <span class="pl-s">write</span>
+  <span class="pl-ent">id-token</span>: <span class="pl-s">write</span>
+
+<span class="pl-ent">concurrency</span>:
+  <span class="pl-ent">group</span>: <span class="pl-s"><span class="pl-pds">"</span>pages<span class="pl-pds">"</span></span>
+  <span class="pl-ent">cancel-in-progress</span>: <span class="pl-c1">false</span>
+
+<span class="pl-ent">jobs</span>:
+  <span class="pl-ent">build</span>:
+    <span class="pl-ent">runs-on</span>: <span class="pl-s">ubuntu-latest</span>
+    <span class="pl-ent">steps</span>:
+      - <span class="pl-ent">name</span>: <span class="pl-s">Checkout</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">actions/checkout@v4</span>
+
+      - <span class="pl-ent">name</span>: <span class="pl-s">Setup pnpm</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">pnpm/action-setup@v4</span>
+        <span class="pl-ent">with</span>:
+          <span class="pl-ent">version</span>: <span class="pl-c1">9</span>
+
+      - <span class="pl-ent">name</span>: <span class="pl-s">Setup Node.js</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">actions/setup-node@v4</span>
+        <span class="pl-ent">with</span>:
+          <span class="pl-ent">node-version</span>: <span class="pl-c1">20</span>
+          <span class="pl-ent">cache</span>: <span class="pl-s">pnpm</span>
+
+      - <span class="pl-ent">name</span>: <span class="pl-s">Install dependencies</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">pnpm install</span>
+
+      - <span class="pl-ent">name</span>: <span class="pl-s">Build</span>
+        <span class="pl-ent">run</span>: <span class="pl-s">pnpm build</span>
+        <span class="pl-ent">env</span>:
+          <span class="pl-ent">NEXT_PUBLIC_BASE_PATH</span>: <span class="pl-s">/cover</span>
+          <span class="pl-ent">NEXT_PUBLIC_API_ACCESS_KEY</span>: <span class="pl-s">${{ secrets.NEXT_PUBLIC_API_ACCESS_KEY }}</span>
+          <span class="pl-ent">NEXT_PUBLIC_API_ICONIFY_URL</span>: <span class="pl-s">${{ secrets.NEXT_PUBLIC_API_ICONIFY_URL }}</span>
+
+      - <span class="pl-ent">name</span>: <span class="pl-s">Setup Pages</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">actions/configure-pages@v4</span>
+
+      - <span class="pl-ent">name</span>: <span class="pl-s">Upload artifact</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">actions/upload-pages-artifact@v3</span>
+        <span class="pl-ent">with</span>:
+          <span class="pl-ent">path</span>: <span class="pl-s">./out</span>
+
+      - <span class="pl-ent">name</span>: <span class="pl-s">Deploy to GitHub Pages</span>
+        <span class="pl-ent">id</span>: <span class="pl-s">deployment</span>
+        <span class="pl-ent">uses</span>: <span class="pl-s">actions/deploy-pages@v4</span>
+</pre></div>
+<ol start="2">
+<li>添加项目环境变量</li>
+</ol>
+<p><code class="notranslate">Settings</code>  ---》  <code class="notranslate">Secrets and variables</code> ---》 <code class="notranslate">Repository secrets</code></p>
+<p>添加环境变量即可</p>
+<ul>
+<li>NEXT_PUBLIC_API_ACCESS_KEY</li>
+<li>NEXT_PUBLIC_API_ICONIFY_URL</li>
+<li>NEXT_PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5243fccbeef11c58addc0fab28620c73080df959b7b6e0d0cd8e10a285297f6f/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f61653663653632306532626139396132363864393261356332333439333539632e706e67"><img src="https://camo.githubusercontent.com/5243fccbeef11c58addc0fab28620c73080df959b7b6e0d0cd8e10a285297f6f/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f61653663653632306532626139396132363864393261356332333439333539632e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/ae6ce620e2ba99a268d92a5c2349359c.png" style="max-width: 100%;"></a></p>
+<ol start="3">
+<li>配置Github Pages</li>
+</ol>
+<p><code class="notranslate">Settings</code>  ---》  <code class="notranslate">Pages</code> ---》 <code class="notranslate">Build and deployment</code> 中  <code class="notranslate">Source</code> 选择<code class="notranslate">Github Actions</code> 即可</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/98d0adcba460e8a04c761db9bfab5760a773a5586afbd56b399e84e42f278a6f/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f65346530613564636134656130633561383139656261383431633931613733312e706e67"><img src="https://camo.githubusercontent.com/98d0adcba460e8a04c761db9bfab5760a773a5586afbd56b399e84e42f278a6f/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f65346530613564636134656130633561383139656261383431633931613733312e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/e4e0a5dca4ea0c5a819eba841c91a731.png" style="max-width: 100%;"></a></p>
+<ol start="4">
+<li>启动构建</li>
+</ol>
+<p><code class="notranslate">Settings</code>  ---》  <code class="notranslate">Actions</code>  点击运行即可自行部署</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f730d4d3ae172813a23b7e4d8e69de1132a1f6c21aca1b46cacc31e555c7e80e/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f64303362623234633434646662336237343233336438306462343262303839362e706e67"><img src="https://camo.githubusercontent.com/f730d4d3ae172813a23b7e4d8e69de1132a1f6c21aca1b46cacc31e555c7e80e/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f64303362623234633434646662336237343233336438306462343262303839362e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/d03bb24c44dfb3b74233d80db42b0896.png" style="max-width: 100%;"></a></p>
+<p>我部署的Github Pages 地址：<a href="http://cover.xiuji.mynatapp.cc/" rel="nofollow">http://cover.xiuji.mynatapp.cc/</a></p>
+<h3>使用</h3>
+<p>整个过程流畅直观，无需任何设计基础。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/7eb6cde4b0a39e9a32c219952ff8a4e56ffbebcb3e035255bde9a824ba23837e/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f33303966363639313236353435376630396637386331313534386363383436392e706e67"><img src="https://camo.githubusercontent.com/7eb6cde4b0a39e9a32c219952ff8a4e56ffbebcb3e035255bde9a824ba23837e/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f33303966363639313236353435376630396637386331313534386363383436392e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/309f6691265457f09f78c11548cc8469.png" style="max-width: 100%;"></a></p>
+<p>首页也有一下模板，可以直接使用</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/705b3131b307c56bb045845ce15c3b4319dbff7d8c71ea6083e562d617283e03/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f39653734636435626362373665636232653934616662346365653066653331642e706e67"><img src="https://camo.githubusercontent.com/705b3131b307c56bb045845ce15c3b4319dbff7d8c71ea6083e562d617283e03/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f39653734636435626362373665636232653934616662346365653066653331642e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/9e74cd5bcb76ecb2e94afb4cee0fe31d.png" style="max-width: 100%;"></a></p>
+<h2>unsplash: API_ACCESS_KEY 注册</h2>
+<ol>
+<li>
+<p>打开 <a href="https://unsplash.com/" rel="nofollow">https://unsplash.com/</a> 登录，如果没有的话注册即可，国内邮箱即可注册，注册完成之后再邮箱中确认激活</p>
+</li>
+<li>
+<p>完成之后 点击Developers/API</p>
+</li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/269b74298014a3fa1e3fc11ca97df1f45868ee4f25e4b0384734b0ef07213f96/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f36396464396339636363613437653465633438653564373462393863666361302e706e67"><img src="https://camo.githubusercontent.com/269b74298014a3fa1e3fc11ca97df1f45868ee4f25e4b0384734b0ef07213f96/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f36396464396339636363613437653465633438653564373462393863666361302e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/69dd9c9ccca47e4ec48e5d74b98cfca0.png" style="max-width: 100%;"></a></p>
+<ol start="3">
+<li>点击 <code class="notranslate">Register as a developer</code></li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/521e29607d46d0f3ec3dc003ad35d7969381585ef42b24195022fb585ae2709e/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f39323633623663316266343735653231653766636465346561613238343934362e706e67"><img src="https://camo.githubusercontent.com/521e29607d46d0f3ec3dc003ad35d7969381585ef42b24195022fb585ae2709e/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f39323633623663316266343735653231653766636465346561613238343934362e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/9263b6c1bf475e21e7fcde4eaa284946.png" style="max-width: 100%;"></a></p>
+<ol start="4">
+<li>如果之前没有创建过应该的话创建一个应用</li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e9513c936650cfc581eeac3c3e172f36d4d46f1ffc7ba949d469e9aa2c6bfdff/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f35326164326164326631653233326331353135303338623462353837646464302e706e67"><img src="https://camo.githubusercontent.com/e9513c936650cfc581eeac3c3e172f36d4d46f1ffc7ba949d469e9aa2c6bfdff/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f35326164326164326631653233326331353135303338623462353837646464302e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/52ad2ad2f1e232c1515038b4b587ddd0.png" style="max-width: 100%;"></a></p>
+<ol start="5">
+<li>创建完成之后复制对应的信息即可</li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/681062b1ae1a3aae80da713ee8f59eec54da0bb5d6593fb93613499e141070da/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f61373738303232303461646565373637636166653764663164303663323233662e706e67"><img src="https://camo.githubusercontent.com/681062b1ae1a3aae80da713ee8f59eec54da0bb5d6593fb93613499e141070da/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33302f61373738303232303461646565373637636166653764663164303663323233662e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/30/a77802204adee767cafe7df1d06c223f.png" style="max-width: 100%;"></a></p>
+<h2>写在最后</h2>
+<p>开源社区的魅力在于，一个好项目可以被无数人改进、延续。ThisCover 正是这样一个站在前人肩膀上、加入本土化思考的作品。</p>
+<p>无论你是技术博主、内容创作者，还是单纯想要一张好看封面的普通用户，ThisCover 都值得一试。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
