@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+在这个信息爆炸的时代，你是否也面临着这样的困扰：打开微博、知乎、抖音，本想快速了解热点，却不自觉地陷入信息流中，半小时过去了，真正有价值的内容却没看到几条。">
+<meta property="og:title" content="告别无效刷屏！TrendRadar：最快30秒部署的开源热点助手，让你只看真正关心的新闻">
+<meta property="og:description" content="
+
+在这个信息爆炸的时代，你是否也面临着这样的困扰：打开微博、知乎、抖音，本想快速了解热点，却不自觉地陷入信息流中，半小时过去了，真正有价值的内容却没看到几条。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/gao-bie-wu-xiao-shua-ping-%EF%BC%81TrendRadar%EF%BC%9A-zui-kuai-30-miao-bu-shu-de-kai-yuan-re-dian-zhu-shou-%EF%BC%8C-rang-ni-zhi-kan-zhen-zheng-guan-xin-de-xin-wen.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>告别无效刷屏！TrendRadar：最快30秒部署的开源热点助手，让你只看真正关心的新闻</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">告别无效刷屏！TrendRadar：最快30秒部署的开源热点助手，让你只看真正关心的新闻</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/60" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>在这个信息爆炸的时代，你是否也面临着这样的困扰：打开微博、知乎、抖音，本想快速了解热点，却不自觉地陷入信息流中，半小时过去了，真正有价值的内容却没看到几条。各种算法推荐机制让我们被信息“投喂”，而不是主动“获取”。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/97ec8e99ef6218841263ee370503a7d3ac8fbf8b6b962b33936821fdf62e5a12/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33312f35643135313539393661636666313865633930343231613462353036663835382e706e67"><img src="https://camo.githubusercontent.com/97ec8e99ef6218841263ee370503a7d3ac8fbf8b6b962b33936821fdf62e5a12/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33312f35643135313539393661636666313865633930343231613462353036663835382e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/31/5d1515996acff18ec90421a4b506f858.png" style="max-width: 100%;"></a></p>
+<p>今天，我要向大家推荐一款开源神器——<strong>TrendRadar</strong>，它能帮助你告别无效刷屏，只看你真正关心的新闻资讯。</p>
+<h2>什么是 TrendRadar？</h2>
+<p>TrendRadar 是一个轻量级、易部署的热点新闻聚合与推送工具。它能够从知乎、抖音、B站、微博、百度、华尔街见闻等11个主流平台抓取热搜榜单，然后根据你设定的关键词进行智能筛选，最终将你最关心的内容推送到手机或邮箱。</p>
+<p>项目的核心理念是：<strong>“告别被算法推荐绑架，主动获取自己想要的信息”</strong>。最快仅需30秒即可完成部署，让你从“人找信息”转变为“信息找人”。</p>
+<p>github地址：<a href="https://github.com/sansan0/TrendRadar">https://github.com/sansan0/TrendRadar</a></p>
+<p>该项目目前在github上已有<code class="notranslate">58.6k</code> star</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5346a103d058fee8a551b9bf275553033737cb356d4a3dd084560c955e332159/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33312f38336636376164306561316665353161373862366464636262366233366234352e706e67"><img src="https://camo.githubusercontent.com/5346a103d058fee8a551b9bf275553033737cb356d4a3dd084560c955e332159/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33312f38336636376164306561316665353161373862366464636262366233366234352e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/31/83f67ad0ea1fe51a78b6ddcbb6b36b45.png" style="max-width: 100%;"></a></p>
+<h2>核心亮点：它凭什么吸引人？</h2>
+<h3>1. 极速部署，上手无门槛</h3>
+<p>TrendRadar 的设计目标就是“轻量，易部署”。无论你是技术小白还是资深开发者，都能轻松上手。</p>
+<ul>
+<li><strong>GitHub Actions 方案</strong>：无需服务器，完全免费。Fork 项目后配置好推送密钥（如企业微信机器人），系统便会定时自动运行。</li>
+<li><strong>Docker 方案</strong>：适合有 NAS 或个人服务器的用户，数据本地存储，更加稳定可靠。</li>
+<li><strong>本地运行</strong>：也支持在 Windows、Mac、Linux 上直接运行。</li>
+</ul>
+<h3>2. 精准筛选，只关注你关心的</h3>
+<p>这是 TrendRadar 最核心的价值。你不需要看全网所有的热搜，只需要在 <code class="notranslate">frequency_words.txt</code> 文件中设置好关键词，它就会帮你“盯着”。</p>
+<p>例如，如果你关注科技和投资，可以这样配置：</p>
+<div class="highlight highlight-text-adblock"><pre class="notranslate"><span class="pl-c"># 科技组</span>
+AI
+人工智能
+ChatGPT
++发布   # 必须同时包含“发布”
+
+<span class="pl-c"># 投资组</span>
+A股
+特斯拉
+比亚迪
+<span class="pl-c">!预测   # 排除包含“预测”的新闻</span></pre></div>
+<p>系统支持普通词、必须词（+）、过滤词（!）、数量限制（@），甚至支持正则表达式，让你拥有极高的定制自由度。</p>
+<h3>3. 三种智能推送模式，适应不同场景</h3>
+<p>根据你的使用习惯，TrendRadar 提供了三种推送模式：</p>
+<ul>
+<li><strong>当日汇总 (daily)</strong>：适合普通用户，定时推送当天所有匹配的新闻，不错过任何动态。</li>
+<li><strong>当前榜单 (current)</strong>：适合内容创作者，每次推送当下热度最高的新闻，帮助你捕捉实时风向。</li>
+<li><strong>增量监控 (incremental)</strong>：适合投资者/交易员，只推送新出现的内容，零重复，避免信息干扰。</li>
+</ul>
+<h3>4. 多渠道多账号推送，消息直达</h3>
+<p>无论你习惯使用什么通讯工具，TrendRadar 都能覆盖。它支持：</p>
+<ul>
+<li><strong>企业微信</strong>（并可配置推送到个人微信）</li>
+<li><strong>飞书</strong>、<strong>钉钉</strong></li>
+<li><strong>Telegram</strong></li>
+<li><strong>邮件</strong>（自动识别 QQ、Gmail、163 等多种邮箱）</li>
+<li><strong>ntfy</strong>（开源免费推送服务）</li>
+<li><strong>Bark</strong>（iOS 专属）</li>
+<li><strong>Slack</strong></li>
+<li>通用 Webhook（可对接 Discord、IFTTT 等）</li>
+</ul>
+<p>更棒的是，它支持<strong>多账号推送</strong>。如果你想同时把新闻发给公司的几个部门群，只需要用分号把 Webhook 地址隔开即可。</p>
+<h3>5. AI 赋能，深度分析热点</h3>
+<p>这是 TrendRadar v5.0 之后引入的“杀手锏”功能。当你开启 AI 分析后，它不仅仅是转发新闻列表，而是像一个专业的分析师：</p>
+<ul>
+<li><strong>自动生成摘要</strong>：将冗长的新闻列表总结成几句话。</li>
+<li><strong>情感倾向分析</strong>：判断舆论是正面、负面还是争议。</li>
+<li><strong>跨平台关联</strong>：发现同一个事件在不同平台的热度表现。</li>
+<li><strong>趋势预测</strong>：分析话题是刚爆发还是已降温。</li>
+</ul>
+<p>你还可以自定义 AI 的“人设”，让它扮演毒舌评论员或严谨的投研顾问。</p>
+<h2>如何开始？</h2>
+<h3>Docker 部署</h3>
+<p>下载项目，将 <code class="notranslate">config</code> 和 <code class="notranslate">output</code>  目录复制到部署目录下并创建<code class="notranslate">docker-compose.yml</code>文件,内容如下：</p>
+<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">services</span>:
+  <span class="pl-ent">trendradar</span>:
+    <span class="pl-ent">image</span>: <span class="pl-s">wantcat/trendradar:latest</span>
+    <span class="pl-ent">container_name</span>: <span class="pl-s">trendradar</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">unless-stopped</span>
+
+    <span class="pl-ent">ports</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>8088:${WEBSERVER_PORT:-8080}<span class="pl-pds">"</span></span>
+
+    <span class="pl-ent">volumes</span>:
+      - <span class="pl-s">./config:/app/config:ro</span>
+      - <span class="pl-s">./output:/app/output</span>
+
+    <span class="pl-ent">environment</span>:
+      - <span class="pl-s">TZ=Asia/Shanghai</span>
+      <span class="pl-c"><span class="pl-c">#</span> Web 服务器</span>
+      - <span class="pl-s">WEBSERVER_PORT=${WEBSERVER_PORT:-8080}</span>
+      <span class="pl-c"><span class="pl-c">#</span> 通知渠道</span>
+      - <span class="pl-s">FEISHU_WEBHOOK_URL=${FEISHU_WEBHOOK_URL:-}</span>
+      - <span class="pl-s">TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}</span>
+      - <span class="pl-s">TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID:-}</span>
+      - <span class="pl-s">DINGTALK_WEBHOOK_URL=${DINGTALK_WEBHOOK_URL:-}</span>
+      - <span class="pl-s">WEWORK_WEBHOOK_URL=${WEWORK_WEBHOOK_URL:-}</span>
+      - <span class="pl-s">WEWORK_MSG_TYPE=${WEWORK_MSG_TYPE:-}</span>
+      <span class="pl-c"><span class="pl-c">#</span> 邮件配置</span>
+      - <span class="pl-s">EMAIL_FROM=${EMAIL_FROM:-}</span>
+      - <span class="pl-s">EMAIL_PASSWORD=${EMAIL_PASSWORD:-}</span>
+      - <span class="pl-s">EMAIL_TO=${EMAIL_TO:-}</span>
+      - <span class="pl-s">EMAIL_SMTP_SERVER=${EMAIL_SMTP_SERVER:-}</span>
+      - <span class="pl-s">EMAIL_SMTP_PORT=${EMAIL_SMTP_PORT:-}</span>
+      <span class="pl-c"><span class="pl-c">#</span> ntfy配置</span>
+      - <span class="pl-s">NTFY_SERVER_URL=${NTFY_SERVER_URL:-https://ntfy.sh}</span>
+      - <span class="pl-s">NTFY_TOPIC=${NTFY_TOPIC:-}</span>
+      - <span class="pl-s">NTFY_TOKEN=${NTFY_TOKEN:-}</span>
+      <span class="pl-c"><span class="pl-c">#</span> Bark配置</span>
+      - <span class="pl-s">BARK_URL=${BARK_URL:-}</span>
+      <span class="pl-c"><span class="pl-c">#</span> Slack配置</span>
+      - <span class="pl-s">SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL:-}</span>
+      <span class="pl-c"><span class="pl-c">#</span> 通用Webhook配置</span>
+      - <span class="pl-s">GENERIC_WEBHOOK_URL=${GENERIC_WEBHOOK_URL:-}</span>
+      - <span class="pl-s">GENERIC_WEBHOOK_TEMPLATE=${GENERIC_WEBHOOK_TEMPLATE:-}</span>
+      <span class="pl-c"><span class="pl-c">#</span> AI 配置（ai_analysis 和 ai_translation 共享模型配置）</span>
+      - <span class="pl-s">AI_ANALYSIS_ENABLED=${AI_ANALYSIS_ENABLED:-}</span>
+      - <span class="pl-s">AI_API_KEY=${AI_API_KEY:-}</span>
+      - <span class="pl-s">AI_MODEL=${AI_MODEL:-}</span>
+      - <span class="pl-s">AI_API_BASE=${AI_API_BASE:-}</span>
+      <span class="pl-c"><span class="pl-c">#</span> 远程存储配置（S3 兼容协议）</span>
+      - <span class="pl-s">S3_ENDPOINT_URL=${S3_ENDPOINT_URL:-}</span>
+      - <span class="pl-s">S3_BUCKET_NAME=${S3_BUCKET_NAME:-}</span>
+      - <span class="pl-s">S3_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID:-}</span>
+      - <span class="pl-s">S3_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY:-}</span>
+      - <span class="pl-s">S3_REGION=${S3_REGION:-}</span>
+      <span class="pl-c"><span class="pl-c">#</span> 运行模式</span>
+      - <span class="pl-s">CRON_SCHEDULE=${CRON_SCHEDULE:-*/30 * * * *}</span>
+      - <span class="pl-s">RUN_MODE=${RUN_MODE:-cron}</span>
+      - <span class="pl-s">IMMEDIATE_RUN=${IMMEDIATE_RUN:-true}</span>
+
+  <span class="pl-ent">trendradar-mcp</span>:
+    <span class="pl-ent">image</span>: <span class="pl-s">wantcat/trendradar-mcp:latest</span>
+    <span class="pl-ent">container_name</span>: <span class="pl-s">trendradar-mcp</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">unless-stopped</span>
+
+    <span class="pl-ent">ports</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>${MCP_HOST:-127.0.0.1}:${MCP_PORT:-3333}:3333<span class="pl-pds">"</span></span>
+
+    <span class="pl-ent">volumes</span>:
+      - <span class="pl-s">./config:/app/config:ro</span>
+      - <span class="pl-s">./output:/app/output</span>
+
+    <span class="pl-ent">environment</span>:
+      - <span class="pl-s">TZ=Asia/Shanghai</span>
+      - <span class="pl-s">MCP_PORT=${MCP_PORT:-3333}</span>
+      </pre></div>
+<p>在docker-compose.yml 同级目录下使用以下命令启动</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker-compose up -d</pre></div>
+<p>到此，如果没问题的话项目就启动完成了，如果需要修改配置，则在config 下修改具体的配置信息，修改完成后重启容器即可</p>
+<p>整个过程熟练后甚至不需要 30 秒。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/64bd37fc4b0a0fa05997e0f43a7690166678007a4c4d0e185150435c23bd3297/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33312f38613930396232346238363562356561316461313164396433336163373038662e706e67"><img src="https://camo.githubusercontent.com/64bd37fc4b0a0fa05997e0f43a7690166678007a4c4d0e185150435c23bd3297/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f33312f38613930396232346238363562356561316461313164396433336163373038662e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/31/8a909b24b865b5ea1da11d9d33ac708f.png" style="max-width: 100%;"></a></p>
+<h2>结语</h2>
+<p>TrendRadar 是一个真正将“主动权”交还给用户的开源项目。它没有复杂的界面，没有烦人的广告，只有纯粹、定制化的信息流。</p>
+<p>如果你也受够了算法的“投喂”，希望在这个喧嚣的世界里拥有一片属于自己的信息净土，不妨试试 TrendRadar。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
