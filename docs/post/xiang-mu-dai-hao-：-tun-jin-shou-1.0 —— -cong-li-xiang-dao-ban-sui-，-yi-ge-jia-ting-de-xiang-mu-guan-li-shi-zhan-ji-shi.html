@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+> 项目经理是我媳妇，我是那个会冲奶粉、偶尔换尿布、认真认错的员工001
+>
+> 谨以此文，送给娃人生第一个儿童节，也送给真正的项目总指挥
+>
+> 📅 2026年6月1日 · 六一儿童节 | 👶 项目产品月龄：半岁 | 🏷️ #养育即项目 #半岁里程碑
+
+---
+
+
+![](http://chevereto.xiuji.mynatapp.cc/images/2026/06/01/dc0cdce4a403ca1d86cc693cc2e4c9b6.png)
+
+今天是六一儿童节，也是我家娃来到这个世界后**第一个属于自己的节日**。">
+<meta property="og:title" content="项目代号：吞金兽1.0 —— 从立项到半岁，一个家庭的项目管理实战纪实">
+<meta property="og:description" content="
+
+> 项目经理是我媳妇，我是那个会冲奶粉、偶尔换尿布、认真认错的员工001
+>
+> 谨以此文，送给娃人生第一个儿童节，也送给真正的项目总指挥
+>
+> 📅 2026年6月1日 · 六一儿童节 | 👶 项目产品月龄：半岁 | 🏷️ #养育即项目 #半岁里程碑
+
+---
+
+
+![](http://chevereto.xiuji.mynatapp.cc/images/2026/06/01/dc0cdce4a403ca1d86cc693cc2e4c9b6.png)
+
+今天是六一儿童节，也是我家娃来到这个世界后**第一个属于自己的节日**。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/xiang-mu-dai-hao-%EF%BC%9A-tun-jin-shou-1.0%20%E2%80%94%E2%80%94%20-cong-li-xiang-dao-ban-sui-%EF%BC%8C-yi-ge-jia-ting-de-xiang-mu-guan-li-shi-zhan-ji-shi.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>项目代号：吞金兽1.0 —— 从立项到半岁，一个家庭的项目管理实战纪实</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">项目代号：吞金兽1.0 —— 从立项到半岁，一个家庭的项目管理实战纪实</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/61" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><blockquote>
+<p>项目经理是我媳妇，我是那个会冲奶粉、偶尔换尿布、认真认错的员工001</p>
+<p>谨以此文，送给娃人生第一个儿童节，也送给真正的项目总指挥</p>
+<p>📅 2026年6月1日 · 六一儿童节 | 👶 项目产品月龄：半岁 | 🏷️ #养育即项目 #半岁里程碑</p>
+</blockquote>
+<hr>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4d43be5de50dca34ecacd8b3de6dbdf8755c12400033d76a8517a2bc5ef5b642/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30312f64633063646365346134303363613164383663633639336363326534633962362e706e67"><img src="https://camo.githubusercontent.com/4d43be5de50dca34ecacd8b3de6dbdf8755c12400033d76a8517a2bc5ef5b642/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30312f64633063646365346134303363613164383663633639336363326534633962362e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/01/dc0cdce4a403ca1d86cc693cc2e4c9b6.png" style="max-width: 100%;"></a></p>
+<p>今天是六一儿童节，也是我家娃来到这个世界后<strong>第一个属于自己的节日</strong>。</p>
+<p>娃现在半岁左右：会笑、会抓东西、会努力翻身。他还不会说话，但已经成功把我们这个原本“松耦合”的两人家庭，重构为一个<strong>强矩阵、全天候运转的项目管理组织</strong>。</p>
+<p>项目经理是我媳妇。我是员工001，负责冲奶粉、换尿布、认真认错。</p>
+<p>这篇文章，就当是给娃的第一个儿童节交作业。也郑重表个态：<strong>项目经理辛苦了。今天是娃的节日，但真正该被庆祝的人，是你。</strong></p>
+<hr>
+<h2>一、启动阶段：一个项目的诞生</h2>
+<p>某天，项目经理（我搭子）拿着一个显示“两道杠”的小棒从卫生间走出来。</p>
+<p>那一瞬间，脑子里闪过很多东西。有兴奋，有紧张，有那种“真的要来了”的不真实感。但事后回想起来，那一刻最核心的事情其实特别简单——<strong>确认方向，然后立项</strong>。</p>
+<p>✅ <strong>关键动作</strong>：确认值得做 → 项目立项</p>
+<p>💡 <strong>项目管理启示</strong>：启动阶段的本质从来不是“万事俱备”，而是“确认方向”。很多人在启动阶段就卡住了，觉得得等条件完美、预算充足、心理准备好。别想了。养娃教会我的第一课就是——<strong>没有真正准备好的时候</strong>。方向一旦确认，剩下的就是在路上解决。</p>
+<hr>
+<h2>二、规划阶段：项目上线前的准备</h2>
+<p>从确认怀孕到孩子出生，整整九个月。产检医院、月嫂安排、婴儿用品清单、家庭分工、预算估算……我跟你说，那段时间我媳妇做的Excel表格比我的工作计划还细。</p>
+<p>但规划得再细，也永远觉得不够细。</p>
+<p>我印象很深，预产期前一周，我俩坐在沙发上对清单。对到最后项目经理说了一句：“行吧，就这样了，能想到的都想完了。”语气里既有释然，也有一点点心虚。</p>
+<p>后来我才明白：<strong>规划的意义从来不是消除所有不确定性，而是让自己心里有底。</strong> 你知道大概要花多少钱、大概需要哪些东西、大概谁负责什么。剩下的，到时候再说。</p>
+<hr>
+<h2>三、执行阶段：项目正式上线</h2>
+<p>孩子出生的那一刻，项目从“开发环境”正式切换到“生产环境”。</p>
+<p>一声啼哭，系统开机。所有参与者同时进入高负载状态。</p>
+<p>说真的，那一刻你才知道什么叫高负载。不分白天黑夜，按需响应。娃哭了，你得判断他为什么哭——饿了？困了？热了？还是单纯想被抱？需求完全不明确，但你必须马上给出响应。</p>
+<p>项目经理7×24小时在线决策，员工001负责换尿布、拍嗝、冲奶粉、跑腿。</p>
+<p>最开始那两周，我是真的懵。你能想象吗，一个以前可以睡到自然醒的人，突然变成两小时醒一次。不是闹钟叫醒，是娃叫醒。而且每次醒来你都得做点什么，不是醒了就完事了。</p>
+<p>💡 <strong>执行阶段的核心能力不是“控制”，而是“响应”。</strong> 你控制不了他什么时候醒、什么时候饿、什么时候哭。你只能在他需要你的时候，第一时间出现。</p>
+<hr>
+<h2>四、监控阶段：随时调整，随时优化</h2>
+<p>养娃的监控阶段，是每时每刻都在发生的事情。</p>
+<p>睡眠规律什么时候开始出现的，喂养量什么时候该加、什么时候该减，谁负责夜班谁负责白天——这些就是典型的进度监控、质量监控和资源调配。</p>
+<p>但监控的意义不是挑错。</p>
+<p>是你发现娃今天睡得比昨天好了一点，你会觉得项目在往前跑。是你发现娃开始对你笑了，你会觉得这个项目有正向反馈了。是你发现项目经理今天终于睡了个整觉，你会觉得——嗯，资源调配终于对了。</p>
+<p>💡 <strong>监控是为了让项目运行得更丝滑。</strong></p>
+<hr>
+<h2>五、里程碑：每一个“第一次”都是节点</h2>
+<p>半年来，我们走过的里程碑不多，但每一个都记得特别清楚。</p>
+<ul>
+<li><strong>第一次微笑</strong>：不是那种喝完奶无意识的嘴角上扬，是真的对着你笑了。我当时就愣住了，抱着娃在客厅站了得有十秒钟。</li>
+<li><strong>第一次抬头</strong>：趴着的时候脖子突然有劲儿了，小脑袋晃晃悠悠地撑起来，我跟项目经理在旁边疯狂拍照，搞得像什么重大科研突破。</li>
+<li><strong>第一次抓住玩具</strong>：目标是爸爸的眼镜。从那以后我戴眼镜都得躲着点。</li>
+<li><strong>第一次翻身</strong>：现在还不太利索，偶尔需要助攻。但每次他自己翻过去，脸上那个表情，像完成了一个人生KPI。</li>
+<li><strong>第一次发出“yi ~ ya ~”的声音</strong>：虽然还不是“爸爸”，但我已经单方面宣布他在叫我了。</li>
+</ul>
+<p>而今天——<strong>六一儿童节，是娃人生的第一个儿童节</strong>。</p>
+<p>这个里程碑很特别。它不属于任何功能性节点，不是“学会了什么”，不是“做到了什么”。它只属于<strong>庆祝这个项目存在的意义</strong>。</p>
+<blockquote>
+<p>🌟 好的项目，不仅关注交付，也关注值得庆祝的时刻。</p>
+</blockquote>
+<hr>
+<h3>📇 半岁里程碑纪念卡</h3>
+<div>
+    <div>🌟 半岁里程碑 🌟</div>
+    <div>项目代号：吞金兽1.0</div>
+    <div>里程碑日期：2026年6月1日 · 项目产品月龄：半岁</div>
+    <hr>
+    <div><strong>✅ 已上线功能</strong></div>
+    <div>
+        <span>✔ 第一次微笑</span> <span>✔ 稳定抬头</span>
+        <span>✔ 主动抓握</span> <span>✔ 社交微笑</span>
+        <span>🔄 翻身（进行中）</span> <span>📢 咿呀发声</span>
+    </div>
+    <div><strong>📅 下一阶段预告</strong></div>
+    <div>
+        <span>独立坐立</span>
+        <span>爬行</span>
+        <span>出牙</span>
+        <span>添加辅食</span>
+        <span>叫“爸爸/妈妈”</span>
+    </div>
+    <div>
+        <div><strong>📝 项目经理寄语</strong></div>
+        <div>“半岁只是一个开始。希望你慢慢长大，但不要太快离开我们。希望你学会很多本事，但永远记得被爱的感觉。” —— 项目经理·妈妈</div>
+    </div>
+    <div>
+        <span>🛠️ 员工001签名：修己xj</span>
+        <span>📅 2026.6.1</span>
+    </div>
+</div>
+<hr>
+<h2>六、当前状态：半岁，系统运行平稳</h2>
+<h3>产品能力状态</h3>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>能力</th>
+<th>状态</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>抬头</td>
+<td>✅ 稳定</td>
+<td>脖子有劲儿了</td>
+</tr>
+<tr>
+<td>翻身</td>
+<td>🔄 进行中</td>
+<td>偶尔需要助攻</td>
+</tr>
+<tr>
+<td>抓握</td>
+<td>✅ 熟练</td>
+<td>目标：爸爸的眼镜</td>
+</tr>
+<tr>
+<td>社交微笑</td>
+<td>✅ 上线</td>
+<td>会主动对人笑</td>
+</tr>
+<tr>
+<td>整觉</td>
+<td>📅 规划中</td>
+<td>预计1岁后迭代</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h3>团队角色状态</h3>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>角色</th>
+<th>当前状态</th>
+<th>评价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>项目经理（妈妈）</td>
+<td>全天候在岗</td>
+<td>项目的灵魂与核心</td>
+</tr>
+<tr>
+<td>员工001（爸爸）</td>
+<td>积极执行中</td>
+<td>态度端正，眼力见儿不断提升</td>
+</tr>
+<tr>
+<td>外部顾问（双方父母）</td>
+<td>按需支援</td>
+<td>关键资源池</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<blockquote>
+<p>一个项目能顺利走完半岁，从来不是一个人的功劳，而是一个系统的胜利。</p>
+</blockquote>
+<p>我有时候觉得，养娃这件事最妙的隐喻就在这里：你以为你是在养一个孩子，但其实你是在跟一群人一起，运转一个极其复杂的系统。每个人都有自己的角色，每个人都在调整自己的节奏。而项目经理，是让这个系统不散架的那个人。</p>
+<hr>
+<h2>附：项目生命周期甘特图</h2>
+<div class="highlight highlight-source-mermaid"><pre class="notranslate"><span class="pl-k">gantt</span>
+    <span class="pl-k">title</span> <span class="pl-s">吞金兽1.0 项目生命周期（启动→半岁）</span>
+    <span class="pl-k">dateFormat</span> <span class="pl-s"><span class="pl-c1">YYYY</span>-<span class="pl-c1">MM</span>-<span class="pl-c1">DD</span></span>
+    <span class="pl-k">axisFormat</span> <span class="pl-s"><span class="pl-c1">%m</span>月</span>
+    
+    <span class="pl-k">section</span> <span class="pl-s">阶段划分</span>
+    <span class="pl-e">启动阶段</span> <span class="pl-k">:</span><span class="pl-ent">done</span><span class="pl-sg">,</span> <span class="pl-en">kickoff</span><span class="pl-sg">,</span> <span class="pl-c1">2025-04-01</span><span class="pl-sg">,</span> 2M
+    <span class="pl-e">规划阶段</span> <span class="pl-k">:</span><span class="pl-ent">active</span><span class="pl-sg">,</span> <span class="pl-en">plan</span><span class="pl-sg">,</span> <span class="pl-c1">2025-05-01</span><span class="pl-sg">,</span> 4M
+    <span class="pl-e">生产上线</span> <span class="pl-k">:</span><span class="pl-ent">crit</span><span class="pl-sg">,</span> <span class="pl-en">delivery</span><span class="pl-sg">,</span> <span class="pl-c1">2025-12-01</span><span class="pl-sg">,</span> <span class="pl-c1">2</span><span class="pl-k">d</span>
+    <span class="pl-e">试运行与执行</span> <span class="pl-k">:</span><span class="pl-ent">active</span><span class="pl-sg">,</span> <span class="pl-en">exec</span><span class="pl-sg">,</span> <span class="pl-c1">2025-12-31</span><span class="pl-sg">,</span> 9M
+    
+    <span class="pl-k">section</span> <span class="pl-s">里程碑节点</span>
+    <span class="pl-e">第一次微笑</span> <span class="pl-k">:</span><span class="pl-ent">milestone</span><span class="pl-sg">,</span> <span class="pl-en">m1</span><span class="pl-sg">,</span> <span class="pl-c1">2026-01-20</span><span class="pl-sg">,</span> <span class="pl-c1">1</span><span class="pl-k">d</span>
+    <span class="pl-e">稳定抬头</span> <span class="pl-k">:</span><span class="pl-ent">milestone</span><span class="pl-sg">,</span> <span class="pl-en">m2</span><span class="pl-sg">,</span> <span class="pl-c1">2026-03-15</span><span class="pl-sg">,</span> <span class="pl-c1">1</span><span class="pl-k">d</span>
+    <span class="pl-e">主动抓握</span> <span class="pl-k">:</span><span class="pl-ent">milestone</span><span class="pl-sg">,</span> <span class="pl-en">m3</span><span class="pl-sg">,</span> <span class="pl-c1">2026-04-10</span><span class="pl-sg">,</span> <span class="pl-c1">1</span><span class="pl-k">d</span>
+    <span class="pl-e">翻身尝试</span> <span class="pl-k">:</span><span class="pl-ent">milestone</span><span class="pl-sg">,</span> <span class="pl-en">m4</span><span class="pl-sg">,</span> <span class="pl-c1">2026-04-20</span><span class="pl-sg">,</span> <span class="pl-c1">1</span><span class="pl-k">d</span>
+    <span class="pl-e">半岁·六一儿童节</span> <span class="pl-k">:</span><span class="pl-ent">milestone</span><span class="pl-sg">,</span> <span class="pl-en">m5</span><span class="pl-sg">,</span> <span class="pl-c1">2026-06-01</span><span class="pl-sg">,</span> <span class="pl-c1">1</span><span class="pl-k">d</span>
+    
+    <span class="pl-k">section</span> <span class="pl-s">监控与调整</span>
+    <span class="pl-e">持续监控与优化</span> <span class="pl-k">:</span><span class="pl-ent">done</span><span class="pl-sg">,</span> <span class="pl-en">monitor</span><span class="pl-sg">,</span> <span class="pl-c1">2025-12-31</span><span class="pl-sg">,</span> 9M</pre></div>
+<hr>
+<h2>七、下一阶段：规划与期待（半岁→1岁）</h2>
+<p><strong>即将上线的功能</strong>：独立坐立、爬行、出牙、添加辅食、真正意义上的“爸爸/妈妈”发音。</p>
+<p><strong>项目方向变化</strong>：从“被动照护”向“主动探索”过渡，从纯奶喂养向辅食+奶过渡。</p>
+<p>我跟你说，光是想到他第一次叫“爸爸”这件事，我现在就开始紧张了。</p>
+<blockquote>
+<p>💡 好的项目，永远在“刚刚完成”和“即将开始”之间。</p>
+</blockquote>
+<hr>
+<h2>写在最后</h2>
+<p>项目经理辛苦了。真的。</p>
+<p>那些半夜起来喂奶的时刻，那些娃哭了她比谁都先醒的时刻，那些明明很累了还要查资料研究辅奶粉要不要换、尿不湿哪个好的时刻，我都看在眼里。</p>
+<p>今天是娃的节日，但我想把这份庆祝，分一半给你。</p>
+<hr>
+<h3>🎈 员工001 · 六一承诺书</h3>
+<ul>
+<li>✅ 绝不说“带娃不累吧”</li>
+<li>✅ 主动带娃让PM刷手机</li>
+<li>✅ 娃哭第一个冲过去</li>
+<li>✅ 今晚夜班我包了</li>
+</ul>
+<hr>
+<blockquote>
+<p>🌱 半岁只是一个开始，下一迭代更精彩。</p>
+<p>希望你慢慢长大，但不要太快离开我们。</p>
+<p>希望你学会很多本事，但永远记得被爱的感觉。</p>
+</blockquote>
+<p><strong>—— 员工001 · 修己xj</strong></p>
+<p><strong>📅 2026年6月1日 · 六一儿童节</strong></p>
+<hr>
+<p>📸 项目组合影</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f5a81400acf7c66779d3141bf3d86d1dcee47ef15269c6befb206bb36733de35/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30312f34656438333366323033623931626130633838386361656463353237313436642e706e67"><img src="https://camo.githubusercontent.com/f5a81400acf7c66779d3141bf3d86d1dcee47ef15269c6befb206bb36733de35/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30312f34656438333366323033623931626130633838386361656463353237313436642e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/01/4ed833f203b91ba0c888caedc527146d.png" style="max-width: 100%;"></a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
