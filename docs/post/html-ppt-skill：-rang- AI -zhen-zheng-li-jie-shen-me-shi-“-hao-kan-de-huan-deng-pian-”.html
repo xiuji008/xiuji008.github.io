@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+如果你曾经让 AI 帮你做 PPT，大概率收获过这样的作品：配色辣眼睛、排版像 2003 年的 Word 艺术字、动画恨不得把所有特效都来一遍。">
+<meta property="og:title" content="html-ppt-skill：让 AI 真正理解什么是“好看的幻灯片”">
+<meta property="og:description" content="
+
+如果你曾经让 AI 帮你做 PPT，大概率收获过这样的作品：配色辣眼睛、排版像 2003 年的 Word 艺术字、动画恨不得把所有特效都来一遍。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/html-ppt-skill%EF%BC%9A-rang-%20AI%20-zhen-zheng-li-jie-shen-me-shi-%E2%80%9C-hao-kan-de-huan-deng-pian-%E2%80%9D.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>html-ppt-skill：让 AI 真正理解什么是“好看的幻灯片”</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">html-ppt-skill：让 AI 真正理解什么是“好看的幻灯片”</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/63" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>如果你曾经让 AI 帮你做 PPT，大概率收获过这样的作品：配色辣眼睛、排版像 2003 年的 Word 艺术字、动画恨不得把所有特效都来一遍。</p>
+<p>这不是 AI 的错——是它手里没有趁手的“兵器”。</p>
+<p>今天介绍的这个开源项目 <strong>html-ppt-skill</strong>，就是专门解决这个问题的。它不是一个简单的模板库，而是一套完整的 <strong>AgentSkill</strong>，让 Claude Code、Cursor、OpenClaw 这类 AI 助手，真正理解怎么做出一份“能打”的 HTML 演示文稿。<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/1b8e8712174c85b1831fb8b65093624ee6c193c54dde4318ede64f112b3f6450/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f38656262646439336630373038313963616637393034346463343731313466322e706e67"><img src="https://camo.githubusercontent.com/1b8e8712174c85b1831fb8b65093624ee6c193c54dde4318ede64f112b3f6450/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f38656262646439336630373038313963616637393034346463343731313466322e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/8ebbdd93f070819caf79044dc47114f2.png" style="max-width: 100%;"></a></p>
+<h2>项目介绍</h2>
+<p>一款专业级的 AgentSkill，让 AI 做出真正能打的 HTML 演示文稿。 36 套主题、15 套完整 deck 模板、31 种页面布局、47 个动效 (27 个 CSS + 20 个 Canvas FX)，加上全新的 演讲者模式 —— 像素级 完美预览 + 逐字稿提词器 + 计时器。纯静态 HTML/CSS/JS，无需构建。</p>
+<p>该项目在github 上已有 <code class="notranslate">5.4k</code> star</p>
+<p>github地址: <a href="https://github.com/lewislulu/html-ppt-skill">https://github.com/lewislulu/html-ppt-skill</a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/76a758db940dc55ba39d583c27041e102c4b048f1d501641ea66eaf96732cc95/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f65376630666235633935653239663139613939623734316365346337636537332e706e67"><img src="https://camo.githubusercontent.com/76a758db940dc55ba39d583c27041e102c4b048f1d501641ea66eaf96732cc95/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f65376630666235633935653239663139613939623734316365346337636537332e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/e7f0fb5c95e29f19a99b741ce4c7ce73.png" style="max-width: 100%;"></a></p>
+<p>项目结构</p>
+<pre class="notranslate"><code class="notranslate">html-ppt-skill/
+├── SKILL.md                      agent 入口
+├── README.md                     英文 README
+├── README.zh-CN.md               本文件
+├── references/                   详细文档
+│   ├── themes.md                 36 主题 + 使用场景
+│   ├── layouts.md                31 布局
+│   ├── animations.md             27 CSS + 20 FX 目录
+│   ├── full-decks.md             15 完整 deck 模板
+│   ├── presenter-mode.md         🎤 演讲者模式 + 逐字稿指南
+│   └── authoring-guide.md        完整工作流
+├── assets/
+│   ├── base.css                  共享 tokens + 基础组件
+│   ├── fonts.css                 web 字体引入
+│   ├── runtime.js                键盘导航 + 演讲者模式 + 总览
+│   ├── themes/*.css              36 主题 token 文件
+│   └── animations/
+│       ├── animations.css        27 个命名 CSS 动画
+│       ├── fx-runtime.js         进入 slide 自动初始化 [data-fx]
+│       └── fx/*.js               20 个 Canvas FX 模块
+├── templates/
+│   ├── deck.html                 最小起步模板
+│   ├── theme-showcase.html       iframe 隔离的主题 tour
+│   ├── layout-showcase.html      全部 31 布局
+│   ├── animation-showcase.html   47 动画 slide
+│   ├── full-decks-index.html     15 deck gallery
+│   ├── full-decks/&lt;name&gt;/        15 个 scoped 多页 deck 模板
+│   └── single-page/*.html        31 个布局文件（带示例数据）
+├── scripts/
+│   ├── new-deck.sh               脚手架
+│   ├── render.sh                 headless Chrome → PNG
+│   └── verify-output/            56 张自测截图
+└── examples/demo-deck/           完整可运行的示例 deck
+</code></pre>
+<h2>一行命令，AI 瞬间拥有设计能力</h2>
+<p>安装简单到离谱：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">npx skills add https://github.com/lewislulu/html-ppt-skill</pre></div>
+<p>或者下载项目直接导入到skills中。</p>
+<p>装完之后，你的 AI 助手就掌握了这些能力：</p>
+<ul>
+<li><strong>36 套专业主题</strong>——从极简白到赛博朋克，从学术论文到小红书图文</li>
+<li><strong>15 套完整 deck 模板</strong>——投资人 pitch、产品发布、技术分享、周报……</li>
+<li><strong>31 种单页布局</strong>——封面、目录、两栏、三栏、大引用、数据仪表盘、代码块……</li>
+<li><strong>47 个动效</strong>——27 个 CSS 动画 + 20 个 Canvas 电影级特效</li>
+</ul>
+<p>对 AI 说一句话，它就能给你一套完整的 HTML 幻灯片：</p>
+<blockquote>
+<p>“做一份 8 页的技术分享 slides，用 cyberpunk 主题”<br>
+“把这段 outline 变成投资人 pitch deck”<br>
+“做一个小红书图文，9 张，白底柔和风”</p>
+</blockquote>
+<h2>杀手级功能：演讲者模式</h2>
+<p>这是我最喜欢的新功能。在任何 deck 里按一下 <code class="notranslate">S</code> 键，就会弹出一个独立的演讲者窗口，包含 <strong>4 个可拖拽、可调整大小的磁吸卡片</strong>：</p>
+<ul>
+<li>当前页预览</li>
+<li>下一页预览</li>
+<li>逐字稿</li>
+<li>计时器</li>
+</ul>
+<p>两个窗口通过 <code class="notranslate">BroadcastChannel</code> 双向同步翻页，完全零延迟。</p>
+<p>更妙的是，预览卡片用的是 <strong><code class="notranslate">&lt;iframe&gt;</code> 加载同一份 HTML 文件</strong>，只是加了 <code class="notranslate">?preview=N</code> 参数。这意味着预览看到的 CSS、主题、字体、排版，和观众看到的<strong>像素级一致</strong>——不会出现“预览好看，投出来崩了”的尴尬。</p>
+<p>翻页时通过 <code class="notranslate">postMessage</code> 通知 iframe 切换 <code class="notranslate">.is-active</code> class，<strong>不重新加载、不白屏、不闪烁</strong>。</p>
+<p>逐字稿部分也有讲究：每页 150–300 字，约 2–3 分钟的演讲节奏；用口语不用书面语；关键词加粗，过渡句独立成段。这不是让你照着念的讲稿，而是<strong>提示信号</strong>。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2241ac1038e2efc3ab7f1b221559e2699270d5941b6f3ccf30c557e17164e1e5/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f62626234653432616333353036373333666233613562356466386232643965652e706e67"><img src="https://camo.githubusercontent.com/2241ac1038e2efc3ab7f1b221559e2699270d5941b6f3ccf30c557e17164e1e5/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f62626234653432616333353036373333666233613562356466386232643965652e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/bbb4e42ac3506733fb3a5b5df8b2d9ee.png" style="max-width: 100%;"></a></p>
+<h2>36 套主题，每一套都有态度</h2>
+<p>这个项目的主题不是随便调几个颜色就完事。每一套都有明确的设计语言和使用场景：</p>
+<ul>
+<li><code class="notranslate">minimal-white</code>——极简白，适合任何场合</li>
+<li><code class="notranslate">cyberpunk-neon</code>——赛博霓虹，技术分享利器</li>
+<li><code class="notranslate">xiaohongshu-white</code>——小红书白底杂志风</li>
+<li><code class="notranslate">academic-paper</code>——学术论文风格，参考文献排版极工整</li>
+<li><code class="notranslate">pitch-deck-vc</code>——投资人 pitch，数据突出</li>
+<li><code class="notranslate">terminal-green</code>——终端绿，极客最爱</li>
+</ul>
+<p>每个主题都是一份纯 CSS token 文件，换一行 <code class="notranslate">&lt;link&gt;</code> 就能给整份 deck 换皮。在 <code class="notranslate">theme-showcase.html</code> 里可以用 iframe 隔离的方式预览全部 36 套——每个预览都是真实的渲染结果，不是截图，不是色卡。</p>
+<h2>15 套完整 deck 模板，开箱即用</h2>
+<p>模板分为两类：</p>
+<p><strong>从真实作品提炼的视觉语言（8 套）</strong>：小红书白底杂志风、暗底+力导向知识图谱、蓝图/架构图风、终端 cyberpunk 风、紫色渐变卡、红/琥珀警示风、柔和马卡龙图文、方向键极简导航。</p>
+<p><strong>通用场景脚手架（7 套）</strong>：投资人 pitch、产品发布会、技术分享、周报、小红书图文（9 页 3:4）、教学模块，以及一套专门为演讲者模式设计的完整分享模板——<strong>每一页都带 150–300 字的示例逐字稿</strong>。</p>
+<p>每个模板都是自包含的文件夹，用 scoped 的 CSS class，多个模板可以同时加载而不会互相污染。</p>
+<h2>31 种单页布局 + 47 个动效</h2>
+<p>布局库覆盖了 PPT 几乎所有的常见需求：封面、目录、章节分隔、项目符号、两栏/三栏、大引用、数据高亮、KPI 网格、表格、代码块、终端、流程图、时间线、路线图、思维导图、对比、优劣势、待办清单、甘特图、图片墙、各种图表、架构图、步骤图、CTA、致谢……</p>
+<p>每个布局都带真实的示例数据，拖进 deck 立即看得到效果。</p>
+<p>动效分成两层：<strong>CSS 动画</strong>负责轻量入场（淡入、弹入、打字机、霓虹光晕、流光、3D 翻转……），<strong>Canvas FX</strong> 负责电影级特效（粒子爆发、彩带、烟花、星空、代码雨、力导向知识图谱、神经网络脉冲、星座连线……）。进入 slide 时由 <code class="notranslate">fx-runtime.js</code> 自动初始化，不需要手动写一行代码。</p>
+<h2>零构建，纯静态</h2>
+<p>整个项目就是一套 HTML/CSS/JS 文件，没有 webpack、没有 npm build、没有依赖地狱。字体走 Google Fonts CDN，代码高亮用 highlight.js，图表用 Chart.js（都是可选）。打开就能跑，改完就能用。</p>
+<p>键盘快捷键也很完整：<code class="notranslate">← →</code> 翻页、<code class="notranslate">F</code> 全屏、<code class="notranslate">S</code> 演讲者模式、<code class="notranslate">N</code> 底部 notes、<code class="notranslate">O</code> 总览网格、<code class="notranslate">T</code> 切换主题、<code class="notranslate">A</code> 循环演示动画、<code class="notranslate">#/N</code> 深链到指定页。</p>
+<h2>适合谁用？</h2>
+<ul>
+<li><strong>AI 工具使用者</strong>——让 Claude Code、Cursor 帮你做 PPT，而不是你自己从头写 HTML</li>
+<li><strong>技术演讲者</strong>——需要一套干净、可控、可定制的幻灯片方案，不想碰 Keynote 或 PowerPoint</li>
+<li><strong>开发者</strong>——想给自己的项目做一套好看的演示文稿，但又不想花时间调 CSS</li>
+<li><strong>内容创作者</strong>——做小红书图文、产品宣发页、知识卡片</li>
+</ul>
+<h2>使用示例</h2>
+<p>以下是我使用workbuddy 生成并导出的图片</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/65faa1af1c85e8d61842aa8912924c0ebf974ea4873f33fc08c1d67bbad82448/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f34363535313837323337346566326165323965376365383136613233663431382e706e67"><img src="https://camo.githubusercontent.com/65faa1af1c85e8d61842aa8912924c0ebf974ea4873f33fc08c1d67bbad82448/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f34363535313837323337346566326165323965376365383136613233663431382e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/46551872374ef2ae29e7ce816a23f418.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3cbacabd1ee67b9366155fa86f4e6f3a82829e4cde99b11e086c46e94465032d/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f65373861363237623434323536633538666230323965363130356434316161612e706e67"><img src="https://camo.githubusercontent.com/3cbacabd1ee67b9366155fa86f4e6f3a82829e4cde99b11e086c46e94465032d/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f65373861363237623434323536633538666230323965363130356434316161612e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/e78a627b44256c58fb029e6105d41aaa.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2dc58bb215f2878e90d21e635910e0dba13c0c5a13e5775482408555c73ab961/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f34623530306439613739636466396665653737663963633233653961626566662e706e67"><img src="https://camo.githubusercontent.com/2dc58bb215f2878e90d21e635910e0dba13c0c5a13e5775482408555c73ab961/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f34623530306439613739636466396665653737663963633233653961626566662e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/4b500d9a79cdf9fee77f9cc23e9abeff.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fd4761bcef4cfde0dbe7fa1533d6af31e7178dba0882ec51da657db666554505/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f37366139636565353966356530646532636434653335623961353262343932612e706e67"><img src="https://camo.githubusercontent.com/fd4761bcef4cfde0dbe7fa1533d6af31e7178dba0882ec51da657db666554505/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f37366139636565353966356530646532636434653335623961353262343932612e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/76a9cee59f5e0de2cd4e35b9a52b492a.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8f361d44767de9ed3c63f9890233777fc53a7a2b1218bc93bec54970073f9fbb/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f39316266383232356166373733346363643231646432353532326233643066322e706e67"><img src="https://camo.githubusercontent.com/8f361d44767de9ed3c63f9890233777fc53a7a2b1218bc93bec54970073f9fbb/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f39316266383232356166373733346363643231646432353532326233643066322e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/91bf8225af7734ccd21dd25522b3d0f2.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/573b73bfa340fc551dcde8579ad6ddaa53bffabc6cd5c2029215ed457456b5f4/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f65373037366138313562343239623834316665643262663663343335373335312e706e67"><img src="https://camo.githubusercontent.com/573b73bfa340fc551dcde8579ad6ddaa53bffabc6cd5c2029215ed457456b5f4/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f65373037366138313562343239623834316665643262663663343335373335312e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/e7076a815b429b841fed2bf6c4357351.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/93a67fbb88e4c400d86b7447ae6a8ca70f4d88831753123eccb02ccbe539f9aa/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f66353663336438356266376366663334636262653137313261633532393336302e706e67"><img src="https://camo.githubusercontent.com/93a67fbb88e4c400d86b7447ae6a8ca70f4d88831753123eccb02ccbe539f9aa/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f66353663336438356266376366663334636262653137313261633532393336302e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/f56c3d85bf7cff34cbbe1712ac529360.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/243eac4f5ab98f839ad3e8faee5817a557cb2aee70fadd9fa91998c121f1beaa/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f64383033336365353465386435373965653764306234343737323730316336302e706e67"><img src="https://camo.githubusercontent.com/243eac4f5ab98f839ad3e8faee5817a557cb2aee70fadd9fa91998c121f1beaa/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f64383033336365353465386435373965653764306234343737323730316336302e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/d8033ce54e8d579ee7d0b44772701c60.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3e2048ab79eef58b8b2c52993c82fc4473d85729bba0c9d2e4269de2ff216d79/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f63373635643831303763663266623665346232336131336162333637373636312e706e67"><img src="https://camo.githubusercontent.com/3e2048ab79eef58b8b2c52993c82fc4473d85729bba0c9d2e4269de2ff216d79/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f63373635643831303763663266623665346232336131336162333637373636312e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/c765d8107cf2fb6e4b23a13ab3677661.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/f1a0d4c9d0ecf2716d4117dd04087a8854ef56ce41701c51138bb9a8a16f955b/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f35666336623830353265376562633633333135343363636161613837663634342e706e67"><img src="https://camo.githubusercontent.com/f1a0d4c9d0ecf2716d4117dd04087a8854ef56ce41701c51138bb9a8a16f955b/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f30322f35666336623830353265376562633633333135343363636161613837663634342e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/02/5fc6b8052e7ebc6331543ccaaa87f644.png" style="max-width: 100%;"></a></p>
+<h2>写在最后</h2>
+<p>html-ppt-skill 打动我的地方在于：它不是一套“够用就行”的模板，而是一个<strong>有设计态度</strong>的Skills。字号规律、间距节奏、渐变、卡片处理——每一处都有资深设计师的默认值。你永远不会看到“PowerPoint 2006”那种味道的东西。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
