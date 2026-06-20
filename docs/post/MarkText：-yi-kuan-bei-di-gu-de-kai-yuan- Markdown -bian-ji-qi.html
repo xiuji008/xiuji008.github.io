@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+> 如果你还在用臃肿的富文本编辑器写文档，或者对 Typora 的商业化策略感到不满，MarkText 值得你认真了解一次。">
+<meta property="og:title" content="MarkText：一款被低估的开源 Markdown 编辑器">
+<meta property="og:description" content="
+
+> 如果你还在用臃肿的富文本编辑器写文档，或者对 Typora 的商业化策略感到不满，MarkText 值得你认真了解一次。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/MarkText%EF%BC%9A-yi-kuan-bei-di-gu-de-kai-yuan-%20Markdown%20-bian-ji-qi.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>MarkText：一款被低估的开源 Markdown 编辑器</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">MarkText：一款被低估的开源 Markdown 编辑器</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/68" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><blockquote>
+<p>如果你还在用臃肿的富文本编辑器写文档，或者对 Typora 的商业化策略感到不满，MarkText 值得你认真了解一次。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/68904e3611cf70e514866cb6480767f235740c1abf274c402bf1a39612ba0272/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f313738313936313431333937362e706e67"><img src="https://camo.githubusercontent.com/68904e3611cf70e514866cb6480767f235740c1abf274c402bf1a39612ba0272/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f313738313936313431333937362e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/20/1781961413976.png" style="max-width: 100%;"></a></p>
+<h2>什么是 MarkText？</h2>
+<p><strong>MarkText</strong> 是一款专注于速度与易用性的开源 Markdown 编辑器，由开发者Jocs及社区贡献者共同维护，采用 <strong>MIT 许可证</strong> 完全免费开放。</p>
+<ul>
+<li>GitHub 仓库：<a href="https://github.com/marktext/marktext">https://github.com/marktext/marktext</a></li>
+<li>文档地址：<a href="https://marktext.me/" rel="nofollow"> https://marktext.me/</a></li>
+<li>下载地址：<a href="https://github.com/marktext/marktext/releases/latest">https://github.com/marktext/marktext/releases/latest</a></li>
+</ul>
+<p>该项目目前在github 上已有 <code class="notranslate">57.6k</code> star</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4165809e1f57bd7a4ec31d316d9083cfdd28fdaa594e33e4f2b6b15c805d427b/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f64626335303538393435366637626236633863663230333861366263363639342e706e67"><img src="https://camo.githubusercontent.com/4165809e1f57bd7a4ec31d316d9083cfdd28fdaa594e33e4f2b6b15c805d427b/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f64626335303538393435366637626236633863663230333861366263363639342e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/20/dbc50589456f7bb6c8cf2038a6bc6694.png" style="max-width: 100%;"></a></p>
+<p>它的核心理念只有一句话：</p>
+<blockquote>
+<p>"A simple and elegant open-source markdown editor that focused on speed and usability."</p>
+<p>简洁、优雅，专注速度与易用性。</p>
+</blockquote>
+<h2>安装指南</h2>
+<p>MarkText 支持 Linux x64、macOS x64/arm64、Windows x64/arm64，覆盖主流设备架构。</p>
+<h3>Windows（需要 Windows 10 / 11）</h3>
+<p><strong>方式一：包管理器安装（推荐）</strong></p>
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 使用 Winget（Windows 11 内置）</span>
+winget install marktext
+
+<span class="pl-c"><span class="pl-c">#</span> 使用 Chocolatey</span>
+choco install marktext</pre></div>
+<p><strong>方式二：手动安装</strong></p>
+<p>前往 <a href="https://github.com/marktext/marktext/releases/latest">Release 页面</a> 下载 <code class="notranslate">marktext-win-x64-0.19.0-setup.exe</code>，运行安装向导，支持单用户安装或全机安装。</p>
+<p>安装之后默认是英文页面，设置中文步骤如下：</p>
+<p><code class="notranslate">File</code> --&gt; <code class="notranslate">Preferences</code>  --&gt; <code class="notranslate">Language</code>  --&gt;<code class="notranslate">简体中文</code></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/6640b4c1ef304f79657cfcc36c103535ebc801d58b41e3634dbd4ac906da1a06/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f35613761383766623934366633616363376138373134353033303137323637622e706e67"><img src="https://camo.githubusercontent.com/6640b4c1ef304f79657cfcc36c103535ebc801d58b41e3634dbd4ac906da1a06/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f35613761383766623934366633616363376138373134353033303137323637622e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/20/5a7a87fb946f3acc7a8714503017267b.png" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b57ab384088dfcf44335b5ba6b16cc5e77e7e50f400bca29f74c7c0d45ab1179/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f39373338333333343838306135653336623833613732653535376334653038652e706e67"><img src="https://camo.githubusercontent.com/b57ab384088dfcf44335b5ba6b16cc5e77e7e50f400bca29f74c7c0d45ab1179/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f39373338333333343838306135653336623833613732653535376334653038652e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/20/97383334880a5e36b83a72e557c4e08e.png" style="max-width: 100%;"></a></p>
+<h2>核心功能详解</h2>
+<h3>1. 所见即所得（WYSIWYG）实时预览</h3>
+<p>MarkText 最大的特点是真正意义上的 <strong>实时预览</strong>——你输入 <code class="notranslate">**加粗**</code>，光标离开后立即渲染为 <strong>加粗</strong>，不存在左右分栏的割裂感。整个界面干净无干扰，让你专注于写作本身，而不是在工具栏和预览窗口之间反复切换。</p>
+<p>这种交互方式与 Typora 类似，但 MarkText 是完全免费开源的。</p>
+<h3>2. 全面的 Markdown 规范支持</h3>
+<p>MarkText 不只是支持基础 Markdown，它覆盖了三大主流规范：</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>规范</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CommonMark Spec</strong></td>
+<td>最严格的标准化 Markdown 规范，确保跨平台一致性</td>
+</tr>
+<tr>
+<td><strong>GitHub Flavored Markdown (GFM)</strong></td>
+<td>支持表格、任务列表、删除线等 GitHub 扩展语法</td>
+</tr>
+<tr>
+<td><strong>Pandoc Markdown</strong>（部分支持）</td>
+<td>面向学术写作的扩展格式</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<p>无论你是写技术文档、博客还是学术笔记，MarkText 都能准确渲染。</p>
+<h3>3. Markdown 扩展能力</h3>
+<p>除了基础规范，MarkText 还支持以下扩展功能：</p>
+<ul>
+<li>
+<p><strong>KaTeX 数学公式</strong>：直接在文档中渲染 LaTeX 数学表达式</p>
+<pre class="notranslate"><code class="notranslate">$$E = mc^2$$
+</code></pre>
+<p>→ 渲染为标准数学公式，适合理工科写作</p>
+</li>
+<li>
+<p><strong>Front Matter</strong>：支持 YAML Front Matter 元数据，方便与 Hugo、Jekyll 等静态博客框架配合使用</p>
+</li>
+<li>
+<p><strong>Emoji 表情</strong>：输入 <code class="notranslate">:smile:</code> 即渲染为 😄，书写更生动</p>
+</li>
+<li>
+<p><strong>内联快捷键</strong>：段落样式和内联样式均有快捷方式，不需要频繁移开双手</p>
+</li>
+</ul>
+<h3>4. 三种编辑模式</h3>
+<p>MarkText 提供三种截然不同的编辑体验，适配不同场景：</p>
+<h4>源码模式（Source Code mode）</h4>
+<p>显示原始 Markdown 语法，适合喜欢掌控细节的用户或需要精确调试格式时使用。</p>
+<h4>打字机模式（Typewriter mode）</h4>
+<p>当前编辑行始终保持在屏幕垂直中央，无论文档有多长，视线焦点永远不会偏移。长文写作时减少颈部疲劳，专注感极强。</p>
+<h4>专注模式（Focus mode）</h4>
+<p>当前所在段落高亮显示，其余段落自动淡化为灰色。帮助你屏蔽干扰，只关注正在写的这一段，特别适合初稿撰写或深度创作。</p>
+<h3>5. 多套主题</h3>
+<p>视觉偏好因人而异，MarkText 内置多套主题：</p>
+<ul>
+<li><strong>Cadmium Light</strong> — 明亮清爽，日间使用舒适</li>
+<li><strong>Material Dark</strong> — 深色护眼，夜间写作首选</li>
+<li>其他多个内置主题可在设置中切换</li>
+</ul>
+<h3>6. 导出为 HTML 和 PDF</h3>
+<p>写完的文档可以一键导出为：</p>
+<ul>
+<li><strong>HTML</strong>：保留所有格式，适合网页发布</li>
+<li><strong>PDF</strong>：保留排版布局，适合打印或分发</li>
+</ul>
+<p>这对于需要输出正式文档的场景非常实用，无需借助第三方工具。</p>
+<h3>7. 从剪贴板直接粘贴图片</h3>
+<p>截图后直接 <code class="notranslate">Ctrl+V</code> 粘贴到编辑器，MarkText 会自动将图片根据配置保存到本地或上传到图床并插入引用链接，省去了手动保存图片文件再引用的繁琐步骤。</p>
+<p>图片保存策略有三种</p>
+<ul>
+<li>
+<p>上传到云端（picgo配置图床）</p>
+</li>
+<li>
+<p>辅助到文件夹</p>
+</li>
+<li>
+<p>使用绝对路径</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/16ff75864c41dd4b6d0e473a13b89b5216f3de9caa921d8cc8849a294875f380/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f63343339303033653065613939643031356138623437356234323331633234342e706e67"><img src="https://camo.githubusercontent.com/16ff75864c41dd4b6d0e473a13b89b5216f3de9caa921d8cc8849a294875f380/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f63343339303033653065613939643031356138623437356234323331633234342e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/20/c439003e0ea99d015a8b475b4231c244.png" style="max-width: 100%;"></a></p>
+<p>我是通过<code class="notranslate">picgo</code> 配置的<code class="notranslate">chevereto</code> 图床使用的，前置条件，本地有<code class="notranslate">npm</code>环境，以下是配置步骤</p>
+<ol>
+<li>选择 粘贴或拖拽图片到 MarkText 后的默认行为 为 <code class="notranslate">上传到云端</code>，图片上传器选择 <code class="notranslate">PicGo</code></li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/8732b517aa1e664de758f168bb4d0901a04a8b4b6d0c21945156f5ace0ac92d2/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f34353064386163396464636262323735633733656263343238623634316364312e706e67"><img src="https://camo.githubusercontent.com/8732b517aa1e664de758f168bb4d0901a04a8b4b6d0c21945156f5ace0ac92d2/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f34353064386163396464636262323735633733656263343238623634316364312e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/20/450d8ac9ddcbb275c73ebc428b641cd1.png" style="max-width: 100%;"></a></p>
+<ol start="2">
+<li>安装 <code class="notranslate">picgo</code></li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">npm install picgo -g</pre></div>
+<ol start="3">
+<li>安装 <code class="notranslate">Chevereto</code> 插件</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">picgo install cheveretov4</pre></div>
+<ol start="4">
+<li>配置上传信息</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">picgo <span class="pl-c1">set</span> uploader</pre></div>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/345f14067fe17461dc24ba7a394ad5ff6c9e94eaf2c5e97903e0a00a619c3e59/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f32636163616337386438313339393230303464353634353930613566623932662e706e67"><img src="https://camo.githubusercontent.com/345f14067fe17461dc24ba7a394ad5ff6c9e94eaf2c5e97903e0a00a619c3e59/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f32636163616337386438313339393230303464353634353930613566623932662e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/20/2cacac78d813992004d564590a5fb92f.png" style="max-width: 100%;"></a></p>
+<p>选择<code class="notranslate">chevereto4</code></p>
+<p>配置上传url 和api key</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/2080015c02e3c81d0875e3dd44d001581b7285c05fe47f6fea63517bf5b44b20/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f33643838306464373435613064333230646633613938343564383938396233642e706e67"><img src="https://camo.githubusercontent.com/2080015c02e3c81d0875e3dd44d001581b7285c05fe47f6fea63517bf5b44b20/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f33643838306464373435613064333230646633613938343564383938396233642e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/20/3d880dd745a0d320df3a9845d8989b3d.png" style="max-width: 100%;"></a></p>
+<ol start="5">
+<li>测试上传</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">picgo upload /path/to/image.png</pre></div>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/dee2a7c37605842e722596b016378ab578ece7c5701a806198b4c6752996c775/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f39303637376431326533643237613364326565383433386532613264613934392e706e67"><img src="https://camo.githubusercontent.com/dee2a7c37605842e722596b016378ab578ece7c5701a806198b4c6752996c775/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f39303637376431326533643237613364326565383433386532613264613934392e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/20/90677d12e3d27a3d2ee8438e2a2da949.png" style="max-width: 100%;"></a></p>
+<ol start="6">
+<li>截图后直接 <code class="notranslate">Ctrl+V</code> 粘贴到编辑器即可自动上传到图床</li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/90f2f9099c4805c2dae806f1f43f0cd47fc28397fa651d44b6ad570fe3efc99a/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f32303065323734663664353932666432663733663866376266343037386431632e706e67"><img src="https://camo.githubusercontent.com/90f2f9099c4805c2dae806f1f43f0cd47fc28397fa651d44b6ad570fe3efc99a/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f32303065323734663664353932666432663733663866376266343037386431632e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/20/200e274f6d592fd2f73f8f7bf4078d1c.png" style="max-width: 100%;"></a></p>
+<h2>适合谁使用？</h2>
+<ul>
+<li><strong>技术博客作者</strong>：日常写 Markdown 文章，需要简洁高效的工具</li>
+<li><strong>开发者</strong>：写 README、文档、技术笔记</li>
+<li><strong>学生 / 研究者</strong>：需要 KaTeX 数学公式支持</li>
+<li><strong>Typora 用户</strong>：不想为编辑器付费，又需要同等体验的平替方案</li>
+<li><strong>开源爱好者</strong>：认同 MIT 精神，希望使用并支持自由软件</li>
+</ul>
+<h2>总结</h2>
+<p>MarkText 是一款 <strong>被严重低估</strong> 的编辑器。它没有 Obsidian 的插件生态，也没有 Notion 的协作能力，但它做到了很多编辑器没做好的事：<strong>把写 Markdown 这件事本身做到极致</strong>。</p>
+<p>干净的界面、流畅的实时预览、体贴的三种编辑模式、完整的规范支持，再加上 MIT 开源免费——如果你是一个纯粹的写作者，MarkText 就是你需要的那个工具。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
