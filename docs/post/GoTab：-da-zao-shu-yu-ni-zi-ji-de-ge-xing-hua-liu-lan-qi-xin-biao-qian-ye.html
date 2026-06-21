@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+今天，刷github 的时候发现了一款开源项目——**GoTab 新标签页**，一款免费、清爽、功能齐全且可配置项极多的个性化新标签页解决方案。">
+<meta property="og:title" content="GoTab：打造属于你自己的个性化浏览器新标签页">
+<meta property="og:description" content="
+今天，刷github 的时候发现了一款开源项目——**GoTab 新标签页**，一款免费、清爽、功能齐全且可配置项极多的个性化新标签页解决方案。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/GoTab%EF%BC%9A-da-zao-shu-yu-ni-zi-ji-de-ge-xing-hua-liu-lan-qi-xin-biao-qian-ye.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>GoTab：打造属于你自己的个性化浏览器新标签页</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">GoTab：打造属于你自己的个性化浏览器新标签页</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/69" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>今天，刷github 的时候发现了一款开源项目——<strong>GoTab 新标签页</strong>，一款免费、清爽、功能齐全且可配置项极多的个性化新标签页解决方案。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/fae3745f89969a5e334a6e5ab8eb51acbf8b3a05ebd96d92d6f2924e94982c02/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f65333938353237303037623963643061313830663737623137346430336639302e706e67"><img src="https://camo.githubusercontent.com/fae3745f89969a5e334a6e5ab8eb51acbf8b3a05ebd96d92d6f2924e94982c02/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f65333938353237303037623963643061313830663737623137346430336639302e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/21/e398527007b9cd0a180f77b174d03f90.png" style="max-width: 100%;"></a></p>
+<h2>什么是 GoTab？</h2>
+<p>GoTab 是 funtabs 新标签页的重构版本。开发者在早期自学阶段构建了第一版，随着技术成长，尤其是接触到 Redux 等更先进的状态管理工具后，决定对项目进行彻底重构。这次重构不仅让代码结构更加清晰，还引入了更强大的后端支持。</p>
+<p>GoTab 采用 <strong>Vite</strong> 作为前端构建工具，确保极快的开发与加载体验；后端则由 <strong>Golang</strong> 编写，最终编译为一个轻量的二进制文件，部署极其简单。</p>
+<p><strong>项目地址</strong>：<a href="https://github.com/dengxiwang/gotab-personal">https://github.com/dengxiwang/gotab-personal</a><br>
+<strong>官网</strong>：<a href="https://www.gotab.cn/" rel="nofollow">https://www.gotab.cn/</a></p>
+<p><strong>Demo 地址</strong> ：<a href="https://test.gotab.cn" rel="nofollow">https://test.gotab.cn</a><br>
+用户名：<code class="notranslate">admin</code><br>
+密码：<code class="notranslate">123456</code></p>
+<p>该项目目前在github 有 <code class="notranslate">277</code> star</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3df5025680f3ffb82e93142d8e3d5137f823268539898ec39fd9a85cf5d3f2b4/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f63373466633265393731613333626235326132386363646666643735386164652e706e67"><img src="https://camo.githubusercontent.com/3df5025680f3ffb82e93142d8e3d5137f823268539898ec39fd9a85cf5d3f2b4/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f63373466633265393731613333626235326132386363646666643735386164652e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/21/c74fc2e971a33bb52a28ccdffd758ade.png" style="max-width: 100%;"></a></p>
+<h2>为什么选择 GoTab？</h2>
+<h3>1. 功能强大，应有尽有</h3>
+<p>GoTab 不仅仅是一个新标签页，更是一个完整的个人工作台。它提供了众多精美的小组件、聚合搜索、浏览器书签管理、卡片布局、双壁纸模式等，支持超高自定义程度，满足你的每一项需求。</p>
+<h3>2. 多端数据即时同步</h3>
+<p>支持多设备登录和数据即时同步，还内置了“时光机”功能，数据安全不丢失。即便离线，也能通过本地备份正常使用。</p>
+<h3>3. 极致个性化</h3>
+<p>支持标准与简约两种壁纸模式，动态切换随心所欲。卡片可自由拖拽排序，支持内网链接、滚动字幕等丰富样式，真正实现“我的主页我做主”。</p>
+<h3>4. 资源丰富</h3>
+<p>内置精心整理的海量优质网站资源库，支持用户提交分享，让发现好网站变得更容易。</p>
+<h3>5. 开源免费，私有化部署</h3>
+<p>GoTab 完全开源，你可以将它部署在自己的 NAS、云服务器或个人设备上，数据完全自主掌控，无需担心隐私泄露。</p>
+<h2>Docker 部署（推荐）</h2>
+<h3>准备工作</h3>
+<ul>
+<li>有Docker环境的服务器</li>
+<li>mysql 数据库（创建好数据库gotab）</li>
+</ul>
+<h3>创建docker-compose.yml</h3>
+<p>创建一个部署目录<code class="notranslate">gotab</code>,创建<code class="notranslate">docker-compose.yml</code>,内容如下：</p>
+<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">services</span>:
+  <span class="pl-ent">gotab-server</span>:
+    <span class="pl-ent">image</span>: <span class="pl-s">doxwant/gotab:latest</span>
+    <span class="pl-ent">container_name</span>: <span class="pl-s">gotab-server</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">always</span>
+    <span class="pl-ent">ports</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>18080:8080<span class="pl-pds">"</span></span>
+    <span class="pl-ent">environment</span>:
+      - <span class="pl-s">SERVER_PORT=8080</span>
+    <span class="pl-ent">volumes</span>:
+      - <span class="pl-s">./uploads:/app/uploads</span>
+      - <span class="pl-s">./sourceStore:/app/sourceStore</span>
+      - <span class="pl-s">./config.toml:/app/config.toml</span></pre></div>
+<h3>启动容器</h3>
+<p>在部署目录下创建配置文件<code class="notranslate">config.toml</code>,只需创建文件即可，创建完成后使用以下命令启动容器：</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker-compose up -d</pre></div>
+<p>启动之后查看日志 <code class="notranslate">docker-compose logs -f </code>,如下则服务启动正常</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e7e9fdcee169cfe262bd46ff521e5ef6ef69248500759d2de768fdbbf7edb1de/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f63653436316334363732636631663338626435323936386365383430666337352e706e67"><img src="https://camo.githubusercontent.com/e7e9fdcee169cfe262bd46ff521e5ef6ef69248500759d2de768fdbbf7edb1de/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f63653436316334363732636631663338626435323936386365383430666337352e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/21/ce461c4672cf1f38bd52968ce840fc75.png" style="max-width: 100%;"></a></p>
+<h3>完成配置</h3>
+<p>在浏览器中打开部署的服务地址,在页面上完成配置：</p>
+<ul>
+<li>网站基本信息配置</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/746c2ab81b03b82b44d44c4541fc7812e1a90e1cf2825fda11604468938de9b9/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f37643037303938633262353963666639306461613131303264663238346434382e706e67"><img src="https://camo.githubusercontent.com/746c2ab81b03b82b44d44c4541fc7812e1a90e1cf2825fda11604468938de9b9/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f37643037303938633262353963666639306461613131303264663238346434382e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/21/7d07098c2b59cff90daa1102df284d48.png" style="max-width: 100%;"></a></p>
+<ul>
+<li>mysql数据库配置</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/83b1b8d0820761974e72a27ba5429ba1ccc29ba25153097475e372a2e5eb4589/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f36396136626136626162306634623331646564363665363834636134666639342e706e67"><img src="https://camo.githubusercontent.com/83b1b8d0820761974e72a27ba5429ba1ccc29ba25153097475e372a2e5eb4589/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f36396136626136626162306634623331646564363665363834636134666639342e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/21/69a6ba6bab0f4b31ded66e684ca4ff94.png" style="max-width: 100%;"></a></p>
+<ul>
+<li>邮件服务配置</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/9485b205c084e31f8a83edfd1d24e31bccebaba8d510c32a614a40f51d99a551/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f32363633363931643166353732373434643837336239363564333035333463332e706e67"><img src="https://camo.githubusercontent.com/9485b205c084e31f8a83edfd1d24e31bccebaba8d510c32a614a40f51d99a551/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f32363633363931643166353732373434643837336239363564333035333463332e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/21/2663691d1f572744d873b965d30534c3.png" style="max-width: 100%;"></a></p>
+<p>到此，配置就完成了</p>
+<h3>使用</h3>
+<ul>
+<li>登录</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/68b6e973fd97a3e9674c5d9f43a71d3b990578ce56dfe0f7ee43d959df29f1f1/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f34373661396138306236333036383131363561656537363762316230633736312e706e67"><img src="https://camo.githubusercontent.com/68b6e973fd97a3e9674c5d9f43a71d3b990578ce56dfe0f7ee43d959df29f1f1/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f34373661396138306236333036383131363561656537363762316230633736312e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/21/476a9a80b630681165aee767b1b0c761.png" style="max-width: 100%;"></a></p>
+<ul>
+<li>壁纸配置</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/02a54e80459dbb4272823cc4e1a71498e1b2b0a6f82d7ca1f515bacd158c3f4e/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f30316531373332326562393366616433643739643862633264323237313137642e706e67"><img src="https://camo.githubusercontent.com/02a54e80459dbb4272823cc4e1a71498e1b2b0a6f82d7ca1f515bacd158c3f4e/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f30316531373332326562393366616433643739643862633264323237313137642e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/21/01e17322eb93fad3d79d8bc2d227117d.png" style="max-width: 100%;"></a></p>
+<ul>
+<li>管理后台配置</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b3fe40544674bf3c1819a57fd5a532384cf69e87a69fc981ae5bd4ff7e1e2678/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f36336332653461643661663466653139376234613937356439636631313031612e706e67"><img src="https://camo.githubusercontent.com/b3fe40544674bf3c1819a57fd5a532384cf69e87a69fc981ae5bd4ff7e1e2678/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f36336332653461643661663466653139376234613937356439636631313031612e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/21/63c2e4ad6af4fe197b4a975d9cf1101a.png" style="max-width: 100%;"></a></p>
+<ul>
+<li>组件使用</li>
+</ul>
+<p>作者提供的组件相对比较丰富</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/890ff7e25c6e37f0aa02d4bb374ef6b09391b56d5831e9469ac7553dc0cf459f/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f32343266626461636234616566666134346531393564616564396265333732362e706e67"><img src="https://camo.githubusercontent.com/890ff7e25c6e37f0aa02d4bb374ef6b09391b56d5831e9469ac7553dc0cf459f/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32312f32343266626461636234616566666134346531393564616564396265333732362e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/21/242fbdacb4aeffa44e195daed9be3726.png" style="max-width: 100%;"></a></p>
+<h2>写在最后</h2>
+<p>GoTab 让每一次打开浏览器都成为一种享受。无论你是追求极致效率的工具控，还是喜欢折腾个性化的玩家，GoTab 都值得一试。赶快部署属于自己的新标签页吧！</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
