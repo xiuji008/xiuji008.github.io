@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+> 当静态的 README 文件拥有了动态的打字效果，你的 README 主页便有了生命力。">
+<meta property="og:title" content="让README “活”起来：Readme Typing SVG 介绍与本地化改造实践">
+<meta property="og:description" content="
+
+> 当静态的 README 文件拥有了动态的打字效果，你的 README 主页便有了生命力。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/rang-README%20%E2%80%9C-huo-%E2%80%9D-qi-lai-%EF%BC%9AReadme%20Typing%20SVG%20-jie-shao-yu-ben-di-hua-gai-zao-shi-jian.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>让README “活”起来：Readme Typing SVG 介绍与本地化改造实践</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">让README “活”起来：Readme Typing SVG 介绍与本地化改造实践</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/77" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><blockquote>
+<p>当静态的 README 文件拥有了动态的打字效果，你的 README 主页便有了生命力。</p>
+</blockquote>
+<p>在一些开源项目上，README 文件是项目的门面，也是开发者展示个人品牌的重要窗口。一个好的 README 不仅能清晰传达项目信息，更能给访客留下深刻印象。<code class="notranslate">readme-typing-svg</code> 正是这样一个能让你 README “活”起来的开源工具——它通过动态生成 SVG 图片，模拟出打字机逐字打印的效果，让原本静态的文字变得生动有趣。</p>
+<p>本文将首先介绍 <code class="notranslate">readme-typing-svg</code> 的功能与用法，然后重点分享我们对该项目进行的一系列本地化改造，使其适合中文用户和本地部署场景。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/77c76514e110f7042fb29e2da0a85c7f212331ddaffb6ae0cd3a3b646c32f50a/687474703a2f2f726561646d657376672e7869756a692e6d796e61746170702e63633f666f6e743d466972612b436f6465266475726174696f6e3d333030302670617573653d323030302663656e7465723d74727565267643656e7465723d747275652677696474683d343335266c696e65733d253542253542343333366637253544253544253542253542666f6e74253344526f636b6e526f6c6c2b4f6e6525354425354425354225354273697a652533443330253544253544254534254246254145253542253542333661646637253544253544253542253542666f6e74253344526f636b6e526f6c6c2b4f6e6525354425354425354225354273697a65253344343025354425354425354225354277656967687425334437303025354425354425453525423725423125354225354231396430313625354425354425354225354273697a652533443530253544253544786a"><img src="https://camo.githubusercontent.com/77c76514e110f7042fb29e2da0a85c7f212331ddaffb6ae0cd3a3b646c32f50a/687474703a2f2f726561646d657376672e7869756a692e6d796e61746170702e63633f666f6e743d466972612b436f6465266475726174696f6e3d333030302670617573653d323030302663656e7465723d74727565267643656e7465723d747275652677696474683d343335266c696e65733d253542253542343333366637253544253544253542253542666f6e74253344526f636b6e526f6c6c2b4f6e6525354425354425354225354273697a652533443330253544253544254534254246254145253542253542333661646637253544253544253542253542666f6e74253344526f636b6e526f6c6c2b4f6e6525354425354425354225354273697a65253344343025354425354425354225354277656967687425334437303025354425354425453525423725423125354225354231396430313625354425354425354225354273697a652533443530253544253544786a" alt="" data-canonical-src="http://readmesvg.xiuji.mynatapp.cc?font=Fira+Code&amp;duration=3000&amp;pause=2000&amp;center=true&amp;vCenter=true&amp;width=435&amp;lines=%5B%5B4336f7%5D%5D%5B%5Bfont%3DRocknRoll+One%5D%5D%5B%5Bsize%3D30%5D%5D%E4%BF%AE%5B%5B36adf7%5D%5D%5B%5Bfont%3DRocknRoll+One%5D%5D%5B%5Bsize%3D40%5D%5D%5B%5Bweight%3D700%5D%5D%E5%B7%B1%5B%5B19d016%5D%5D%5B%5Bsize%3D50%5D%5Dxj" style="max-width: 100%;"></a></p>
+<h2>什么是 Readme Typing SVG？</h2>
+<p><code class="notranslate">readme-typing-svg</code> 是一个基于 PHP 开发的 Web 服务，它能够根据 URL 参数动态生成带有打字动画效果的 SVG 图片。你只需要在链接中定义好要显示的文字行、字体、颜色等参数，服务就会返回一个动态的 SVG 图片，非常适合嵌入 README、项目仓库介绍或个人博客中。</p>
+<p>原项目github地址：<a href="https://github.com/DenverCoder1/readme-typing-svg">https://github.com/DenverCoder1/readme-typing-svg</a></p>
+<p>原项目demo地址：<a href="https://readme-typing-svg.demolab.com/demo/" rel="nofollow">https://readme-typing-svg.demolab.com/demo/</a></p>
+<p>该项目目前在github上已有<code class="notranslate">9k</code> star</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e24d563c227c012d7196e583848cb6eac0c03685d41dc962563a916a877e735a/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30372f31302f63306336653534333863333265356562643130366438646365373932356364632e706e67"><img src="https://camo.githubusercontent.com/e24d563c227c012d7196e583848cb6eac0c03685d41dc962563a916a877e735a/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30372f31302f63306336653534333863333265356562643130366438646365373932356364632e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/07/10/c0c6e5438c32e5ebd106d8dce7925cdc.png" style="max-width: 100%;"></a></p>
+<h3>快速上手</h3>
+<p>使用这个工具非常简单，只需两步：</p>
+<ol>
+<li><strong>构建链接</strong>：在 <code class="notranslate">?lines=</code> 参数后填入你的文字内容，用 <code class="notranslate">;</code> 分隔不同行，用 <code class="notranslate">+</code> 或 <code class="notranslate">%20</code> 表示空格。</li>
+<li><strong>嵌入 README</strong>：将构建好的链接以图片形式嵌入到你的 Markdown 文件中。</li>
+</ol>
+<p>例如，下面的代码会生成一个包含两行文字的动态 SVG：</p>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">[</span><span class="pl-s">![</span>Typing SVG<span class="pl-s">]</span><span class="pl-s">(</span><span class="pl-corl">https://readme-typing-svg.demolab.com/?lines=第一行文字;第二行文字</span><span class="pl-s">)]</span><span class="pl-s">(</span><span class="pl-corl">https://git.io/typing-svg</span><span class="pl-s">)</span></pre></div>
+<h3>丰富的配置选项</h3>
+<p><code class="notranslate">readme-typing-svg</code> 提供了丰富的参数，让你能精细控制 SVG 的样式和行为。</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">说明</th>
+<th align="left">类型</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code class="notranslate">lines</code></td>
+<td align="left">要显示的文字，用 <code class="notranslate">;</code> 分隔行，<code class="notranslate">+</code> 代表空格</td>
+<td align="left">string</td>
+<td align="left"><code class="notranslate">Hello+World;你好+世界</code></td>
+</tr>
+<tr>
+<td align="left"><code class="notranslate">font</code></td>
+<td align="left">字体系列（默认 <code class="notranslate">monospace</code>）</td>
+<td align="left">string</td>
+<td align="left"><code class="notranslate">Fira+Code</code></td>
+</tr>
+<tr>
+<td align="left"><code class="notranslate">color</code></td>
+<td align="left">文字颜色（默认 <code class="notranslate">36BCF7</code>）</td>
+<td align="left">string</td>
+<td align="left"><code class="notranslate">22C55E</code></td>
+</tr>
+<tr>
+<td align="left"><code class="notranslate">background</code></td>
+<td align="left">背景颜色（默认 <code class="notranslate">00000000</code> 透明）</td>
+<td align="left">string</td>
+<td align="left"><code class="notranslate">0D1117</code></td>
+</tr>
+<tr>
+<td align="left"><code class="notranslate">center</code></td>
+<td align="left">是否水平居中（默认 <code class="notranslate">false</code>）</td>
+<td align="left">boolean</td>
+<td align="left"><code class="notranslate">true</code> 或 <code class="notranslate">false</code></td>
+</tr>
+<tr>
+<td align="left"><code class="notranslate">vCenter</code></td>
+<td align="left">是否垂直居中（默认 <code class="notranslate">false</code>）</td>
+<td align="left">boolean</td>
+<td align="left"><code class="notranslate">true</code> 或 <code class="notranslate">false</code></td>
+</tr>
+<tr>
+<td align="left"><code class="notranslate">duration</code></td>
+<td align="left">单行打字持续时间（毫秒，默认 <code class="notranslate">5000</code>）</td>
+<td align="left">integer</td>
+<td align="left"><code class="notranslate">4000</code></td>
+</tr>
+<tr>
+<td align="left"><code class="notranslate">pause</code></td>
+<td align="left">行间暂停时长（毫秒，默认 <code class="notranslate">0</code>）</td>
+<td align="left">integer</td>
+<td align="left"><code class="notranslate">1000</code></td>
+</tr>
+<tr>
+<td align="left"><code class="notranslate">width</code></td>
+<td align="left">SVG 宽度（像素，默认 <code class="notranslate">400</code>）</td>
+<td align="left">integer</td>
+<td align="left"><code class="notranslate">780</code></td>
+</tr>
+<tr>
+<td align="left"><code class="notranslate">letterSpacing</code></td>
+<td align="left">字母间距（默认 <code class="notranslate">normal</code>）</td>
+<td align="left">string</td>
+<td align="left"><code class="notranslate">2px</code></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h2>为什么需要本地化改造？</h2>
+<p>原版 <code class="notranslate">readme-typing-svg</code> 功能强大，但直接在国内使用或进行深度定制时，会遇到几个痛点：</p>
+<ol>
+<li>
+<p><strong>中文字体支持有限</strong>：原版默认集成的 Google Fonts 列表对中文字体支持不足，导致中文字体要么无法渲染，要么回退到系统默认字体，效果不尽如人意。</p>
+</li>
+<li>
+<p><strong>Google Fonts 访问不畅</strong>：由于网络原因，在国内直接访问 <code class="notranslate">fonts.googleapis.com</code> 获取字体可能缓慢或失败，影响 SVG 的生成和展示。</p>
+</li>
+<li>
+<p><strong>缺少便捷的协作工具</strong>：对于设计或内容协作场景，缺乏直观的可视化编辑和快速预览功能。</p>
+</li>
+<li>
+<p><strong>字体管理不便</strong>：原版字体文件与配置分散，且未考虑 Docker 等容器化部署的持久化需求。</p>
+</li>
+</ol>
+<p>针对上述问题，我们对原项目进行了本地化改造，让它在国内环境使用更顺畅，功能更强大。</p>
+<p>改造后的github地址： <a href="https://github.com/xiuji008/readme-typing-svg">https://github.com/xiuji008/readme-typing-svg</a></p>
+<h2>如何部署与使用</h2>
+<p>改造后的项目提供了Docker镜像<code class="notranslate">registry.cn-hangzhou.aliyuncs.com/xj_lew/readme-typing-svg:1.0</code>，家人们可以使用Docker部署，以下是部署步骤。</p>
+<ol>
+<li>创建<code class="notranslate">docker-compose.yml</code> 文件</li>
+</ol>
+<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">services</span>:
+  <span class="pl-ent">readme-typing-svg</span>:
+    <span class="pl-ent">image</span>: <span class="pl-s">registry.cn-hangzhou.aliyuncs.com/xj_lew/readme-typing-svg:1.0</span>
+    <span class="pl-ent">container_name</span>: <span class="pl-s">readme-typing-svg</span>
+    <span class="pl-ent">ports</span>:
+      - <span class="pl-s"><span class="pl-pds">"</span>6000:80<span class="pl-pds">"</span></span>
+    <span class="pl-ent">environment</span>:
+      <span class="pl-c"><span class="pl-c">#</span> 对应 Dockerfile 中的 $PORT，Apache 监听的容器内端口</span>
+      <span class="pl-ent">PORT</span>: <span class="pl-s"><span class="pl-pds">"</span>80<span class="pl-pds">"</span></span>
+    <span class="pl-ent">volumes</span>:
+      <span class="pl-c"><span class="pl-c">#</span> 字体目录持久化（fonts.json + 上传/内置 ttf）</span>
+      - <span class="pl-s">./fonts:/var/www/html/src/fonts</span>
+    <span class="pl-ent">restart</span>: <span class="pl-s">unless-stopped</span></pre></div>
+<ol start="2">
+<li>创建挂载目录<code class="notranslate">fonts</code>及配置<code class="notranslate">json</code></li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate"> <span class="pl-c"><span class="pl-c">#</span> 创建文件夹</span>
+mkdir fonts
+ <span class="pl-c"><span class="pl-c">#</span> 赋权限</span>
+chmod -R 777 fonts
+<span class="pl-c1">cd</span> fonts
+ <span class="pl-c"><span class="pl-c">#</span> 添加配置数据</span>
+vim fonts.json</pre></div>
+<p><code class="notranslate">fonts.json</code> 内容如下：</p>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+    <span class="pl-ent">"google"</span>: [
+        <span class="pl-s"><span class="pl-pds">"</span>Roboto<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Open Sans<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Lato<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Montserrat<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Oswald<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Source Sans 3<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Raleway<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>PT Sans<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Noto Sans<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Ubuntu<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Poppins<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Nunito<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Work Sans<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Rubik<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Quicksand<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Karla<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Merriweather<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Playfair Display<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Lora<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Crimson Text<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Lobster<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Pacifico<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Dancing Script<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Caveat<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Indie Flower<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Comic Neue<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Bangers<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Anton<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Bebas Neue<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Abril Fatface<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Permanent Marker<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Press Start 2P<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Fira Code<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>JetBrains Mono<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Source Code Pro<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Courier Prime<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Cinzel<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Archivo Black<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Orbitron<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Teko<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Zilla Slab<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Creepster<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Monoton<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>VT323<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Noto Sans SC<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Noto Serif SC<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Ma Shan Zheng<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>ZCOOL XiaoWei<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>ZCOOL KuaiLe<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Liu Jian Mao Cao<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Long Cang<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Zhi Mang Xing<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>ZCOOL QingKe HuangYou<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Noto Sans TC<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Noto Serif TC<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Noto Sans HK<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Noto Serif HK<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>LXGW WenKai TC<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>LXGW WenKai Mono TC<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Klee One<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Zen Maru Gothic<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Zen Old Mincho<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Zen Kaku Gothic New<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Zen Kaku Gothic Antique<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>IBM Plex Sans JP<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Iansui<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Yusei Magic<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Dela Gothic One<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Huninn<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Shippori Mincho<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Shippori Mincho B1<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Sawarabi Mincho<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Sawarabi Gothic<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Noto Sans JP<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Noto Serif JP<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Yuji Syuku<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Yuji Boku<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>RocknRoll One<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Reggae One<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>M PLUS Rounded 1c<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>M PLUS 1p<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Kosugi<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>Kosugi Maru<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>BIZ UDPGothic<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>BIZ UDPMincho<span class="pl-pds">"</span></span>
+    ],
+    <span class="pl-ent">"local"</span>: {
+    },
+    <span class="pl-ent">"css_base"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://fonts.googleapis.cn<span class="pl-pds">"</span></span>
+}</pre></div>
+<ol start="3">
+<li>启动容器</li>
+</ol>
+<div class="highlight highlight-source-shell"><pre class="notranslate">docker-compose up -d </pre></div>
+<ol start="4">
+<li>浏览器中使用项目</li>
+</ol>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/a7e6932ef256c1f51455b683d2aba8959b1e79b3015880fe3a808cc257ba2b1d/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30372f31302f62316663363264343935323135653863643532653761316437653463633938302e706e67"><img src="https://camo.githubusercontent.com/a7e6932ef256c1f51455b683d2aba8959b1e79b3015880fe3a808cc257ba2b1d/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30372f31302f62316663363264343935323135653863643532653761316437653463633938302e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/07/10/b1fc62d495215e8cd52e7a1d7e4cc980.png" style="max-width: 100%;"></a></p>
+<h2>总结</h2>
+<p><code class="notranslate">readme-typing-svg</code> 是一个极具创意的开源项目，为静态的 README 注入了动态的灵魂。我们基于它进行的本地化改造，是针对<strong>中文用户的实际痛点</strong>（字体、网络）和<strong>更高效的创作场景</strong>（可视化编辑、自包含导出、字体管理）进行了深度优化。</p>
+<p>改造后的项目不仅在国内环境下使用更流畅，而且功能更强大、易用性更高。无论你是想在 GitHub 上打造一个令人眼前一亮的个人主页，还是为你的开源项目增添一份专业与趣味，都值得一试。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
+
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
