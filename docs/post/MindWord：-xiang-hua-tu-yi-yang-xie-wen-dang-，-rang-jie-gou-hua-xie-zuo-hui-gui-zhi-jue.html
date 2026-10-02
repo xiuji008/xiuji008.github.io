@@ -17,7 +17,7 @@
 <meta property="og:url" content="https://xiuji008.github.io/post/MindWord%EF%BC%9A-xiang-hua-tu-yi-yang-xie-wen-dang-%EF%BC%8C-rang-jie-gou-hua-xie-zuo-hui-gui-zhi-jue.html">
 <meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
 <title>MindWord：像画图一样写文档，让结构化写作回归直觉</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 <meta name="referrer" content="no-referrer">
 
 </head>
@@ -262,20 +262,23 @@ http {
 </code></pre>
 <p><strong>3. 构建镜像</strong></p>
 <p>在Dockerfile同级目录下执行一下命令构建镜像</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker build -t xj/mindwork:1.0   <span class="pl-c1">.</span></pre></div>
+<pre lang="shell" class="notranslate"><code class="notranslate">docker build -t xj/mindwork:1.0   .
+</code></pre>
 <p><strong>4. 创建docker-compose.yml文件并启动容器</strong></p>
 <p>镜像构建成功后，创建<code class="notranslate">docker-compose.yml</code>文件,内容如下：</p>
-<div class="highlight highlight-source-yaml"><pre class="notranslate"><span class="pl-ent">services</span>:
-  <span class="pl-ent">mindword</span>:
-  <span class="pl-c"><span class="pl-c">#</span> 此镜像是我构建好之后推送到阿里云镜像仓库的，不想构建镜像的家人们可以直接使用</span>
-    <span class="pl-ent">image</span>: <span class="pl-s">registry.cn-hangzhou.aliyuncs.com/xjpublic/mindword:1.0</span>
-    <span class="pl-ent">container_name</span>: <span class="pl-s">mindword-app</span>
-    <span class="pl-ent">ports</span>:
-      - <span class="pl-s"><span class="pl-pds">"</span>38080:80<span class="pl-pds">"</span></span>
-    <span class="pl-ent">restart</span>: <span class="pl-s">unless-stopped</span></pre></div>
+<pre lang="yaml" class="notranslate"><code class="notranslate">services:
+  mindword:
+  # 此镜像是我构建好之后推送到阿里云镜像仓库的，不想构建镜像的家人们可以直接使用
+    image: registry.cn-hangzhou.aliyuncs.com/xjpublic/mindword:1.0
+    container_name: mindword-app
+    ports:
+      - "38080:80"
+    restart: unless-stopped
+</code></pre>
 <p><strong>注：<code class="notranslate">registry.cn-hangzhou.aliyuncs.com/xjpublic/mindword:1.0</code>镜像是我构建好之后推送到阿里云镜像仓库的，不想构建镜像的家人们可以跳过构建步骤直接使用</strong></p>
 <p>使用以下命令启动容器</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">docker-compose up -d</pre></div>
+<pre lang="shell" class="notranslate"><code class="notranslate">docker-compose up -d
+</code></pre>
 <p><strong>5. 使用</strong></p>
 <p>服务启动后直接访问浏览器使用<code class="notranslate">http://192.168.31.195:38080/app.html</code></p>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/259b7ec196ca9b1ea264e0f607ecb0e086a097dbdfdd90fafac658521050ed7d/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32302f32383763333835373461306263633561313661613032663038333366646634312e706e67"><img src="https://camo.githubusercontent.com/259b7ec196ca9b1ea264e0f607ecb0e086a097dbdfdd90fafac658521050ed7d/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30352f32302f32383763333835373461306263633561313661613032663038333366646634312e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/05/20/287c38574a0bcc5a16aa02f0833fdf41.png" style="max-width: 100%;"></a></p>
