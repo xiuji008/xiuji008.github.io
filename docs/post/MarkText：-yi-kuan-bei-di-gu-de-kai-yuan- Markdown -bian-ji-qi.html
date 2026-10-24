@@ -21,7 +21,7 @@
 <meta property="og:url" content="https://xiuji008.github.io/post/MarkText%EF%BC%9A-yi-kuan-bei-di-gu-de-kai-yuan-%20Markdown%20-bian-ji-qi.html">
 <meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
 <title>MarkText：一款被低估的开源 Markdown 编辑器</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 <meta name="referrer" content="no-referrer">
 
 </head>
@@ -109,11 +109,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>MarkText 支持 Linux x64、macOS x64/arm64、Windows x64/arm64，覆盖主流设备架构。</p>
 <h3>Windows（需要 Windows 10 / 11）</h3>
 <p><strong>方式一：包管理器安装（推荐）</strong></p>
-<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 使用 Winget（Windows 11 内置）</span>
+<pre lang="bash" class="notranslate"><code class="notranslate"># 使用 Winget（Windows 11 内置）
 winget install marktext
 
-<span class="pl-c"><span class="pl-c">#</span> 使用 Chocolatey</span>
-choco install marktext</pre></div>
+# 使用 Chocolatey
+choco install marktext
+</code></pre>
 <p><strong>方式二：手动安装</strong></p>
 <p>前往 <a href="https://github.com/marktext/marktext/releases/latest">Release 页面</a> 下载 <code class="notranslate">marktext-win-x64-0.19.0-setup.exe</code>，运行安装向导，支持单用户安装或全机安装。</p>
 <p>安装之后默认是英文页面，设置中文步骤如下：</p>
@@ -213,15 +214,18 @@ choco install marktext</pre></div>
 <ol start="2">
 <li>安装 <code class="notranslate">picgo</code></li>
 </ol>
-<div class="highlight highlight-source-shell"><pre class="notranslate">npm install picgo -g</pre></div>
+<pre lang="shell" class="notranslate"><code class="notranslate">npm install picgo -g
+</code></pre>
 <ol start="3">
 <li>安装 <code class="notranslate">Chevereto</code> 插件</li>
 </ol>
-<div class="highlight highlight-source-shell"><pre class="notranslate">picgo install cheveretov4</pre></div>
+<pre lang="shell" class="notranslate"><code class="notranslate">picgo install cheveretov4
+</code></pre>
 <ol start="4">
 <li>配置上传信息</li>
 </ol>
-<div class="highlight highlight-source-shell"><pre class="notranslate">picgo <span class="pl-c1">set</span> uploader</pre></div>
+<pre lang="shell" class="notranslate"><code class="notranslate">picgo set uploader
+</code></pre>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/345f14067fe17461dc24ba7a394ad5ff6c9e94eaf2c5e97903e0a00a619c3e59/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f32636163616337386438313339393230303464353634353930613566623932662e706e67"><img src="https://camo.githubusercontent.com/345f14067fe17461dc24ba7a394ad5ff6c9e94eaf2c5e97903e0a00a619c3e59/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f32636163616337386438313339393230303464353634353930613566623932662e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/20/2cacac78d813992004d564590a5fb92f.png" style="max-width: 100%;"></a></p>
 <p>选择<code class="notranslate">chevereto4</code></p>
 <p>配置上传url 和api key</p>
@@ -229,7 +233,8 @@ choco install marktext</pre></div>
 <ol start="5">
 <li>测试上传</li>
 </ol>
-<div class="highlight highlight-source-shell"><pre class="notranslate">picgo upload /path/to/image.png</pre></div>
+<pre lang="shell" class="notranslate"><code class="notranslate">picgo upload /path/to/image.png
+</code></pre>
 <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/dee2a7c37605842e722596b016378ab578ece7c5701a806198b4c6752996c775/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f39303637376431326533643237613364326565383433386532613264613934392e706e67"><img src="https://camo.githubusercontent.com/dee2a7c37605842e722596b016378ab578ece7c5701a806198b4c6752996c775/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f30362f32302f39303637376431326533643237613364326565383433386532613264613934392e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/06/20/90677d12e3d27a3d2ee8438e2a2da949.png" style="max-width: 100%;"></a></p>
 <ol start="6">
 <li>截图后直接 <code class="notranslate">Ctrl+V</code> 粘贴到编辑器即可自动上传到图床</li>
