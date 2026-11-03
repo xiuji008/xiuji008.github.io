@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark_colorblind" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    <script src='https://xiuji008.github.io/plugins/gmeekVercount.js'></script><script src='https://xiuji008.github.io/plugins/lightbox.js'></script><script src='https://xiuji008.github.io/plugins/gmeekTOC.js'></script><script src='https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0/dist/autoload.js'></script>
+    <link rel="icon" href="https://xiuji008.github.io/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+
+
+
+先说一个事实：**XJ-Editor 的代码，全部是 AI 写的。">
+<meta property="og:title" content="我用 AI 给自己写了一个 Markdown 编辑器，然后把它开源了">
+<meta property="og:description" content="
+
+
+
+先说一个事实：**XJ-Editor 的代码，全部是 AI 写的。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://xiuji008.github.io/post/wo-yong-%20AI%20-gei-zi-ji-xie-le-yi-ge-%20Markdown%20-bian-ji-qi-%EF%BC%8C-ran-hou-ba-ta-kai-yuan-le.html">
+<meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
+<title>我用 AI 给自己写了一个 Markdown 编辑器，然后把它开源了</title>
+
+<meta name="referrer" content="no-referrer">
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+<style>#postBody{font-size:20px}</style>
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">我用 AI 给自己写了一个 Markdown 编辑器，然后把它开源了</h1>
+<div class="title-right">
+    <a href="https://xiuji008.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/xiuji008/xiuji008.github.io/issues/79" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>先说一个事实：<strong>XJ-Editor 的代码，全部是 AI 写的。</strong></p>
+<p>我不是前端开发者，也没有花几个月去啃 Electron 文档。我的角色更像一个产品经理兼测试员：提需求、用，觉得哪里别扭就告诉AI。AI 负责把想法变成能跑起来的代码。最终做出来的东西，是一个本地优先的 Markdown 桌面编辑器，它解决的不是"Markdown 渲染好不好看"这种问题，而是我每天写作时真正在烦的事。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/edad7873a26fa6d3a818ba5afb0588d89e16223b69eda835affc021565bab121/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231323832313937382e706e67"><img src="https://camo.githubusercontent.com/edad7873a26fa6d3a818ba5afb0588d89e16223b69eda835affc021565bab121/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231323832313937382e706e67" alt="局部截取_20261103_212814.png" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/11/03/20261103212821978.png" style="max-width: 100%;"></a></p>
+<h2>为什么自己写：因为市面上的工具总差一口气</h2>
+<p>Markdown 编辑器太多了。Typora、Obsidian、VS Code 加一堆插件，每一个都能用。但用久了会发现一个共同的别扭：<strong>你总是在切换。</strong></p>
+<p>写 Markdown 用一个窗口，看 PDF 换一个，转 Word 再开一个，想用 AI 润色一段话又得复制粘贴到网页端。Git 提交要切终端，改个 JSON 要另开工具。这些切换单独看都不致命，但一天下来几十次，耐心就是这么被磨掉的。</p>
+<p>XJ-Editor 的出发点很简单：<strong>能不能一个窗口把事办完。</strong></p>
+<p>项目地址： <a href="https://github.com/xiuji008/xj-editor">https://github.com/xiuji008/xj-editor</a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/139b7214c26905bdaf0deb2012ab706cd18c62c82016ea16f1b44e96e2a0b774/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333230333330363033372e706e67"><img src="https://camo.githubusercontent.com/139b7214c26905bdaf0deb2012ab706cd18c62c82016ea16f1b44e96e2a0b774/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333230333330363033372e706e67" alt="" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/11/03/20261103203306037.png" style="max-width: 100%;"></a></p>
+<h2>它不是一个编辑器，是一套围绕本地文件的工作流</h2>
+<p>这个定位决定了所有取舍。</p>
+<p><strong>编辑、预览、转换，都在同一个窗口里。</strong> Markdown / HTML / JSON / 纯文本都支持编辑、分屏、预览一键切换。图片、PDF、Word、Excel、PPT、压缩包直接内嵌看，旧版 <code class="notranslate">.doc</code> 也能自适应缩放。最实用的是转换：Word / PPT / Excel / PDF / EPUB 本地一键转 Markdown，基于 anydoc 的 WASM，文件不出本机，转完自动打开编辑。</p>
+<p><strong>AI 是内置的，不是外挂的。</strong> OpenAI、Claude、Gemini、DeepSeek、Kimi、千问、智谱、Ollama 八家预设，选中一段文字就能润色、扩写、翻译、校对，或者让它生成图表。多会话、流式回复、引用文件当上下文都有。不用切网页，不用复制粘贴。当前AI功能知识简单接入，未深度使用，后期会逐步添加Agent的能力。</p>
+<p><strong>写作刚需一个不落。</strong> Mermaid、PlantUML、Chart.js 直接渲染，KaTeX 公式，GitHub 风格提示块，YAML Front Matter 信息卡片。</p>
+<p>这些东西拆开看都是"插件能解决"的，但 XJ-Editor 把它们做成了默认就有。<strong>我不用再花一个周末去配 VS Code 的 settings.json。</strong></p>
+<ul>
+<li>md编辑</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/42948410e4d21a5c70c1516a4426dc3795c000f2ca8075871e74ea6e30b026ce/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231303730323733372e706e67"><img src="https://camo.githubusercontent.com/42948410e4d21a5c70c1516a4426dc3795c000f2ca8075871e74ea6e30b026ce/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231303730323733372e706e67" alt="局部截取_20261103_210636.png" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/11/03/20261103210702737.png" style="max-width: 100%;"></a></p>
+<ul>
+<li>
+<p>html 编辑预览<br>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/75fab825f6839cdbe64a4345673642db2c9fc227540cd2bed4903879cefaface/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333230353730343739382e706e67"><img src="https://camo.githubusercontent.com/75fab825f6839cdbe64a4345673642db2c9fc227540cd2bed4903879cefaface/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333230353730343739382e706e67" alt="局部截取_20261103_205642.png" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/11/03/20261103205704798.png" style="max-width: 100%;"></a></p>
+</li>
+<li>
+<p>word 预览</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/69d866705416bf6383a17c9f23b811dfaf1f527295343f88be31d7ac6e584d46/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231303135323131332e706e67"><img src="https://camo.githubusercontent.com/69d866705416bf6383a17c9f23b811dfaf1f527295343f88be31d7ac6e584d46/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231303135323131332e706e67" alt="局部截取_20261103_210136.png" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/11/03/20261103210152113.png" style="max-width: 100%;"></a></p>
+<ul>
+<li>execl 预览</li>
+</ul>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/6b71735deb36683b04accf425db02c391b7c7189882338bb0d4874bc223d6615/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231303833353731372e706e67"><img src="https://camo.githubusercontent.com/6b71735deb36683b04accf425db02c391b7c7189882338bb0d4874bc223d6615/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231303833353731372e706e67" alt="局部截取_20261103_210810.png" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/11/03/20261103210835717.png" style="max-width: 100%;"></a></p>
+<h2>PDF 标记：看资料和记笔记，本来就不该分两件事</h2>
+<p>写文档的人经常要读 PDF：论文、规范、别人的技术手册。传统做法是 PDF 阅读器开一个窗口，笔记软件开另一个，看到重点就切过去手打一段摘录，或者截图存下来。来回切几次，读到哪都忘了。</p>
+<p>XJ-Editor 把 PDF 当成和 Markdown 一样的一等公民来对待，直接内嵌打开，并且支持<strong>在 PDF 上做标记</strong>：</p>
+<ul>
+<li><strong>高亮与标注</strong>：在 PDF 页面上划重点、加批注，不用导出到别的软件；</li>
+<li><strong>标记跟着文件走</strong>：标记和文档放在一起、走本地存储，不依赖云端账户，换台机器拷过去也能用；</li>
+<li><strong>边读边写</strong>：左边 PDF 看资料，分屏在 Markdown 里摘录和整理，读到哪写到哪，不用切窗口；</li>
+<li><strong>与转换打通</strong>：需要把整份 PDF 转成可编辑的 Markdown 时，本地一键转换，转完自动打开编辑。</li>
+</ul>
+<p>对我来说这一块的价值很直接：<strong>读资料的上下文和写笔记的上下文在同一个窗口里。</strong> 划完重点顺手整理成笔记，比"截图 → 切软件 → 粘贴 → 忘了为什么截"这条链路短太多了。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/bf357b6013cb048df52c1c30081501e364495b9d679fcd6ac1ae454d74a5edf4/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231313535383437302e706e67"><img src="https://camo.githubusercontent.com/bf357b6013cb048df52c1c30081501e364495b9d679fcd6ac1ae454d74a5edf4/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231313535383437302e706e67" alt="局部截取_20261103_211543.png" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/11/03/20261103211558470.png" style="max-width: 100%;"></a></p>
+<h2>内置 Git 面板：版本管理不用离开编辑器</h2>
+<p>对写文档的人来说，Git 常常是个尴尬的存在。你知道该用，但为了提交一次改动去开终端、敲 <code class="notranslate">git add</code> 和 <code class="notranslate">git commit</code>，性价比太低，于是干脆不提交，最后靠"文档_v2_最终版_真的最终.docx"这种文件名活着。</p>
+<p>XJ-Editor 把 Git 做成了侧边栏里的一个面板，常用的操作都在：</p>
+<ul>
+<li><strong>变更与 diff</strong>：改过的文件一目了然，点开就能看逐行 diff，不用切到终端跑 <code class="notranslate">git diff</code>；</li>
+<li><strong>提交历史与分支</strong>：浏览历史记录、切换分支、创建分支，都在面板里完成；</li>
+<li><strong>储藏（stash）</strong>：写到一半想切去改别的东西，先把当前改动储藏起来，回来再恢复；</li>
+<li><strong>克隆仓库</strong>：直接从一个远程地址把仓库拉下来，省去先开终端再回来的步骤；</li>
+<li><strong>AI 生成提交信息</strong>：这是我觉得最顺手的一个。改完一堆文件，懒得想 commit message，点一下让 AI 根据 diff 生成一条，读一遍、改两个字、提交。</li>
+</ul>
+<p>它的意义不在于"功能比命令行全"——命令行当然更全。它的意义是<strong>把提交这件事的摩擦降到足够低</strong>，低到你真的会去提交。写作和版本管理在同一个窗口里，这件事本身就改变了习惯。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c387ce8b33a5e8cc2e563882213df3610815d1c7b189d5505491c074d6a48344/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231313635383835312e706e67"><img src="https://camo.githubusercontent.com/c387ce8b33a5e8cc2e563882213df3610815d1c7b189d5505491c074d6a48344/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231313635383835312e706e67" alt="局部截取_20261103_211647.png" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/11/03/20261103211658851.png" style="max-width: 100%;"></a></p>
+<h2>内置终端：需要敲命令时，不用切出去</h2>
+<p>有些事图形界面做不了，或者做起来更慢：跑个构建脚本、<code class="notranslate">npm install</code>、批量重命名、看一眼 <code class="notranslate">git log --graph</code>、起个本地服务。以前这意味着 Alt+Tab 到终端窗口，再 Alt+Tab 回来，思路被打断两次。</p>
+<p>XJ-Editor 内置了终端，<code class="notranslate">Ctrl+`</code> 呼出，用起来和系统终端基本一致：</p>
+<ul>
+<li><strong>多标签</strong>：同时开几个会话，一个跑服务、一个敲 git、一个留着备用，互不干扰；</li>
+<li><strong>高度可调</strong>：拖一下边框就能拉高拉低，写代码时拉大，写作时缩到最小；</li>
+<li><strong>跑全屏程序</strong>：它接的是系统 shell，所以 vim、tmux 这类全屏 TUI 程序可以正常跑，不会出现渲染错乱；</li>
+<li><strong>和编辑器同窗口</strong>：改完文件直接在下面终端里提交或跑脚本，上下文不用来回搬。</li>
+</ul>
+<p>配合 Git 面板，日常的版本管理流程基本就是：改文档 → 下面终端里跑个脚本或测试 → 侧边栏看一眼 diff → AI 生成提交信息 → 提交。全程没离开过这个窗口。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c2412d6e37d034b2acaf5cd7d0cfb4bbcea06a6362810b99b484cac3cdc2740f/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231313735333534342e706e67"><img src="https://camo.githubusercontent.com/c2412d6e37d034b2acaf5cd7d0cfb4bbcea06a6362810b99b484cac3cdc2740f/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231313735333534342e706e67" alt="局部截取_20261103_211740.png" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/11/03/20261103211753544.png" style="max-width: 100%;"></a></p>
+<h2>适合谁</h2>
+<ul>
+<li>经常写技术文档、博客、笔记，不想在工具之间反复横跳的人</li>
+<li>想少装软件、少配插件，一个窗口闭环的人</li>
+<li>需要在离线环境写作，或者对数据本地性有要求的人</li>
+<li>写文档也想顺手管版本、但懒得天天开终端的人</li>
+</ul>
+<p>当前软件考虑的是先把经常使用的功能添加进来，在后续使用的过程中逐步优化</p>
+<h2>如何使用</h2>
+<p>该项目目前仅有windows桌面端，可在github release 页面下载exe 文件直接安装使用</p>
+<p><a href="https://github.com/xiuji008/xj-editor/releases/tag/v1.0.0">https://github.com/xiuji008/xj-editor/releases/tag/v1.0.0</a></p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b06bb197d4c5f9c71c8352afd2e7c66c37dfa4894a4f1068d83e6d1b546e23f7/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231323533363738332e706e67"><img src="https://camo.githubusercontent.com/b06bb197d4c5f9c71c8352afd2e7c66c37dfa4894a4f1068d83e6d1b546e23f7/687474703a2f2f63686576657265746f2e7869756a692e6d796e61746170702e63632f696d616765732f323032362f31312f30332f32303236313130333231323533363738332e706e67" alt="局部截取_20261103_212525.png" data-canonical-src="http://chevereto.xiuji.mynatapp.cc/images/2026/11/03/20261103212536783.png" style="max-width: 100%;"></a></p>
+<h2>写在最后</h2>
+<p>它不是要替代谁。它只是一个证明：<strong>当你既是用户又是作者的时候，AI 能把"想做点东西"的门槛降到多低。</strong> 如果你也厌倦了在工具之间来回切换，不妨试试看。</p></div>
+<div style="font-size:small;margin-top:8px;float:right;">🔥 转载文章请注明出处及原文链接，谢谢！🔥 ✨修己xj✨</div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://xiuji008.github.io">修己xj</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if("12/15/2025"!=""){
+    var startSite=new Date("12/15/2025");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","xiuji008/xiuji008.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+<script async src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'></script>
+
+</html>
