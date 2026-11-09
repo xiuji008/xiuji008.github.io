@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>修己xj</title><link>https://xiuji008.github.io</link><description>倚南窗以寄傲，审容膝之易安 </description><copyright>修己xj</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://xiuji008.github.io/favicons/favicon.svg</url><title>avatar</title><link>https://xiuji008.github.io</link></image><lastBuildDate>Tue, 03 Nov 2026 13:48:39 +0000</lastBuildDate><managingEditor>修己xj</managingEditor><ttl>60</ttl><webMaster>修己xj</webMaster><item><title>我用 AI 给自己写了一个 Markdown 编辑器，然后把它开源了</title><link>https://xiuji008.github.io/post/wo-yong-%20AI%20-gei-zi-ji-xie-le-yi-ge-%20Markdown%20-bian-ji-qi-%EF%BC%8C-ran-hou-ba-ta-kai-yuan-le.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>修己xj</title><link>https://xiuji008.github.io</link><description>倚南窗以寄傲，审容膝之易安 </description><copyright>修己xj</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://xiuji008.github.io/favicons/favicon.svg</url><title>avatar</title><link>https://xiuji008.github.io</link></image><lastBuildDate>Mon, 09 Nov 2026 07:46:48 +0000</lastBuildDate><managingEditor>修己xj</managingEditor><ttl>60</ttl><webMaster>修己xj</webMaster><item><title>在 AMD 机器上拉取 ARM 架构 Docker 镜像</title><link>https://xiuji008.github.io/post/zai-%20AMD%20-ji-qi-shang-la-qu-%20ARM%20-jia-gou-%20Docker%20-jing-xiang.html</link><description>
+
+## 背景
+
+日常开发中，我们经常需要在 AMD（x86_64）机器上获取 ARM 架构的 Docker 镜像。</description><guid isPermaLink="true">https://xiuji008.github.io/post/zai-%20AMD%20-ji-qi-shang-la-qu-%20ARM%20-jia-gou-%20Docker%20-jing-xiang.html</guid><pubDate>Mon, 09 Nov 2026 07:45:43 +0000</pubDate></item><item><title>我用 AI 给自己写了一个 Markdown 编辑器，然后把它开源了</title><link>https://xiuji008.github.io/post/wo-yong-%20AI%20-gei-zi-ji-xie-le-yi-ge-%20Markdown%20-bian-ji-qi-%EF%BC%8C-ran-hou-ba-ta-kai-yuan-le.html</link><description>
 
 
 
