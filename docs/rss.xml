@@ -1,5 +1,18 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>修己xj</title><link>https://xiuji008.github.io</link><description>倚南窗以寄傲，审容膝之易安 </description><copyright>修己xj</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://xiuji008.github.io/favicons/favicon.svg</url><title>avatar</title><link>https://xiuji008.github.io</link></image><lastBuildDate>Mon, 09 Nov 2026 07:46:48 +0000</lastBuildDate><managingEditor>修己xj</managingEditor><ttl>60</ttl><webMaster>修己xj</webMaster><item><title>在 AMD 机器上拉取 ARM 架构 Docker 镜像</title><link>https://xiuji008.github.io/post/zai-%20AMD%20-ji-qi-shang-la-qu-%20ARM%20-jia-gou-%20Docker%20-jing-xiang.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>修己xj</title><link>https://xiuji008.github.io</link><description>倚南窗以寄傲，审容膝之易安 </description><copyright>修己xj</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://xiuji008.github.io/favicons/favicon.svg</url><title>avatar</title><link>https://xiuji008.github.io</link></image><lastBuildDate>Tue, 10 Nov 2026 11:16:20 +0000</lastBuildDate><managingEditor>修己xj</managingEditor><ttl>60</ttl><webMaster>修己xj</webMaster><item><title>服务器无法解析域名？一次 DNS 配置缺失的排查与修复</title><link>https://xiuji008.github.io/post/fu-wu-qi-wu-fa-jie-xi-yu-ming-%EF%BC%9F-yi-ci-%20DNS%20-pei-zhi-que-shi-de-pai-cha-yu-xiu-fu.html</link><description>
+
+## 问题现象
+
+某天，服务器上出现了这样一幕：
+
+- 能访问公网 IP：`ping 223.5.5.5` 正常，延迟约 27ms
+- 但访问不了域名：`nslookup www.baidu.com` 直接报错
+
+```
+connection timed out; no servers could be reached
+```
+
+网络明明是通的，域名却解析不了。</description><guid isPermaLink="true">https://xiuji008.github.io/post/fu-wu-qi-wu-fa-jie-xi-yu-ming-%EF%BC%9F-yi-ci-%20DNS%20-pei-zhi-que-shi-de-pai-cha-yu-xiu-fu.html</guid><pubDate>Tue, 10 Nov 2026 11:15:49 +0000</pubDate></item><item><title>在 AMD 机器上拉取 ARM 架构 Docker 镜像</title><link>https://xiuji008.github.io/post/zai-%20AMD%20-ji-qi-shang-la-qu-%20ARM%20-jia-gou-%20Docker%20-jing-xiang.html</link><description>
 
 ## 背景
 
