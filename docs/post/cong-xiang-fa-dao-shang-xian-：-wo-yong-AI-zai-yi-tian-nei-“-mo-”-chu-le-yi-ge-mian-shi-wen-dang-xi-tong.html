@@ -19,7 +19,7 @@
 <meta property="og:url" content="https://xiuji008.github.io/post/cong-xiang-fa-dao-shang-xian-%EF%BC%9A-wo-yong-AI-zai-yi-tian-nei-%E2%80%9C-mo-%E2%80%9D-chu-le-yi-ge-mian-shi-wen-dang-xi-tong.html">
 <meta property="og:image" content="https://xiuji008.github.io/favicons/favicon.svg">
 <title>从想法到上线：我用AI在一天内“摸”出了一个面试文档系统</title>
-
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 <meta name="referrer" content="no-referrer">
 
 </head>
@@ -181,23 +181,22 @@ docs/
 <p>面试文档知识库系统，支持自动扫描 Markdown 文档、渲染图表/公式/流程图，通过 GitHub Pages 一键部署。</p>
 <hr>
 <h4>一、系统架构</h4>
-<pre lang="mermaid" class="notranslate"><code class="notranslate">graph TD
-    subgraph 源码
-        A[docs/ *.md] --&gt; B[scripts/build-manifest.js]
-        B --&gt; C[public/docs-manifest.json]
-    end
-    subgraph 前端 SPA
-        D[index.html] --&gt; E[src/main.jsx]
-        E --&gt; F[App.jsx]
-        F --&gt; G[Sidebar]
-        F --&gt; H[ArticleView]
-        H --&gt; I[MarkdownRenderer]
-        I --&gt; J[ChartBlock / MermaidBlock / CodeBlock]
-        H --&gt; K[Comments / PageViews]
-    end
-    C --&gt; G
-    A --&gt; H
-</code></pre>
+<div class="highlight highlight-source-mermaid"><pre class="notranslate"><span class="pl-k">graph</span> <span class="pl-c1">TD</span>
+    <span class="pl-k">subgraph</span> 源码
+        <span class="pl-ent">A</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>docs/ *.md<span class="pl-pds"><span class="pl-sg">]</span></span></span> <span class="pl-k">--&gt;</span> <span class="pl-ent">B</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>scripts/build-manifest.js<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">B</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">C</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>public/docs-manifest.json<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+    <span class="pl-k">end</span>
+    <span class="pl-k">subgraph</span> 前端 <span class="pl-ent">SPA</span>
+        <span class="pl-ent">D</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>index.html<span class="pl-pds"><span class="pl-sg">]</span></span></span> <span class="pl-k">--&gt;</span> <span class="pl-ent">E</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>src/main.jsx<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">E</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">F</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>App.jsx<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">F</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">G</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>Sidebar<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">F</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">H</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>ArticleView<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">H</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">I</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>MarkdownRenderer<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">I</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">J</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>ChartBlock / MermaidBlock / CodeBlock<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+        <span class="pl-ent">H</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">K</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>Comments / PageViews<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+    <span class="pl-k">end</span>
+    <span class="pl-ent">C</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">G</span>
+    <span class="pl-ent">A</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">H</span></pre></div>
 <p><strong>技术栈：</strong></p>
 <markdown-accessiblity-table><table role="table">
 <thead>
@@ -284,17 +283,16 @@ docs/
 ╚═══════════════════════════════════════════╝
 </code></pre>
 <p><strong>写法：</strong></p>
-<pre lang="yaml" class="notranslate"><code class="notranslate">---
-title: Java集合框架详解
-tags: [Java, 集合, 面试]
-category: Java/Java基础
-slug: java/java基础/collection
-emoji: 📚
-description: 完整的中文描述
-created: 2024-01-15
-updated: 2024-03-20
----
-</code></pre>
+<div class="highlight highlight-source-yaml"><pre class="notranslate">---
+<span class="pl-ent">title</span>: <span class="pl-s">Java集合框架详解</span>
+<span class="pl-ent">tags</span>: <span class="pl-s">[Java, 集合, 面试]</span>
+<span class="pl-ent">category</span>: <span class="pl-s">Java/Java基础</span>
+<span class="pl-ent">slug</span>: <span class="pl-s">java/java基础/collection</span>
+<span class="pl-ent">emoji</span>: <span class="pl-s">📚</span>
+<span class="pl-ent">description</span>: <span class="pl-s">完整的中文描述</span>
+<span class="pl-ent">created</span>: <span class="pl-c1">2024-01-15</span>
+<span class="pl-ent">updated</span>: <span class="pl-c1">2024-03-20</span>
+---</pre></div>
 <hr>
 <h5>2.3 数学公式（KaTeX）</h5>
 <p>支持行内公式和块级公式。</p>
@@ -305,35 +303,32 @@ $$<br>
 \int_{-\infty}^{\infty} e^{-x^2} , dx = \sqrt{\pi}<br>
 $$</p>
 <p><strong>写法：</strong></p>
-<pre lang="markdown" class="notranslate"><code class="notranslate">行内公式：$E = mc^2$
+<div class="highlight highlight-text-md"><pre class="notranslate">行内公式：$E = mc^2$
 
 块级公式：
-$$
-\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}
-$$
-</code></pre>
+<span class="pl-s">$$</span><span class="pl-c1"></span>
+<span class="pl-c1">\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}</span>
+<span class="pl-c1"></span><span class="pl-s">$$</span></pre></div>
 <p>也支持 mathjax 代码块：</p>
-<pre lang="markdown" class="notranslate"><code class="notranslate">```mathjax
-f(x) = \sum_{i=1}^{n} i^2
-```
-</code></pre>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">```</span><span class="pl-en">mathjax</span><span class="pl-c1"></span>
+<span class="pl-c1">f(x) = \sum_{i=1}^{n} i^2</span>
+<span class="pl-c1"></span><span class="pl-s">```</span></pre></div>
 <hr>
 <h5>2.4 图表（Recharts）</h5>
 <p>支持 <code class="notranslate">pie</code>、<code class="notranslate">bar</code>、<code class="notranslate">line</code>、<code class="notranslate">area</code>、<code class="notranslate">radar</code> 五种图表。</p>
 <p><strong>效果：</strong> 彩色可交互图表，鼠标悬停显示数据</p>
 <p><strong>写法：</strong></p>
-<pre lang="markdown" class="notranslate"><code class="notranslate">```chart
-{
-  "type": "pie",
-  "title": "技术栈分布",
-  "data": [
-    { "name": "Java", "value": 40 },
-    { "name": "Python", "value": 25 },
-    { "name": "前端", "value": 20 }
-  ]
-}
-```
-</code></pre>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">```</span><span class="pl-en">chart</span><span class="pl-c1"></span>
+<span class="pl-c1">{</span>
+<span class="pl-c1">  "type": "pie",</span>
+<span class="pl-c1">  "title": "技术栈分布",</span>
+<span class="pl-c1">  "data": [</span>
+<span class="pl-c1">    { "name": "Java", "value": 40 },</span>
+<span class="pl-c1">    { "name": "Python", "value": 25 },</span>
+<span class="pl-c1">    { "name": "前端", "value": 20 }</span>
+<span class="pl-c1">  ]</span>
+<span class="pl-c1">}</span>
+<span class="pl-c1"></span><span class="pl-s">```</span></pre></div>
 <p>各图表类型：</p>
 <markdown-accessiblity-table><table role="table">
 <thead>
@@ -374,27 +369,24 @@ f(x) = \sum_{i=1}^{n} i^2
 <hr>
 <h5>2.5 流程图/时序图（Mermaid）</h5>
 <p><strong>效果：</strong></p>
-<pre lang="mermaid" class="notranslate"><code class="notranslate">graph TD
-    A[添加文档] --&gt; B[Git Push]
-    B --&gt; C[GitHub Actions]
-    C --&gt; D[部署 Pages]
-</code></pre>
+<div class="highlight highlight-source-mermaid"><pre class="notranslate"><span class="pl-k">graph</span> <span class="pl-c1">TD</span>
+    <span class="pl-ent">A</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>添加文档<span class="pl-pds"><span class="pl-sg">]</span></span></span> <span class="pl-k">--&gt;</span> <span class="pl-ent">B</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>Git Push<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+    <span class="pl-ent">B</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">C</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>GitHub Actions<span class="pl-pds"><span class="pl-sg">]</span></span></span>
+    <span class="pl-ent">C</span> <span class="pl-k">--&gt;</span> <span class="pl-ent">D</span><span class="pl-s"><span class="pl-pds"><span class="pl-sg">[</span></span>部署 Pages<span class="pl-pds"><span class="pl-sg">]</span></span></span></pre></div>
 <p><strong>写法：</strong></p>
-<pre lang="markdown" class="notranslate"><code class="notranslate">```mermaid
-graph TD
-    A[添加文档] --&gt; B[Git Push]
-    B --&gt; C[GitHub Actions]
-    C --&gt; D[部署 Pages]
-```
-</code></pre>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">```</span><span class="pl-en">mermaid</span><span class="pl-c1"></span>
+<span class="pl-c1">graph TD</span>
+<span class="pl-c1">    A[添加文档] --&gt; B[Git Push]</span>
+<span class="pl-c1">    B --&gt; C[GitHub Actions]</span>
+<span class="pl-c1">    C --&gt; D[部署 Pages]</span>
+<span class="pl-c1"></span><span class="pl-s">```</span></pre></div>
 <p>时序图：</p>
-<pre lang="markdown" class="notranslate"><code class="notranslate">```sequence
-participant A as 客户端
-participant B as 服务端
-A-&gt;&gt;B: 请求
-B--&gt;&gt;A: 响应
-```
-</code></pre>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">```</span><span class="pl-en">sequence</span><span class="pl-c1"></span>
+<span class="pl-c1">participant A as 客户端</span>
+<span class="pl-c1">participant B as 服务端</span>
+<span class="pl-c1">A-&gt;&gt;B: 请求</span>
+<span class="pl-c1">B--&gt;&gt;A: 响应</span>
+<span class="pl-c1"></span><span class="pl-s">```</span></pre></div>
 <p>支持所有 Mermaid 类型：</p>
 <markdown-accessiblity-table><table role="table">
 <thead>
@@ -451,17 +443,15 @@ B--&gt;&gt;A: 响应
 </code></pre>
 <p>点击复制按钮 → 自动复制到剪贴板，按钮变为 ✅ 已复制（1.8 秒后恢复）。</p>
 <p><strong>写法：</strong></p>
-<pre lang="markdown" class="notranslate"><code class="notranslate">```java
-public class Hello {
-    public static void main(String[] args) {}
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">```</span><span class="pl-en">java</span>
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">Hello</span> {
+    <span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-k">void</span> <span class="pl-en">main</span>(<span class="pl-k">String</span>[] <span class="pl-v">args</span>) {}
 }
-```
-</code></pre>
+<span class="pl-s">```</span></pre></div>
 <p>不写语言也自动渲染为代码块：</p>
-<pre lang="markdown" class="notranslate"><code class="notranslate">```
-纯文本代码块
-```
-</code></pre>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-s">```</span><span class="pl-c1"></span>
+<span class="pl-c1">纯文本代码块</span>
+<span class="pl-c1"></span><span class="pl-s">```</span></pre></div>
 <hr>
 <h5>2.7 GitHub Alert 提示</h5>
 <p>5 种颜色不同的警报提示块。</p>
@@ -477,9 +467,8 @@ public class Hello {
 <div class="markdown-alert markdown-alert-caution"><p class="markdown-alert-title"><svg data-component="Octicon" class="octicon octicon-stop mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Caution</p><p>红色提示，用于谨慎操作</p>
 </div>
 <p><strong>写法：</strong></p>
-<pre lang="markdown" class="notranslate"><code class="notranslate">&gt; [!NOTE]
-&gt; 提示内容写在这里
-</code></pre>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-ent"><span class="pl-ent">&gt; </span><span class="pl-s">[</span>!NOTE<span class="pl-s">]</span></span>
+<span class="pl-ent"><span class="pl-ent">&gt; </span>提示内容写在这里</span></pre></div>
 <markdown-accessiblity-table><table role="table">
 <thead>
 <tr>
@@ -542,11 +531,10 @@ public class Hello {
 </tbody>
 </table></markdown-accessiblity-table>
 <p><strong>写法：</strong></p>
-<pre lang="markdown" class="notranslate"><code class="notranslate">| 算法 | 类型 | 优点 |
-|------|------|------|
-| 线性回归 | 回归 | 简单 |
-| 决策树 | 分类 | 可视化 |
-</code></pre>
+<div class="highlight highlight-text-md"><pre class="notranslate"><span class="pl-ml">|</span> 算法 <span class="pl-ml">|</span> 类型 <span class="pl-ml">|</span> 优点 <span class="pl-ml">|</span>
+<span class="pl-ml">|</span>------<span class="pl-ml">|</span>------<span class="pl-ml">|</span>------<span class="pl-ml">|</span>
+<span class="pl-ml">|</span> 线性回归 <span class="pl-ml">|</span> 回归 <span class="pl-ml">|</span> 简单 <span class="pl-ml">|</span>
+<span class="pl-ml">|</span> 决策树 <span class="pl-ml">|</span> 分类 <span class="pl-ml">|</span> 可视化 <span class="pl-ml">|</span></pre></div>
 <hr>
 <h5>2.9 阅读量统计</h5>
 <p>基于 GitHub Gist API 的跨设备阅读量计数器。</p>
@@ -567,10 +555,9 @@ public class Hello {
 <li>生成后复制 Token</li>
 </ul>
 <p><strong>③ 填入配置</strong></p>
-<pre lang="js" class="notranslate"><code class="notranslate">// src/utils/gistCounter.js
-const GIST_ID = '你的GistID'
-const GIST_TOKEN = 'ghp_xxxx （仅 gist 权限，不影响代码仓库）'
-</code></pre>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-c">// src/utils/gistCounter.js</span>
+<span class="pl-k">const</span> <span class="pl-c1">GIST_ID</span> <span class="pl-c1">=</span> <span class="pl-s">'你的GistID'</span>
+<span class="pl-k">const</span> <span class="pl-c1">GIST_TOKEN</span> <span class="pl-c1">=</span> <span class="pl-s">'ghp_xxxx （仅 gist 权限，不影响代码仓库）'</span></pre></div>
 <blockquote>
 <p><g-emoji class="g-emoji" alias="warning">⚠️</g-emoji> Token 会打包到前端 JS，务必只勾选 <code class="notranslate">gist</code> 权限，定期更换更安全。</p>
 </blockquote>
@@ -585,14 +572,13 @@ const GIST_TOKEN = 'ghp_xxxx （仅 gist 权限，不影响代码仓库）'
 <li>访问 <a href="https://giscus.app/zh-CN" rel="nofollow">giscus.app</a> 填入 <code class="notranslate">xiuji008/xjdoc-interview</code> 获取 ID</li>
 <li>将 <code class="notranslate">repoId</code>、<code class="notranslate">categoryId</code> 填入：</li>
 </ol>
-<pre lang="js" class="notranslate"><code class="notranslate">// src/components/Comments.jsx
-const GISCUS_CONFIG = {
-  repo: 'xiuji008/xjdoc-interview',
-  repoId: 'R_kgDOSoPcRg',
-  category: 'Announcements',
-  categoryId: 'DIC_kwDOSoPcRs4C94wU',
-}
-</code></pre>
+<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-c">// src/components/Comments.jsx</span>
+<span class="pl-k">const</span> <span class="pl-c1">GISCUS_CONFIG</span> <span class="pl-c1">=</span> <span class="pl-kos">{</span>
+  <span class="pl-c1">repo</span>: <span class="pl-s">'xiuji008/xjdoc-interview'</span><span class="pl-kos">,</span>
+  <span class="pl-c1">repoId</span>: <span class="pl-s">'R_kgDOSoPcRg'</span><span class="pl-kos">,</span>
+  <span class="pl-c1">category</span>: <span class="pl-s">'Announcements'</span><span class="pl-kos">,</span>
+  <span class="pl-c1">categoryId</span>: <span class="pl-s">'DIC_kwDOSoPcRs4C94wU'</span><span class="pl-kos">,</span>
+<span class="pl-kos">}</span></pre></div>
 <ul>
 <li>使用 <code class="notranslate">data-mapping="specific"</code> + <code class="notranslate">data-term={slug}</code> 按文章独立分页</li>
 <li>支持 GitHub Reactions（👍❤️🎉 等）</li>
@@ -644,18 +630,17 @@ const GISCUS_CONFIG = {
 </code></pre>
 <hr>
 <h4>四、快速开始</h4>
-<pre lang="bash" class="notranslate"><code class="notranslate"># 1. 安装依赖
+<div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 1. 安装依赖</span>
 npm install
 
-# 2. 生成文档清单 + 启动开发服务器
+<span class="pl-c"><span class="pl-c">#</span> 2. 生成文档清单 + 启动开发服务器</span>
 npm run dev
 
-# 3. 打开浏览器访问
+<span class="pl-c"><span class="pl-c">#</span> 3. 打开浏览器访问</span>
 open http://localhost:5173
 
-# 4. 构建生产版本
-npm run build
-</code></pre>
+<span class="pl-c"><span class="pl-c">#</span> 4. 构建生产版本</span>
+npm run build</pre></div>
 <hr>
 <h4>五、部署</h4>
 <p>推送 <code class="notranslate">main</code> 分支到 GitHub 后，<code class="notranslate">.github/workflows/deploy.yml</code> 自动执行：</p>
@@ -669,15 +654,14 @@ npm run build
 </blockquote>
 <hr>
 <h4>六、添加新文档</h4>
-<pre lang="yaml" class="notranslate"><code class="notranslate">---
-title: 文档标题
-tags: [标签1, 标签2]
-category: 分类/子分类
-slug: 路径/文件名（唯一标识）
-emoji: 📝
-description: 简短描述
----
-</code></pre>
+<div class="highlight highlight-source-yaml"><pre class="notranslate">---
+<span class="pl-ent">title</span>: <span class="pl-s">文档标题</span>
+<span class="pl-ent">tags</span>: <span class="pl-s">[标签1, 标签2]</span>
+<span class="pl-ent">category</span>: <span class="pl-s">分类/子分类</span>
+<span class="pl-ent">slug</span>: <span class="pl-s">路径/文件名（唯一标识）</span>
+<span class="pl-ent">emoji</span>: <span class="pl-s">📝</span>
+<span class="pl-ent">description</span>: <span class="pl-s">简短描述</span>
+---</pre></div>
 <p>将 <code class="notranslate">.md</code> 文件放入 <code class="notranslate">docs/</code> 下对应目录 → 提交推送 → 自动部署上线。</p>
 <h2>写在最后</h2>
 <p>需要特别说明的是，这个项目只是一个知识载体，真正有价值的，是其中沉淀的内容。工具帮你降低了表达的门槛，但坚持每天更新知识内容、在使用中持续优化项目，才是这件事能否走远的关键。</p>
